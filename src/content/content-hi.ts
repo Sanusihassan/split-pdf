@@ -55,147 +55,12 @@ export const landing_page: _landing_page = {
   },
 };
 export const tool: _tool = {
-  Merge_PDF: {
-    title: "पीडीएफ विलय",
-    description: "एक दस्तावेज में कई पीडीएफ फ़ाइलों को जोड़ें",
-    color: "var(--red)",
-    type: ".pdf",
-    to: "/merge-pdf",
-  },
   Split_PDF: {
     title: "पीडीएफ विभाजित करें",
     description: "एक पीडीएफ फ़ाइल को कई दस्तावेजों में विभाजित करें",
     color: "var(--orange)",
     type: ".pdf",
     to: "/split-pdf",
-  },
-  Compress_PDF: {
-    title: "पीडीएफ कम्प्रेस करें",
-    description: "गुणवत्ता को बनाए रखते हुए एक पीडीएफ फ़ाइल का आकार कम करें",
-    color: "var(--green)",
-    type: ".pdf",
-    to: "/compress-pdf",
-  },
-  Translate_PDF: {
-    title: "PDF अनुवाद करें",
-    description: "एक PDF फ़ाइल में टेक्स्ट को दूसरी भाषा में अनुवाद करें",
-    color: "#185abc",
-    type: ".pdf",
-    to: "/translate-pdf",
-  },
-  PDF_to_Powerpoint: {
-    title: "PDF से पावरपॉइंट में",
-    description: "PDF फ़ाइलों को संपादनीय पावरपॉइंट प्रस्तुतियों में बदलें",
-    color: "#C13B1B",
-    type: ".pdf",
-    to: "/pdf-to-powerpoint",
-  },
-  JPG_to_PDF: {
-    title: "JPG से पीडीएफ में",
-    description: "JPG छवि फ़ाइलों को पीडीएफ दस्तावेजों में बदलें",
-    color: "#f1c40f",
-    type: ".jpg",
-    to: "/jpg-to-pdf",
-  },
-  WORD_to_PDF: {
-    title: "वर्ड से पीडीएफ में",
-    description: "माइक्रोसॉफ्ट वर्ड फ़ाइलों को पीडीएफ दस्तावेजों में बदलें",
-    color: "#1B5EBE",
-    type: ".docx",
-    to: "/word-to-pdf",
-  },
-  POWERPOINT_to_PDF: {
-    title: "पावरपॉइंट से पीडीएफ में",
-    description: "माइक्रोसॉफ्ट पावरपॉइंट फाइलों को पीडीएफ दस्तावेजों में बदलें",
-    color: "#C13B1B",
-    type: ".pptx",
-    to: "/powerpoint-to-pdf",
-  },
-  EXCEL_to_PDF: {
-    title: "एक्सेल से पीडीएफ में",
-    description: "माइक्रोसॉफ्ट एक्सेल फ़ाइलों को पीडीएफ दस्तावेजों में बदलें",
-    color: "#10793F",
-    type: ".xlsx",
-    to: "/excel-to-pdf",
-  },
-  HTML_to_PDF: {
-    title: "HTML से पीडीएफ में",
-    description: "HTML वेब पृष्ठों को पीडीएफ दस्तावेजों में बदलें",
-    color: "rgb(228, 77, 38)",
-    type: ".html",
-    to: "/html-to-pdf",
-  },
-
-  Markdown_to_PDF: {
-    title: "Markdown से पीडीएफ में रूपांतरण",
-    description: "Markdown से पीडीएफ में रूपांतरण",
-    color: "#6c5ce7",
-    type: ".pdf",
-    to: "/markdown-to-pdf",
-  },
-
-  PDF_to_JPG: {
-    title: "PDF से JPG में",
-    description: "PDF फ़ाइलों को JPG छवि फ़ाइलों में बदलें",
-    color: "#f1c40f",
-    type: ".pdf",
-    to: "/pdf-to-jpg",
-  },
-  PDF_to_WORD: {
-    title: "PDF से वर्ड में",
-    description: "PDF फ़ाइलों को माइक्रोसॉफ्ट वर्ड दस्तावेजों में बदलें",
-    color: "#1B5EBE",
-    type: ".pdf",
-    to: "/pdf-to-word",
-  },
-
-  PDF_to_EXCEL: {
-    title: "PDF से एक्सेल में",
-    description: "PDF फ़ाइलों को माइक्रोसॉफ्ट एक्सेल दस्तावेजों में बदलें",
-    color: "#10793F",
-    type: ".pdf",
-    to: "/pdf-to-excel",
-  },
-
-  PDF_to_PDF_A: {
-    title: "PDF से PDF/A में",
-    description:
-      "PDF फ़ाइलों को लंबे समय तक संचय के लिए PDF/A प्रारूप में बदलें",
-    color: "#000000",
-    type: ".pdf",
-    to: "/pdf-to-pdf-a",
-  },
-
-  Web_to_PDF: {
-    title: "वेब से पीडीएफ",
-    description: "वेब पेज को पीडीएफ दस्तावेज में रूपांतरित करें",
-    color: "#0984e3",
-    type: ".pdf",
-    to: "/web-to-pdf",
-  },
-
-  PDF_to_Text: {
-    title: "पीडीएफ से टेक्स्ट",
-    description: "पीडीएफ फाइल को सामान्य टेक्स्ट दस्तावेज में रूपांतरित करें",
-    color: "#4493e1",
-    type: ".pdf",
-    to: "/pdf-to-text",
-  },
-
-  PDF_to_HTML: {
-    title: "पीडीएफ से एचटीएमएल में",
-    description: "पीडीएफ फ़ाइलों को एचटीएमएल दस्तावेज़ों में बदलें",
-    color: "rgb(228, 77, 38)",
-    type: ".pdf",
-    to: "/pdf-to-html",
-  },
-
-  PDF_to_Markdown: {
-    title: "PDF से मार्कडाउन तक",
-    description: "PDF फ़ाइलों को मार्कडाउन प्रारूप में रूपांतरित करें",
-    color: "#FF4136",
-    type: ".pdf",
-    to: "/pdf-to-markdown",
   },
 };
 
@@ -428,29 +293,11 @@ export const edit_page: _edit_page = {
     "मिलाने के लिए पीडीएफ फ़ाइलों के क्रम बदलने के लिए ड्रैग एंड ड्रॉप का उपयोग करें। एक फ़ाइल पर क्लिक और   होल्ड करें, इसे इच्छित स्थान पर ले जाएँ और माउस बटन को छोड़ दें।   पीडीएफ फ़ाइलें ऊपर से नीचे तक मिलाई जाती हैं। फ़ाइल को हटाने के लिए, फ़ाइल के ऊपर हटाने वाले आइकन पर क्लिक करें। पृष्ठ को घुमाने के लिए, पृष्ठ थंबनेल के ऊपर घुमाने वाले आइकन पर क्लिक करें   और चयनित घुमाने का कोण चुनें। एक बार जब फाइल इच्छित क्रम और अभिविन्यास में हो जाती हैं, तो उन्हें एक सिंगल पीडीएफ फ़ाइल में जोड़ने के लिए 'मर्ज' बटन पर क्लिक करें।",
 };
 
-export const web2pdftool: _web2pdftool = {
-  placeholder: "उदाहरण: https://pdfequips.com",
-  submit_btn: "रूपांतरित करें",
-};
-
-export const translate_pdf = {
-  drag_and_drop: "फ़ाइलों को यहाँ खींचें और छोड़ें",
-  or_choose_file: "या एक फ़ाइल चुनें",
-  browse_file: "अपनी फ़ाइलों को ब्राउज़ करें",
-};
-
 export const tools: _tools = {
   select: "चुनें",
   or_drop: "या फ़ाइलें यहां छोड़ें",
   files: "फाइलें",
   drop_files: "फ़ाइलें यहाँ खींचें",
-};
-
-export const footer: _footer = {
-  brand: "PDFEquips",
-  terms: "शर्तें",
-  conditions: "उपयोग की शर्तें",
-  privacy_policy: "गोपनीयता नीति",
 };
 
 export const errors: _errors = {

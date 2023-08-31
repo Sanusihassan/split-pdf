@@ -55,145 +55,12 @@ export const landing_page: _landing_page = {
 };
 
 export const tool: _tool = {
-  Merge_PDF: {
-    title: "合并PDF",
-    description: "将多个PDF文件合并成一个文档",
-    color: "var(--red)",
-    type: ".pdf",
-    to: "/merge-pdf",
-  },
   Split_PDF: {
     title: "拆分PDF",
     description: "将一个PDF文件分割成多个文档",
     color: "var(--orange)",
     type: ".pdf",
     to: "/split-pdf",
-  },
-  Compress_PDF: {
-    title: "压缩PDF",
-    description: "在保持质量的同时减小PDF文件的大小",
-    color: "var(--green)",
-    type: ".pdf",
-    to: "/compress-pdf",
-  },
-  Translate_PDF: {
-    title: "翻译 PDF",
-    description: "将 PDF 文件中的文本翻译成另一种语言",
-    color: "#185abc",
-    type: ".pdf",
-    to: "/translate-pdf",
-  },
-
-  PDF_to_Powerpoint: {
-    title: "PDF转Powerpoint",
-    description: "将PDF文件转换为可编辑的Powerpoint演示文稿",
-    color: "#C13B1B",
-    type: ".pdf",
-    to: "/pdf-to-powerpoint",
-  },
-  JPG_to_PDF: {
-    title: "JPG转PDF",
-    description: "将JPG图像文件转换为PDF文档",
-    color: "#f1c40f",
-    type: ".jpg",
-    to: "/jpg-to-pdf",
-  },
-  WORD_to_PDF: {
-    title: "WORD转PDF",
-    description: "将Microsoft Word文件转换为PDF文档",
-    color: "#1B5EBE",
-    type: ".docx",
-    to: "/word-to-pdf",
-  },
-  POWERPOINT_to_PDF: {
-    title: "POWERPOINT转PDF",
-    description: "将Microsoft Powerpoint文件转换为PDF文档",
-    color: "#C13B1B",
-    type: ".pptx",
-    to: "/powerpoint-to-pdf",
-  },
-  EXCEL_to_PDF: {
-    title: "EXCEL转PDF",
-    description: "将Microsoft Excel文件转换为PDF文档",
-    color: "#10793F",
-    type: ".xlsx",
-    to: "/excel-to-pdf",
-  },
-  HTML_to_PDF: {
-    title: "HTML转PDF",
-    description: "将HTML网页转换为PDF文档",
-    color: "rgb(228, 77, 38)",
-    type: ".html",
-    to: "/html-to-pdf",
-  },
-  Markdown_to_PDF: {
-    title: "Markdown 转 PDF",
-    description: "将 Markdown 转换为 PDF",
-    color: "#6c5ce7",
-    type: ".pdf",
-    to: "/markdown-to-pdf",
-  },
-  PDF_to_JPG: {
-    title: "PDF转JPG",
-    description: "将PDF文件转换为JPG图像文件",
-    color: "#f1c40f",
-    type: ".pdf",
-    to: "/pdf-to-jpg",
-  },
-  PDF_to_WORD: {
-    title: "PDF转WORD",
-    description: "将PDF文件转换为Microsoft Word文档",
-    color: "#1B5EBE",
-    type: ".pdf",
-    to: "/pdf-to-word",
-  },
-
-  PDF_to_EXCEL: {
-    title: "PDF转EXCEL",
-    description: "将PDF文件转换为Microsoft Excel文档",
-    color: "#10793F",
-    type: ".pdf",
-    to: "/pdf-to-excel",
-  },
-
-  PDF_to_PDF_A: {
-    title: "PDF转PDF/A",
-    description: "将PDF文件转换为PDF/A格式以进行长期归档",
-    color: "#000000",
-    type: ".pdf",
-    to: "/pdf-to-pdf-a",
-  },
-
-  Web_to_PDF: {
-    title: "网页转PDF",
-    description: "将网页转换为PDF文档",
-    color: "#0984e3",
-    type: ".pdf",
-    to: "/web-to-pdf",
-  },
-
-  PDF_to_Text: {
-    title: "PDF转文本",
-    description: "将PDF文件转换为纯文本文档",
-    color: "#4493e1",
-    type: ".pdf",
-    to: "/pdf-to-text",
-  },
-
-  PDF_to_HTML: {
-    title: "PDF 转 HTML",
-    description: "将 PDF 文件转换为 HTML 文档",
-    color: "rgb(228, 77, 38)",
-    type: ".pdf",
-    to: "/pdf-to-html",
-  },
-
-  PDF_to_Markdown: {
-    title: "PDF 转 Markdown",
-    description: "将 PDF 文件转换为 Markdown 格式",
-    color: "#FF4136",
-    type: ".pdf",
-    to: "/pdf-to-markdown",
   },
 };
 
@@ -335,29 +202,11 @@ export const edit_page: _edit_page = {
     "使用拖放改变PDF文件合并的顺序。单击并   按住一个文件,将其移动到所需位置,然后释放鼠标按钮。   PDF文件从上到下合并。要删除文件,请单击文件顶部的删除   图标。要旋转页面,请单击页面缩略图顶部的旋转图标,然后选择所需的旋转角度。文件处于   所需的顺序和方向,单击“合并”按钮将它们合并为一个PDF文件。",
 };
 
-export const web2pdftool: _web2pdftool = {
-  placeholder: "例如：https://pdfequips.com",
-  submit_btn: "转换",
-};
-
-export const translate_pdf = {
-  drag_and_drop: "将文件拖放到这里",
-  or_choose_file: "或选择一个文件",
-  browse_file: "浏览您的文件",
-};
-
 export const tools: _tools = {
   select: "选择",
   or_drop: "或将文件拖放到此处",
   files: "文件",
   drop_files: "在此处拖放文件",
-};
-
-export const footer: _footer = {
-  brand: "PDFEquips",
-  terms: "条款",
-  conditions: "条件",
-  privacy_policy: "隐私政策",
 };
 
 export const errors: _errors = {

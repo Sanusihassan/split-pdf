@@ -1,12 +1,12 @@
 // this is a very crowded tsx component, how can i simplify it further by separating the logics / parts to other components
-import { useCallback, useEffect, useRef, useState, useContext } from "react";
+import { useCallback, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 
 import EditPage from "./EditPage";
 import { ToolState, hideTool, setPath, setShowDownloadBtn } from "../src/store";
 
 import { useRouter } from "next/router";
-import type { edit_page, tools, downloadFile, translate_pdf } from "../content";
+import type { edit_page, tools, downloadFile } from "../content";
 import type { errors as _ } from "../content";
 import ErrorElement from "./ErrorElement";
 import { useSelector } from "react-redux";
@@ -14,7 +14,6 @@ import { useDispatch } from "react-redux";
 import { useFileStore } from "../src/file-store";
 import { FileInputForm } from "./Tool/FileInputForm";
 import DownloadFile from "./DownloadFile";
-import TranslatePDF from "./TranslatePDF";
 
 export type errorType = {
   response: {
@@ -40,9 +39,7 @@ type ToolProps = {
   edit_page: edit_page;
   pages: string;
   page: string;
-
   downloadFile: downloadFile;
-  translate_pdf: translate_pdf;
 };
 
 const Tool: React.FC<ToolProps> = ({
@@ -53,9 +50,7 @@ const Tool: React.FC<ToolProps> = ({
   edit_page,
   pages,
   page,
-
   downloadFile,
-  translate_pdf,
 }) => {
   const state = useSelector((state: { tool: ToolState }) => state.tool);
   // the files:
@@ -96,16 +91,18 @@ const Tool: React.FC<ToolProps> = ({
     ".jpg": ".jpg, .jpeg",
     ".html": ".html, .htm",
   };
+  // return <input type="checkbox" />;
 
   return (
     <>
       <div
         className="tools-page container-fluid position-relative"
         {...(state!.showTool && getRootProps())}
-        onClick={(e) => {
-          e.preventDefault();
-        }}
+        // onClick={(e) => {
+        //   // e.preventDefault();
+        // }}
       >
+        {/* <input type="checkbox" /> */}
         {isDragActive && (
           <div className="overlay display-4">{tools.drop_files}</div>
         )}

@@ -11,9 +11,7 @@ import {
   nav_content,
   tool,
   tools,
-  web2pdftool,
   downloadFile,
-  translate_pdf,
 } from "../../src/content/content-hi";
 import { useEffect } from "react";
 import { errors } from "../../src/content/content-hi";
@@ -84,9 +82,7 @@ export default ({ item, lang }: { item: data_type; lang: string }) => {
           edit_page={edit_page}
           pages={edit_page.pages}
           page={edit_page.page}
-          web2pdftool={web2pdftool}
           downloadFile={downloadFile}
-          translate_pdf={translate_pdf}
         />
       )}
     </>
@@ -95,22 +91,5 @@ export default ({ item, lang }: { item: data_type; lang: string }) => {
 
 // export default ToolPage;
 export const routes = {
-  "/merge-pdf": { item: tool["Merge_PDF"] },
   "/split-pdf": { item: tool["Split_PDF"] },
-  "/translate-pdf": { item: tool["Translate_PDF"] },
-  "/compress-pdf": { item: tool["Compress_PDF"] },
-  "/pdf-to-powerpoint": { item: tool["PDF_to_Powerpoint"] },
-  "/jpg-to-pdf": { item: tool["JPG_to_PDF"] },
-  "/word-to-pdf": { item: tool["WORD_to_PDF"] },
-  "/powerpoint-to-pdf": { item: tool["POWERPOINT_to_PDF"] },
-  "/excel-to-pdf": { item: tool["EXCEL_to_PDF"] },
-  "/html-to-pdf": { item: tool["HTML_to_PDF"] },
-  "/pdf-to-jpg": { item: tool["PDF_to_JPG"] },
-  "/pdf-to-word": { item: tool["PDF_to_WORD"] },
-  "/pdf-to-excel": { item: tool["PDF_to_EXCEL"] },
-  "/pdf-to-pdf-a": { item: tool["PDF_to_PDF_A"] },
-  "/web-to-pdf": { item: tool["Web_to_PDF"] },
-  "/pdf-to-text": { item: tool["PDF_to_Text"] },
-  "/pdf-to-html": { item: tool["PDF_to_HTML"] },
-  "/pdf-to-markdown": { item: tool["PDF_to_Markdown"] },
 };

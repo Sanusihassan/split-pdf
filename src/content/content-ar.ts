@@ -59,157 +59,15 @@ export const landing_page: _landing_page = {
 };
 
 export const tool: _tool = {
-  Merge_PDF: {
-    title: "دمج PDF",
-    description: "دمج ملفات PDF متعددة في مستند واحد",
-    color: "var(--red)",
-    type: ".pdf",
-    to: "/merge-pdf",
-  },
   Split_PDF: {
     title: "تقسيم PDF",
     description: "تقسيم ملف PDF إلى عدة مستندات",
     color: "var(--orange)",
     type: ".pdf",
     to: "/split-pdf",
-  },
-  Compress_PDF: {
-    title: "ضغط PDF",
-    description: "تقليل حجم ملف PDF مع الحفاظ على الجودة",
-    color: "var(--green)",
-    type: ".pdf",
-    to: "/compress-pdf",
-  },
-  Translate_PDF: {
-    title: "ترجمة PDF",
-    description: "ترجمة النص في ملف PDF إلى لغة أخرى",
-    color: "#185abc",
-    type: ".pdf",
-    to: "/translate-pdf",
-  },
-  PDF_to_Powerpoint: {
-    title: "PDF إلى PowerPoint",
-    description: "تحويل ملفات PDF إلى عروض Powerpoint قابلة للتحرير",
-    color: "#C13B1B",
-    type: ".pdf",
-    to: "/pdf-to-powerpoint",
-  },
-  JPG_to_PDF: {
-    title: "JPG إلى PDF",
-    description: "تحويل ملفات صور JPG إلى مستندات PDF",
-    color: "#f1c40f",
-    type: ".jpg",
-    to: "/jpg-to-pdf",
-  },
-  WORD_to_PDF: {
-    title: "WORD إلى PDF",
-    description: "تحويل ملفات Microsoft Word إلى مستندات PDF",
-    color: "#1B5EBE",
-    type: ".docx",
-    to: "/word-to-pdf",
-  },
-  POWERPOINT_to_PDF: {
-    title: "POWERPOINT إلى PDF",
-    description: "تحويل ملفات Microsoft Powerpoint إلى مستندات PDF",
-    color: "#C13B1B",
-    type: ".pptx",
-    to: "/powerpoint-to-pdf",
-  },
-  EXCEL_to_PDF: {
-    title: "EXCEL إلى PDF",
-    description: "تحويل ملفات Microsoft Excel إلى مستندات PDF",
-    color: "#10793F",
-    type: ".xlsx",
-    to: "/excel-to-pdf",
-  },
-
-  Markdown_to_PDF: {
-    title: "تحويل النص بتنسيق ماركداون إلى ملف PDF",
-    description: "تحويل النص بتنسيق ماركداون إلى ملف PDF",
-    color: "#6c5ce7",
-    type: ".pdf",
-    to: "/markdown-to-pdf",
-  },
-
-  HTML_to_PDF: {
-    title: "HTML إلى PDF",
-    description: "تحويل صفحات الويب HTML إلى مستندات PDF",
-    color: "rgb(228, 77, 38)",
-    type: ".html",
-    to: "/html-to-pdf",
-  },
-  PDF_to_JPG: {
-    title: "PDF إلى JPG",
-    description: "تحويل ملفات PDF إلى ملفات صور JPG",
-    color: "#f1c40f",
-    type: ".pdf",
-    to: "/pdf-to-jpg",
-  },
-  PDF_to_WORD: {
-    title: "PDF إلى WORD",
-    description: "تحويل ملفات PDF إلى مستندات Microsoft Word",
-    color: "#1B5EBE",
-    type: ".pdf",
-    to: "/pdf-to-word",
-  },
-
-  PDF_to_EXCEL: {
-    title: "PDF إلى EXCEL",
-    description: "تحويل ملفات PDF إلى مستندات Microsoft Excel",
-    color: "#10793F",
-    type: ".pdf",
-    to: "/pdf-to-excel",
-  },
-
-  PDF_to_PDF_A: {
-    title: "PDF إلى PDF/A",
-    description: "تحويل ملفات PDF إلى تنسيق PDF/A للأرشفة على المدى الطويل",
-    color: "#000000",
-    type: ".pdf",
-    to: "/pdf-to-pdf-a",
-  },
-  Web_to_PDF: {
-    title: "تحويل الويب إلى PDF",
-    description: "تحويل صفحات الويب إلى مستندات PDF",
-    color: "#0984e3",
-    type: ".pdf",
-    to: "/web-to-pdf",
-  },
-  PDF_to_Text: {
-    title: "تحويل PDF إلى نص",
-    description: "تحويل ملفات PDF إلى مستندات نصية عادية",
-    color: "#4493e1",
-    type: ".pdf",
-    to: "/pdf-to-text",
-  },
-
-  PDF_to_HTML: {
-    title: "PDF إلى HTML",
-    description: "تحويل ملفات PDF إلى مستندات HTML",
-    color: "rgb(228, 77, 38)",
-    type: ".pdf",
-    to: "/pdf-to-html",
-  },
-
-  PDF_to_Markdown: {
-    title: "PDF إلى Markdown",
-    description: "تحويل ملفات PDF إلى تنسيق Markdown",
-    color: "#FF4136",
-    type: ".pdf",
-    to: "/pdf-to-markdown",
-  },
+  }
 };
 
-export const web2pdftool: _web2pdftool = {
-  placeholder: "مثال: https://pdfequips.com",
-  submit_btn: "تحويل",
-};
-
-export const translate_pdf = {
-  drag_and_drop: "اسحب وأسقط الملفات هنا",
-  or_choose_file: "أو اختر ملفًا",
-  browse_file: "تصفح ملفاتك",
-};
 
 export const tools: _tools = {
   select: "اختر",
@@ -384,12 +242,6 @@ export const edit_page: _edit_page = {
   `,
 };
 
-export const footer: _footer = {
-  brand: "PDFEquips",
-  terms: "الشروط",
-  conditions: "والأحكام",
-  privacy_policy: "سياسة الخصوصية",
-};
 
 export const errors: _errors = {
   EMPTY_FILE: {

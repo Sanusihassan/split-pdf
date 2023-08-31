@@ -55,13 +55,6 @@ export const landing_page: _landing_page = {
 };
 
 export const tool: _tool = {
-  Merge_PDF: {
-    title: "Fusionner des PDF",
-    description: "Combinez plusieurs fichiers PDF en un seul document",
-    color: "var(--red)",
-    type: ".pdf",
-    to: "/merge-pdf",
-  },
   Split_PDF: {
     title: "Diviser des PDF",
     description: "Divisez un fichier PDF en plusieurs documents",
@@ -69,140 +62,6 @@ export const tool: _tool = {
     type: ".pdf",
     to: "/split-pdf",
   },
-  Compress_PDF: {
-    title: "Compresser des PDF",
-    description:
-      "Réduire la taille d'un fichier PDF tout en conservant sa qualité",
-    color: "var(--green)",
-    type: ".pdf",
-    to: "/compress-pdf",
-  },
-  Translate_PDF: {
-    title: "Traduire PDF",
-    description: "Traduire le texte d’un fichier PDF dans une autre langue",
-    color: "#185abc",
-    type: ".pdf",
-    to: "/translate-pdf",
-  },
-  PDF_to_Powerpoint: {
-    title: "PDF vers Powerpoint",
-    description:
-      "Convertir des fichiers PDF en présentations Powerpoint modifiables",
-    color: "#C13B1B",
-    type: ".pdf",
-    to: "/pdf-to-powerpoint",
-  },
-  JPG_to_PDF: {
-    title: "JPG en PDF",
-    description: "Convertir des fichiers image JPG en documents PDF",
-    color: "#f1c40f",
-    type: ".jpg",
-    to: "/jpg-to-pdf",
-  },
-  WORD_to_PDF: {
-    title: "WORD en PDF",
-    description: "Convertir des fichiers Microsoft Word en documents PDF",
-    color: "#1B5EBE",
-    type: ".docx",
-    to: "/word-to-pdf",
-  },
-  POWERPOINT_to_PDF: {
-    title: "POWERPOINT en PDF",
-    description: "Convertir des fichiers Microsoft Powerpoint en documents PDF",
-    color: "#C13B1B",
-    type: ".pptx",
-    to: "/powerpoint-to-pdf",
-  },
-
-  EXCEL_to_PDF: {
-    title: "EXCEL en PDF",
-    description: "Convertir des fichiers Microsoft Excel en documents PDF",
-    color: "#10793F",
-    type: ".xlsx",
-    to: "/excel-to-pdf",
-  },
-  HTML_to_PDF: {
-    title: "HTML en PDF",
-    description: "Convertir des pages web HTML en documents PDF",
-    color: "rgb(228, 77, 38)",
-    type: ".html",
-    to: "/html-to-pdf",
-  },
-  PDF_to_JPG: {
-    title: "PDF en JPG",
-    description: "Convertir des fichiers PDF en fichiers image JPG",
-    color: "#f1c40f",
-    type: ".pdf",
-    to: "/pdf-to-jpg",
-  },
-  PDF_to_WORD: {
-    title: "PDF en WORD",
-    description: "Convertir des fichiers PDF en documents Microsoft Word",
-    color: "#1B5EBE",
-    type: ".pdf",
-    to: "/pdf-to-word",
-  },
-  PDF_to_EXCEL: {
-    title: "PDF en EXCEL",
-    description: "Convertir des fichiers PDF en documents Microsoft Excel",
-    color: "#10793F",
-    type: ".pdf",
-    to: "/pdf-to-excel",
-  },
-  PDF_to_PDF_A: {
-    title: "PDF en PDF/A",
-    description:
-      "Convertir des fichiers PDF en format PDF/A pour l'archivage à long terme",
-    color: "#000000",
-    type: ".pdf",
-    to: "/pdf-to-pdf-a",
-  },
-  Web_to_PDF: {
-    title: "Web en PDF",
-    description: "Convertir des pages web en documents PDF",
-    color: "#0984e3",
-    type: ".pdf",
-    to: "/web-to-pdf",
-  },
-  Markdown_to_PDF: {
-    title: "Markdown en PDF",
-    description: "Convertir des fichiers Markdown en documents PDF",
-    color: "#6c5ce7",
-    type: ".pdf",
-    to: "/markdown-to-pdf",
-  },
-  PDF_to_Text: {
-    title: "PDF en texte",
-    description: "Convertir des fichiers PDF en documents texte",
-    color: "#4493e1",
-    type: ".pdf",
-    to: "/pdf-to-text",
-  },
-  PDF_to_HTML: {
-    title: "PDF en HTML",
-    description: "Convertir des fichiers PDF en documents HTML",
-    color: "rgb(228, 77, 38)",
-    type: ".pdf",
-    to: "/pdf-to-html",
-  },
-  PDF_to_Markdown: {
-    title: "PDF en Markdown",
-    description: "Convertir des fichiers PDF en format Markdown",
-    color: "#FF4136",
-    type: ".pdf",
-    to: "/pdf-to-markdown",
-  },
-};
-
-export const web2pdftool: _web2pdftool = {
-  placeholder: "Exemple: https://pdfequips.com",
-  submit_btn: "Convertir",
-};
-
-export const translate_pdf = {
-  drag_and_drop: "Faites glisser et déposez les fichiers ici",
-  or_choose_file: "Ou choisissez un fichier",
-  browse_file: "Parcourir vos fichiers",
 };
 
 export const tools: _tools = {
@@ -439,12 +298,6 @@ export const edit_page: _edit_page = {
   ],
   merge_pdf: `Utilisez le glisser-déposer pour changer l'ordre des fichiers PDF pour la fusion. Cliquez et maintenez un fichier, déplacez-le à l'emplacement souhaité et relâchez le bouton de la souris.
   Les fichiers PDF sont fusionnés de haut en bas. Pour supprimer un fichier, cliquez sur l'icône de suppression en haut du fichier. Pour faire pivoter une page, cliquez sur l'icône de rotation en haut de la vignette de la page et sélectionnez l'angle de rotation souhaité. Une fois que les fichiers sont dans l'ordre et l'orientation souhaités, cliquez sur le bouton "Fusionner" pour les combiner en un seul fichier PDF.`,
-};
-export const footer: _footer = {
-  brand: "PDFEquips",
-  terms: "conditions",
-  conditions: "conditions d'utilisation",
-  privacy_policy: "politique de confidentialité",
 };
 
 export const errors: _errors = {

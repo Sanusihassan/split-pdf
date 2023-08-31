@@ -37,7 +37,7 @@ function SplitPDF() {
         </Col>
       </Row>
       {selectedOption == 0 ? <RangeSplit /> : null}
-      {selectedOption == 1 ? <ExtractSplit /> : null}
+      <ExtractSplit showExtractSplit={selectedOption == 1} />
     </div>
   );
 }

@@ -65,13 +65,6 @@ export const ChangeTo = {
   zh: "改为中文",
 };
 export const tool = {
-  Merge_PDF: {
-    title: "Merge PDF",
-    description: "Combine multiple PDF files into one document",
-    color: "var(--red)",
-    type: ".pdf",
-    to: "/merge-pdf",
-  },
   Split_PDF: {
     title: "Split PDF",
     description: "Divide one PDF file into multiple documents",
@@ -79,149 +72,8 @@ export const tool = {
     type: ".pdf",
     to: "/split-pdf",
   },
-  Compress_PDF: {
-    title: "Compress PDF",
-    description: "Reduce the file size of a PDF while maintaining quality",
-    color: "var(--green)",
-    type: ".pdf",
-    to: "/compress-pdf",
-  },
-  Translate_PDF: {
-    title: "Translate PDF",
-    description: "Translate the text in a PDF file to another language",
-    color: "#185abc",
-    type: ".pdf",
-    to: "/translate-pdf",
-  },
-  PDF_to_Powerpoint: {
-    title: "PDF to Powerpoint",
-    description: "Convert PDF files to editable Powerpoint presentations",
-    color: "#C13B1B",
-    type: ".pdf",
-    to: "/pdf-to-powerpoint",
-  },
-  JPG_to_PDF: {
-    title: "JPG to PDF",
-    description: "Convert JPG image files to PDF documents",
-    color: "#f1c40f",
-    type: ".jpg",
-    to: "/jpg-to-pdf",
-  },
-  WORD_to_PDF: {
-    title: "WORD to PDF",
-    description: "Convert Microsoft Word files to PDF documents",
-    color: "#1B5EBE",
-    type: ".docx",
-    to: "/word-to-pdf",
-  },
-  POWERPOINT_to_PDF: {
-    title: "POWERPOINT to PDF",
-    description: "Convert Microsoft Powerpoint files to PDF documents",
-    color: "#C13B1B",
-    type: ".pptx",
-    to: "/powerpoint-to-pdf",
-  },
-  EXCEL_to_PDF: {
-    title: "EXCEL to PDF",
-    description: "Convert Microsoft Excel files to PDF documents",
-    color: "#10793F",
-    type: ".xlsx",
-    to: "/excel-to-pdf",
-  },
-  HTML_to_PDF: {
-    title: "HTML to PDF",
-    description: "Convert HTML web pages to PDF documents",
-    color: "rgb(228, 77, 38)",
-    type: ".html",
-    to: "/html-to-pdf",
-  },
-  PDF_to_JPG: {
-    title: "PDF to JPG",
-    description: "Convert PDF files to JPG image files",
-    color: "#f1c40f",
-    type: ".pdf",
-    to: "/pdf-to-jpg",
-  },
-  PDF_to_WORD: {
-    title: "PDF to WORD",
-    description: "Convert PDF files to Microsoft Word documents",
-    color: "#1B5EBE",
-    type: ".pdf",
-    to: "/pdf-to-word",
-  },
-
-  PDF_to_EXCEL: {
-    title: "PDF to EXCEL",
-    description: "Convert PDF files to Microsoft Excel documents",
-    color: "#10793F",
-    type: ".pdf",
-    to: "/pdf-to-excel",
-  },
-
-  PDF_to_PDF_A: {
-    title: "PDF to PDF/A",
-    description: "Convert PDF files to PDF/A format for long-term archiving",
-    color: "#000000",
-    type: ".pdf",
-    to: "/pdf-to-pdf-a",
-  },
-  // give me another object like this but for markdown to pdf
-  Web_to_PDF: {
-    title: "Web to PDF",
-    description: "Convert web pages to PDF documents",
-    color: "#0984e3",
-    type: ".pdf",
-    to: "/web-to-pdf",
-  },
-
-  Markdown_to_PDF: {
-    title: "Markdown to PDF",
-    description: "Convert Markdown to PDF",
-    color: "#6c5ce7",
-    type: ".pdf",
-    to: "/markdown-to-pdf",
-  },
-
-  PDF_to_Text: {
-    title: "PDF to Text",
-    description: "Convert PDF files to plain text documents",
-    color: "#4493e1",
-    type: ".pdf",
-    to: "/pdf-to-text",
-  },
-
-  PDF_to_HTML: {
-    title: "PDF to HTML",
-    description: "Convert PDF files to HTML documents",
-    color: "rgb(228, 77, 38)",
-    type: ".pdf",
-    to: "/pdf-to-html",
-  },
-
-  PDF_to_Markdown: {
-    title: "PDF to Markdown",
-    description: "Convert PDF files to Markdown format",
-    color: "#FF4136",
-    type: ".pdf",
-    to: "/pdf-to-markdown",
-  },
-};
-// translate the values of this object to french
-export const web2pdftool = {
-  placeholder: "Example: https://pdfequips.com",
-  submit_btn: "Convert",
 };
 
-export const translate_pdf = {
-  drag_and_drop: "Drag & Drop Files Here",
-  or_choose_file: "Or Choose a file",
-  browse_file: "Browse Your Files",
-};
-/**
- * provide translation Spanish translation for each object of the following:
- * i want full code, the same code i gave you but Spanish version.
- * just translate the string values not the object keys
- */
 export const edit_page = {
   edit_page_titles: {
     merge_pdf: "Merge PDF options",
@@ -456,21 +308,6 @@ export const downloadFile = {
   },
 };
 
-/**
- * provide translation Spanish translation for each object of the following:
- * i want full code, the same code i gave you but Spanish version.
- * just translate the string values not the object keys
- */
-export const footer = {
-  brand: "PDFEquips",
-  terms: "terms",
-  conditions: "conditions",
-  privacy_policy: "privacy policy",
-};
-
-// please add an error message for "ERR_NETWORK" case with message for this errors object
-// please note that i just want the static object not a way to add it to the object.
-// just regenerate the object with the required fields.
 export const errors = {
   EMPTY_FILE: {
     message: "The file is empty. Please choose a valid file.",

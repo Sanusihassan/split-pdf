@@ -1,3 +1,9 @@
+@keyframes zoom {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
 .split-pdf-tool {
   width: 100%;
   height: 100%;
@@ -157,5 +163,68 @@
     .add-btn {
       @include extend("my-3");
     }
+  }
+  // .pretty {
+  //   position: relative;
+  //   display: inline-block;
+  //   margin-right: 1em;
+  //   white-space: nowrap;
+  //   line-height: 1;
+  //   * {
+  //     box-sizing: border-box;
+  //   }
+  //   &.p-smooth {
+  //     label::before {
+  //       transition: all 0.5s ease;
+  //       border-color: #bdc3c7;
+  //     }
+  //   }
+
+  //   input {
+  //     position: absolute;
+  //     left: 0;
+  //     top: 0;
+  //     min-width: 1em;
+  //     width: 100%;
+  //     height: 100%;
+  //     z-index: 2;
+  //     opacity: 0;
+  //     margin: 0;
+  //     padding: 0;
+  //     cursor: pointer;
+  //   }
+  //   .state {
+  //     label {
+  //       position: initial;
+  //       display: inline-block;
+  //       font-weight: normal;
+  //       margin: 0;
+  //       text-indent: 1.5em;
+  //       min-width: calc(1em + 2px);
+  //       ::before {
+  //         content: "";
+  //         width: calc(1em + 2px);
+  //         height: calc(1em + 2px);
+  //         display: block;
+  //         box-sizing: border-box;
+  //         border-radius: 0;
+  //         border: 1px solid transparent;
+  //         z-index: 0;
+  //         position: absolute;
+  //         left: 0;
+  //         top: calc((0% - (100% - 1em)) - 8%);
+  //         background-color: transparent;
+  //       }
+  //       ::after {
+  //         animation: zoom 0.2s ease;
+  //         transition: all 0.3s ease;
+  //         background-color: #428bca !important;
+  //       }
+  //     }
+  //   }
+  // }
+  .pretty input:checked ~ .state.p-primary label:after,
+  .pretty.p-toggle .state.p-primary label:after {
+    background-color: map-get($color-map, split-pdf) !important;
   }
 }

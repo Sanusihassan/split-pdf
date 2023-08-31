@@ -56,13 +56,6 @@ export const landing_page: _landing_page = {
 };
 
 export const tool: _tool = {
-  Merge_PDF: {
-    title: "Combinar PDF",
-    description: "Combina varios archivos PDF en un solo documento",
-    color: "var(--red)",
-    type: ".pdf",
-    to: "/merge-pdf",
-  },
   Split_PDF: {
     title: "Dividir PDF",
     description: "Divide un archivo PDF en varios documentos",
@@ -70,145 +63,6 @@ export const tool: _tool = {
     type: ".pdf",
     to: "/split-pdf",
   },
-  Compress_PDF: {
-    title: "Comprimir PDF",
-    description: "Reduce el tamaño de un archivo PDF sin perder calidad",
-    color: "var(--green)",
-    type: ".pdf",
-    to: "/compress-pdf",
-  },
-  Translate_PDF: {
-    title: "Traducir PDF",
-    description: "Traducir el texto de un archivo PDF a otro idioma",
-    color: "#185abc",
-    type: ".pdf",
-    to: "/translate-pdf",
-  },
-  PDF_to_Powerpoint: {
-    title: "PDF a Powerpoint",
-    description:
-      "Convierte archivos PDF a presentaciones de Powerpoint editables",
-    color: "#C13B1B",
-    type: ".pdf",
-    to: "/pdf-to-powerpoint",
-  },
-  JPG_to_PDF: {
-    title: "JPG a PDF",
-    description: "Convierte archivos de imagen JPG a documentos PDF",
-    color: "#f1c40f",
-    type: ".jpg",
-    to: "/jpg-to-pdf",
-  },
-  WORD_to_PDF: {
-    title: "WORD a PDF",
-    description: "Convierte archivos de Microsoft Word a documentos PDF",
-    color: "#1B5EBE",
-    type: ".docx",
-    to: "/word-to-pdf",
-  },
-  POWERPOINT_to_PDF: {
-    title: "POWERPOINT a PDF",
-    description: "Convierte archivos de Microsoft Powerpoint a documentos PDF",
-    color: "#C13B1B",
-    type: ".pptx",
-    to: "/powerpoint-to-pdf",
-  },
-  EXCEL_to_PDF: {
-    title: "EXCEL a PDF",
-    description: "Convierte archivos de Microsoft Excel a documentos PDF",
-    color: "#10793F",
-    type: ".xlsx",
-    to: "/excel-to-pdf",
-  },
-  HTML_to_PDF: {
-    title: "HTML a PDF",
-    description: "Convierte páginas web HTML a documentos PDF",
-    color: "rgb(228, 77, 38)",
-    type: ".html",
-    to: "/html-to-pdf",
-  },
-
-  Markdown_to_PDF: {
-    title: "Markdown a PDF",
-    description: "Convertir Markdown a PDF",
-    color: "#6c5ce7",
-    type: ".pdf",
-    to: "/markdown-to-pdf",
-  },
-
-  PDF_to_JPG: {
-    title: "PDF a JPG",
-    description: "Convierte archivos PDF a archivos de imagen JPG",
-    color: "#f1c40f",
-    type: ".pdf",
-    to: "/pdf-to-jpg",
-  },
-  PDF_to_WORD: {
-    title: "PDF a WORD",
-    description: "Convierte archivos PDF a documentos de Microsoft Word",
-    color: "#1B5EBE",
-    type: ".pdf",
-    to: "/pdf-to-word",
-  },
-
-  PDF_to_EXCEL: {
-    title: "PDF a EXCEL",
-    description: "Convierte archivos PDF a documentos de Microsoft Excel",
-    color: "#10793F",
-    type: ".pdf",
-    to: "/pdf-to-excel",
-  },
-
-  PDF_to_PDF_A: {
-    title: "PDF a PDF/A",
-    description:
-      "Convierte archivos PDF al formato PDF/A para archivado a largo plazo",
-    color: "#000000",
-    type: ".pdf",
-    to: "/pdf-to-pdf-a",
-  },
-
-  Web_to_PDF: {
-    title: "Web a PDF",
-    description: "Convertir páginas web en documentos PDF",
-    color: "#0984e3",
-    type: ".pdf",
-    to: "/web-to-pdf",
-  },
-
-  PDF_to_Text: {
-    title: "PDF a texto",
-    description: "Convertir archivos PDF en documentos de texto plano",
-    color: "#4493e1",
-    type: ".pdf",
-    to: "/pdf-to-text",
-  },
-
-  PDF_to_HTML: {
-    title: "PDF a HTML",
-    description: "Convierte archivos PDF a documentos HTML",
-    color: "rgb(228, 77, 38)",
-    type: ".pdf",
-    to: "/pdf-to-html",
-  },
-  PDF_to_Markdown: {
-    title: "PDF a Markdown",
-    description: "Convierte archivos PDF al formato Markdown",
-    color: "#FF4136",
-    type: ".pdf",
-    to: "/pdf-to-markdown",
-  },
-};
-
-export const web2pdftool: _web2pdftool = {
-  placeholder: "Ejemplo: https://pdfequips.com",
-  submit_btn: "Convertir",
-};
-
-export const translate_pdf = {
-  drag_and_drop: "Arrastre y suelte los archivos aquí",
-  or_choose_file: "O elija un archivo",
-  browse_file: "Examinar sus archivos",
 };
 
 export const edit_page: _edit_page = {
@@ -445,13 +299,6 @@ export const downloadFile: _downloadFile = {
     "pdf-to-html": "Volver a PDF a HTML",
     "pdf-to-markdown": "Volver a PDF a Markdown",
   },
-};
-
-export const footer: _footer = {
-  brand: "PDFEquips",
-  terms: "términos",
-  conditions: "condiciones",
-  privacy_policy: "política de privacidad",
 };
 
 export const errors: _errors = {

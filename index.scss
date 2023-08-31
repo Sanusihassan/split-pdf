@@ -1,5 +1,8 @@
 @import "~cssmolecule";
 @import "~custom-bs";
+@import "~pretty-checkbox/src/scss/_variables.scss";
+@import "~pretty-checkbox/src/scss/_core.scss";
+// @import "./scss/pretty-animations";
 // @include type;
 @include images;
 @include containers;
@@ -308,7 +311,5 @@ footer {
   }
 }
 
-
 .language-alert {
-  
 }

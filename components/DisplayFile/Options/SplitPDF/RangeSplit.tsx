@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelectedOption } from "../../../../src/hooks/handleOptionClick";
 // import { PlusIcon } from '@heroicons/react/outline';
 import { useFileStore } from "../../../../src/file-store";
