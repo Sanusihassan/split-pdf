@@ -53,7 +53,7 @@ export default ({ item }: { item: data_type }) => {
   return (
     <>
       <Head>
-        <title>PDFEquips | {item.title}</title>
+        <title>{`PDFEquips | ${item.title}`}</title>
         <meta name="description" content={item.description} />
         <link rel="icon" href="/logo.png" />
         <link

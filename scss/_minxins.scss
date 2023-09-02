@@ -32,3 +32,17 @@
     @content;
   }
 }
+
+// all langs wrapper
+
+@mixin all-langs {
+  :not([lang="ar"]) & {
+    @content;
+  }
+}
+
+@mixin ar-wrapper {
+  [lang="ar"] & {
+    @content;
+  }
+}

@@ -80,7 +80,13 @@
     }
 
     .split-category-title {
-      @include extend("text-uppercase my-3 mx-0");
+      @include extend("text-uppercase mx-0");
+      &:not(.ignore-margin) {
+        @include extend("my-3");
+      }
+      &.ignore-margin {
+        margin-bottom: 0.75rem;
+      }
       padding-left: 0 !important;
       color: map-get($color-map, "split-pdf");
       font-weight: 500;
@@ -109,10 +115,10 @@
             @include extend("lead");
           }
         }
-        .alert {
-          @include extend("p-3 my-3");
-        }
       }
+    }
+    .alert {
+      @include extend("p-3 my-2");
     }
     &.range-split {
       .range-input {
@@ -142,7 +148,6 @@
           > * {
             @include extend("m-0");
             &.label {
-              // outline: 1px solid;
               @include extend("m-0 p-0");
             }
           }
@@ -155,8 +160,19 @@
         }
       }
       .range {
+        @include extend("position-relative");
         .card {
           @include extend("py-1");
+        }
+        .btn-link {
+          @include extend("position-absolute top-0");
+          @include all-langs {
+            right: 0;
+          }
+          @include ar-wrapper {
+            right: unset;
+            left: 0;
+          }
         }
       }
     }
@@ -164,65 +180,6 @@
       @include extend("my-3");
     }
   }
-  // .pretty {
-  //   position: relative;
-  //   display: inline-block;
-  //   margin-right: 1em;
-  //   white-space: nowrap;
-  //   line-height: 1;
-  //   * {
-  //     box-sizing: border-box;
-  //   }
-  //   &.p-smooth {
-  //     label::before {
-  //       transition: all 0.5s ease;
-  //       border-color: #bdc3c7;
-  //     }
-  //   }
-
-  //   input {
-  //     position: absolute;
-  //     left: 0;
-  //     top: 0;
-  //     min-width: 1em;
-  //     width: 100%;
-  //     height: 100%;
-  //     z-index: 2;
-  //     opacity: 0;
-  //     margin: 0;
-  //     padding: 0;
-  //     cursor: pointer;
-  //   }
-  //   .state {
-  //     label {
-  //       position: initial;
-  //       display: inline-block;
-  //       font-weight: normal;
-  //       margin: 0;
-  //       text-indent: 1.5em;
-  //       min-width: calc(1em + 2px);
-  //       ::before {
-  //         content: "";
-  //         width: calc(1em + 2px);
-  //         height: calc(1em + 2px);
-  //         display: block;
-  //         box-sizing: border-box;
-  //         border-radius: 0;
-  //         border: 1px solid transparent;
-  //         z-index: 0;
-  //         position: absolute;
-  //         left: 0;
-  //         top: calc((0% - (100% - 1em)) - 8%);
-  //         background-color: transparent;
-  //       }
-  //       ::after {
-  //         animation: zoom 0.2s ease;
-  //         transition: all 0.3s ease;
-  //         background-color: #428bca !important;
-  //       }
-  //     }
-  //   }
-  // }
   .pretty input:checked ~ .state.p-primary label:after,
   .pretty.p-toggle .state.p-primary label:after {
     background-color: map-get($color-map, split-pdf) !important;

@@ -278,19 +278,24 @@ export const validateFiles = (
 interface PDFFile extends Blob {
   name: string;
 }
-
 export async function calculatePages(file: PDFFile): Promise<number> {
   const reader = new FileReader();
-  reader.readAsArrayBuffer(file);
-  return new Promise<number>((resolve, reject) => {
-    reader.onload = async (event) => {
-      try {
-        const typedArray = new Uint8Array(event.target?.result as ArrayBuffer);
-        const pdf = await getDocument(typedArray).promise;
-        resolve(pdf.numPages);
-      } catch (error) {
-        reject(error);
-      }
-    };
-  });
+  if (file) {
+    reader.readAsArrayBuffer(file);
+    return new Promise<number>((resolve, reject) => {
+      reader.onload = async (event) => {
+        try {
+          const typedArray = new Uint8Array(
+            event.target?.result as ArrayBuffer
+          );
+          const pdf = await getDocument(typedArray).promise;
+          resolve(pdf.numPages);
+        } catch (error) {
+          reject(error);
+        }
+      };
+    });
+  } else {
+    return Promise.reject("File is not provided");
+  }
 }

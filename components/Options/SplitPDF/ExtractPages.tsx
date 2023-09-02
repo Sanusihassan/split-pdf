@@ -1,10 +1,18 @@
 import { ChangeEvent, useCallback, useState } from "react";
-import { useSelectedOption } from "../../../../src/hooks/handleOptionClick";
+import { useSelectedOption } from "../../../src/hooks/handleOptionClick";
 import { InformationCircleIcon } from "@heroicons/react/solid";
 import "pretty-checkbox/src/pretty-checkbox.scss";
-
 import { Checkbox } from "pretty-checkbox-react";
 
+const SelectionAlert = ({ selectedPages }: { selectedPages: number }) => {
+  return (
+    <div className="alert alert-info">
+      <InformationCircleIcon className="w-5 h-5" /> Every selected page of this
+      PDF file will be converted in one PDF file.
+      <strong>{selectedPages} PDF</strong> will be created.
+    </div>
+  );
+};
 
 const SelectAll = ({ showSelectAll }: { showSelectAll: boolean }) => {
   const [inputVal, setInputVal] = useState("");
@@ -40,19 +48,15 @@ const SelectAll = ({ showSelectAll }: { showSelectAll: boolean }) => {
         {/* </div> */}
       </form>
 
-      <div className="mt-0 alert alert-info">
-        <InformationCircleIcon className="w-5 h-5" /> Every selected page of
-        this PDF file will be converted in one PDF file.
-        <strong>4 PDF</strong> will be created.
-      </div>
+      <SelectionAlert selectedPages={0} />
     </div>
   );
 };
 
-export const ExtractSplit = ({
-  showExtractSplit,
+export const ExtractPages = ({
+  showExtractPages,
 }: {
-  showExtractSplit: boolean;
+  showExtractPages: boolean;
 }) => {
   const [index, setIndex] = useState(0);
   const handleOptionClick = useSelectedOption(index, setIndex);
@@ -60,14 +64,15 @@ export const ExtractSplit = ({
   const ExtractAll = () => {
     return (
       <>
-        <div className="alert">Lorem ipsum dolor sit amet.</div>
+        {/* select all */}
+        <SelectionAlert selectedPages={0} />
       </>
     );
   };
   return (
     <div
       className={`${
-        showExtractSplit ? "" : "d-none "
+        showExtractPages ? "" : "d-none "
       }split-category extract-split`}
     >
       <h6 className="split-category-title">Extract Mode:</h6>

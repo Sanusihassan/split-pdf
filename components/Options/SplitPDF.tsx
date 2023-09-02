@@ -3,10 +3,10 @@ import {
   ArrowsExpandIcon,
   DocumentDuplicateIcon,
 } from "@heroicons/react/outline";
-import { useSelectedOption } from "../../../src/hooks/handleOptionClick";
+import { useSelectedOption } from "../../src/hooks/handleOptionClick";
 import { useState } from "react";
-import { RangeSplit } from "./SplitPDF/RangeSplit";
-import { ExtractSplit } from "./SplitPDF/ExtractSplit";
+import { SplitByRange } from "./SplitPDF/SplitByRange";
+import { ExtractPages } from "./SplitPDF/ExtractPages";
 
 function SplitPDF() {
   const [selectedOption, setSelectedOption] = useState(0);
@@ -36,8 +36,8 @@ function SplitPDF() {
           </div>
         </Col>
       </Row>
-      {selectedOption == 0 ? <RangeSplit /> : null}
-      <ExtractSplit showExtractSplit={selectedOption == 1} />
+      {selectedOption == 0 ? <SplitByRange /> : null}
+      <ExtractPages showExtractPages={selectedOption == 1} />
     </div>
   );
 }
