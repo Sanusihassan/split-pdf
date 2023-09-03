@@ -1,12 +1,10 @@
 import { Row, Col } from "react-bootstrap";
-import {
-  ArrowsExpandIcon,
-  DocumentDuplicateIcon,
-} from "@heroicons/react/outline";
 import { useSelectedOption } from "../../src/hooks/handleOptionClick";
 import { useState } from "react";
 import { SplitByRange } from "./SplitPDF/SplitByRange";
 import { ExtractPages } from "./SplitPDF/ExtractPages";
+import RangeIcon from "../icons/RangeIcon";
+import ExtractPagesIcon from "../icons/ExtractPagesIcon";
 
 function SplitPDF() {
   const [selectedOption, setSelectedOption] = useState(0);
@@ -22,7 +20,7 @@ function SplitPDF() {
             className={`option ${selectedOption === 0 ? "active" : ""}`}
             onClick={() => handleOptionClick(0)}
           >
-            <ArrowsExpandIcon className="option-icon" />
+            <RangeIcon className="option-icon" />
             <span className="option-title">Split by range</span>
           </div>
         </Col>
@@ -31,7 +29,7 @@ function SplitPDF() {
             className={`option ${selectedOption === 1 ? "active" : ""}`}
             onClick={() => handleOptionClick(1)}
           >
-            <DocumentDuplicateIcon className="option-icon" />
+            <ExtractPagesIcon className="option-icon" />
             <span className="option-title">Extract Pages</span>
           </div>
         </Col>

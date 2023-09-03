@@ -66,29 +66,16 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
       setRanges([...ranges, { from: parseInt(from), to: parseInt(to) }]);
       setFrom("");
       setTo("");
+    } else {
+      if (ranges.length > 0) {
+        const lastRange = ranges[ranges.length - 1];
+        if (lastRange.to == pageCount) {
+          setRanges([...ranges, { from: pageCount, to: pageCount }]);
+        }
+      } else {
+        setRanges([...ranges, { from: 1, to: pageCount }]);
+      }
     }
-    // bug to fix:
-    // else {
-    //   if (ranges.length > 0) {
-    //     const lastRange = ranges[ranges.length - 1];
-    //     if (lastRange.to == pageCount) {
-    //       setRanges([...ranges, { from: pageCount, to: pageCount }]);
-    //     } else {
-    //       setRanges([
-    //         ...ranges,
-    //         {
-    //           from:
-    //             lastRange.from + 1 < pageCount
-    //               ? lastRange.from + 1
-    //               : lastRange.from,
-    //           to: pageCount,
-    //         },
-    //       ]);
-    //     }
-    //   } else {
-    //     setRanges([...ranges, { from: 1, to: pageCount }]);
-    //   }
-    // }
   };
 
   const handleDeleteRangeClick = (index: number) => {
@@ -149,9 +136,9 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
                                     className="form-control"
                                     value={range.from}
                                     onChange={(e) =>
-                                      setRanges(
-                                        ranges.map((r) =>
-                                          r.to === range.to
+                                      setRanges((prevRanges) =>
+                                        prevRanges.map((r, index) =>
+                                          index === i
                                             ? {
                                                 ...r,
                                                 from: parseInt(
@@ -159,7 +146,7 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
                                                   10
                                                 ),
                                               }
-                                            : r
+                                            : { ...r }
                                         )
                                       )
                                     }
@@ -178,9 +165,9 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
                                     className="form-control"
                                     value={range.to}
                                     onChange={(e) =>
-                                      setRanges(
-                                        ranges.map((r) =>
-                                          r.to === range.to
+                                      setRanges((prevRanges) =>
+                                        prevRanges.map((r, index) =>
+                                          index === i
                                             ? {
                                                 ...r,
                                                 to: parseInt(
