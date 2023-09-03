@@ -1,16 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelectedOption } from "../../../src/hooks/handleOptionClick";
-// import { PlusIcon } from '@heroicons/react/outline';
-import { useFileStore } from "../../../src/file-store";
-
-import {
-  TrashIcon,
-  InformationCircleIcon,
-  PlusIcon,
-  XIcon,
-} from "@heroicons/react/outline";
-import { Row } from "react-bootstrap";
-import { calculatePages } from "../../../src/utils";
 import { CustomRange } from "./SplitByRange/CustomRange";
 import { FixedRange } from "./SplitByRange/FixedRange";
 
