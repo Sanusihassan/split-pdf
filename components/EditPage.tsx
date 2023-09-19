@@ -6,6 +6,7 @@ import {
   SetStateAction,
   useContext,
   useEffect,
+  useRef,
   useState,
 } from "react";
 
@@ -67,11 +68,11 @@ const EditPage = ({
 
   const router = useRouter();
   let k = router.asPath.replace(/^\/[a-z]{2}\//, "").replace(/^\//, "");
+  const gearRef = useRef(null);
   return (
     <aside
-      className={`edit-page ${
-        state?.showTool || state.showDownloadBtn ? "d-none" : ""
-      }`}
+      className={`edit-page ${state?.showTool || state.showDownloadBtn ? "d-none" : ""
+        }`}
     >
       <section className="edit-area position-relative">
         <DisplayFile
@@ -94,29 +95,39 @@ const EditPage = ({
           path={state.path}
           text={edit_page.add_more_button}
         />
-        {/* when clicking on this  */}
+        {/* when clicking on this */}
         <button
           className="gear-button btn btn-light"
           onClick={() => {
             dispatch(setShowOptions(!state.showOptions));
           }}
+          ref={gearRef}
+          style={
+            state.showOptions ? {
+              top: state.nav_height + (gearRef.current ? (gearRef.current as HTMLElement).clientHeight : 0)
+            } : {}
+          }
         >
           <CogIcon className="w-6 h-6 me-2 gear-icon" />
         </button>
       </section>
-      <section className={`options${state.showOptions ? " expanded" : ""}`}>
+      <section className={`options bg-white ${state.showOptions ? " expanded" : ""}`} style={
+        state.showOptions ? {
+          top: state.nav_height
+        } : {}
+      }>
         <h5 className="text-uppercase grid-header">
           <bdi>
             {
               edit_page.edit_page_titles[
-                k.replace(/-/g, "_") as keyof typeof edit_page.edit_page_titles
+              k.replace(/-/g, "_") as keyof typeof edit_page.edit_page_titles
               ]
             }
           </bdi>
         </h5>
         {/* {"development" == process.env.NODE_ENV ? (
           ) : null} */}
-          <Options edit_page={edit_page} />
+        <Options edit_page={edit_page} />
         <SubmitBtn k={k} edit_page={edit_page} />
       </section>
     </aside>

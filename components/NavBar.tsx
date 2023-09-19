@@ -16,7 +16,9 @@ import {
   resetErrorMessage,
   setPath,
   setShowDownloadBtn,
+  setNavHeight,
 } from "../src/store";
+import { useRef, useEffect } from "react";
 
 /**
  * this code works fine for the all pages but the home page where there are no sub routes but the /lang route
@@ -56,11 +58,19 @@ const NavBar = ({
     dispatch(resetErrorMessage());
   }
   let langPath = lang.length > 0 ? `/${lang}/` : "/";
+  // navRef
+  const navRef = useRef(null)
+  useEffect(() => {
+    if (navRef.current) {
+      dispatch(setNavHeight((navRef.current as HTMLElement)?.clientHeight));
+    }
+  }, [])
   return (
     <Navbar
       bg="light"
       expand="lg"
       className={`${path !== "markdown-to-pdf" ? "shadow" : ""}`}
+      ref={navRef}
     >
       <Link href={`/${lang}`} legacyBehavior>
         <a

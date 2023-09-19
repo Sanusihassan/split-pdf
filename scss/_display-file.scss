@@ -1,17 +1,32 @@
 /// i want to modify this so that one row should have only 4 elements max
-.display-file {
+%grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(27%, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(24%, 1fr));
+
   @media (max-width: 600px) {
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   }
-  gap: 10px;
-  justify-content: center;
-  min-height: 300px;
-  padding: 10px;
-  align-items: stretch;
+}
+
+.display-file {
+  .pages {
+    @extend %grid;
+    gap: 10px;
+    justify-content: center;
+    // min-height: 300px;
+    padding: 10px;
+    align-items: stretch;
+  }
+
+  .initial-loader {
+    height: 100vh;
+    width: 100%;
+    @include extend("d-flex justify-content-center align-items-center");
+  }
+
 
   .drag-element {
+
     .image-tooltip,
     .item-tooltip {
       height: 100%;
@@ -76,21 +91,6 @@
     height: 100%;
     @extend %show-action;
   }
-
-  // .action-div {
-  //     position: absolute;
-  //     top: 0;
-  //     left: 0;
-  //     z-index: 1;
-  //     display: flex;
-  //     flex-direction: column;
-  //     align-items: center;
-  //     justify-content: center;
-  //     height: 100%;
-  //     width: 100%;
-  //     opacity: 0;
-  //     transition: opacity 0.2s ease-in-out;
-  // }
 
   .hero-icon {
     display: inline-block;

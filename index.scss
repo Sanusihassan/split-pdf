@@ -35,6 +35,7 @@
 
 // Helpers
 @include helpers;
+
 %debug {
   outline: 1px solid;
 }
@@ -72,6 +73,13 @@ $color-map: (
 // .tools-page {
 //   height: 100%;
 // }
+
+body {
+  @include ar-wrapper {
+    text-align: right !important;
+  }
+}
+
 
 .tools-page {
   min-height: fit-content;
@@ -118,6 +126,7 @@ a.dropdown-item {
   -webkit-text-fill-color: transparent; */
   color: rgb(228, 77, 38);
 }
+
 .web {
   color: #0984e3;
 }
@@ -142,9 +151,11 @@ a.dropdown-item {
 
 .hero-section {
   min-height: 60vh;
+
   @media (max-width: 600px) {
     min-height: 60vh;
   }
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -168,8 +179,10 @@ a.dropdown-item {
 .why-us {
   background-color: #f8f9fa;
 }
+
 .features-section .row {
   margin: 0;
+
   @media (max-width: 600px) {
     gap: 15px;
   }
@@ -183,10 +196,12 @@ a.dropdown-item {
 
 .feature-card {
   transition: background-color 0.3s ease-in-out;
+
   @media (max-width: 600px) {
     text-align: center;
     justify-content: center;
   }
+
   &:hover {
     background-color: #f2f2f2;
     transform: scale(1.001);
@@ -201,9 +216,11 @@ a.dropdown-item {
 
 .feature-icon {
   display: flex;
+
   @media (max-width: 600px) {
     justify-content: center;
   }
+
   margin-bottom: 1rem;
 
   svg {
@@ -238,6 +255,7 @@ a.dropdown-item {
 }
 
 .column {
+
   &:first-child,
   &:nth-child(5) {
     margin-bottom: 15px;
@@ -257,6 +275,7 @@ a.dropdown-item {
 }
 
 .dropdown-item {
+
   &.active,
   &:active {
     background-color: initial !important;
@@ -271,18 +290,22 @@ a.dropdown-item {
 // error element styles
 .error-element {
   .hide-on-rtl {
+
     [dir="rtl"] &,
     [lang="ar"] & {
       display: none;
     }
   }
+
   .hide-on-rtl {
+
     [dir="ltr"] &,
     :not([lang="ar"]) & {
       display: none;
     }
   }
 }
+
 @import "./scss/toolspage";
 @import "./scss/editpage";
 @import "./scss/display-file";
@@ -293,10 +316,12 @@ footer {
     @include xs {
       margin-bottom: 1em;
       justify-content: space-between;
+
       .copyright-text,
       .lang-dropdown {
         flex: 0 1 49%;
       }
+
       .copyright-text {
         :not(:lang(ar)) & {
           text-align: right;
@@ -304,6 +329,7 @@ footer {
       }
     }
   }
+
   .terms-row {
     @include xs {
       justify-content: space-between !important;

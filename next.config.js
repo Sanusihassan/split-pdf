@@ -26,6 +26,9 @@ module.exports = {
       };
     }
 
+    // enable top level await
+    config.experiments = { ...config.experiments, topLevelAwait: true };
+
     // Minify JavaScript
     if (process.env.NODE_ENV === "production") {
       config.optimization.minimize = true;

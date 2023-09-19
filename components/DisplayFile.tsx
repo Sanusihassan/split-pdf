@@ -3,7 +3,6 @@ import "react-tooltip/dist/react-tooltip.css";
 
 import {
   getFileDetailsTooltipContent,
-  getFirstPageAsImage,
   getPlaceHoderImageUrl,
   isDraggableExtension,
 } from "../src/utils";
@@ -44,9 +43,7 @@ const DisplayFile = ({
   // router
   const router = useRouter();
   let path = router.asPath.replace(/^\/[a-z]{2}\//, "").replace(/^\//, "");
-
   useEffect(() => {
-    // set the path if it's not already set
     if (state.path == "" || state.path !== path) {
       dispatch(setPath(path));
     }
@@ -59,63 +56,7 @@ const DisplayFile = ({
     //   state?.setErrorMessage(errors.MAX_FILES_EXCEEDED.message);
     // }
     let isSubscribed = true;
-    // const tooltipSizes = files.map((file: File) =>
-    //   getFileDetailsTooltipContent(file, pages, page, lang, dispatch, errors)
-    // );
-    // Promise.all(tooltipSizes).then((sizes) => {
-    //   setToolTipSizes(sizes);
-    // });
-
-    const processFiles = async () => {
-      try {
-        setShowSpinner(true);
-
-        if (extension && extension === ".pdf") {
-          const newImageUrls: { file: File; imageUrl: string }[] = [];
-          const pdfPromises = files.map(async (file: File) => {
-            const imageUrl = await getFirstPageAsImage(file, dispatch, errors);
-            newImageUrls.push({ file, imageUrl });
-          });
-
-          await Promise.all(pdfPromises);
-          if (isSubscribed) {
-            setImageUrls([...newImageUrls]);
-          }
-        } else if (extension && extension !== ".jpg") {
-          const newImageUrls: { file: File; imageUrl: string }[] = [];
-          files.forEach((file: File) => {
-            let imageUrl = !file.size
-              ? "/images/corrupted.png"
-              : getPlaceHoderImageUrl(extension);
-            newImageUrls.push({ file, imageUrl });
-          });
-
-          if (isSubscribed) {
-            setImageUrls([...newImageUrls]);
-          }
-        } else if (extension && extension === ".jpg") {
-          const newImageUrls: { file: File; imageUrl: string }[] = [];
-          files.forEach((file: File) => {
-            const reader = new FileReader();
-            reader.onload = function (event: ProgressEvent<FileReader>) {
-              const imageUrl = (event.target as FileReader).result as string;
-              newImageUrls.push({ file, imageUrl });
-              if (isSubscribed) {
-                setImageUrls([...newImageUrls]);
-              }
-            };
-            reader.readAsDataURL(file);
-          });
-        }
-      } catch (error) {
-        console.error("Error processing files:", error);
-      } finally {
-        setShowSpinner(false);
-      }
-    };
-
-    // processFiles();
-
+    console.log(toolTipSizes);
     return () => {
       isSubscribed = false;
     };

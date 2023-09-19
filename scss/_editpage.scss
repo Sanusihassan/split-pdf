@@ -27,9 +27,11 @@
 
   .edit-area {
     flex: 0 0 69%;
+
     @media (max-width: 600px) {
       flex: 0 0 100%;
     }
+
     padding: 1rem;
     // @extend %border;
     border-radius: 0.25rem;
@@ -41,115 +43,154 @@
         top: 0;
         left: 0;
       }
+
       @include extend("w-100 placeholder-glow h-100 position-absolute");
+
       .inner-loader {
-        @include extend(
-          "placeholder col-12 fh position-absolute w-100 d-flex justify-content-center align-items-center"
+        @include extend("placeholder col-12 fh position-absolute w-100 d-flex justify-content-center align-items-center"
         );
       }
     }
+
     .gear-button {
-      @include extend("position-absolute");
+      @include extend("position-fixed");
       top: 10%;
       left: 2.535px;
       z-index: 15;
       display: none;
       border: 1px solid #ccc;
+
       @media (max-width: 600px) {
         display: inline-flex;
       }
+
       .gear-icon {
         width: 1.6em;
         height: 1.6em;
       }
     }
   }
+
   .add-more-files {
-    @include extend("position-absolute rounded-circle");
+    @include extend("position-fixed rounded-circle");
     width: 2em;
     height: 2em;
+
     // what i'm trying to do is when the language is not arabic apply this style
     :not([lang="ar"]) & {
       left: unset;
-      right: 1.5%;
+      right: 31%;
+
+      @include xs {
+        right: 1.5%
+      }
     }
+
     // and when it is apply this style
     [lang="ar"] & {
       right: unset;
-      left: 1.5%;
+      left: 31%;
+
+      @include xs {
+        left: 1.5%
+      }
     }
+
     top: 38%;
+
     .icon-container {
       font-size: 1.5em;
       display: flex;
-      @include extend(
-        "w-100 h-100 justify-content-center align-items-center position-absolute rounded-circle"
+      @include extend("w-100 h-100 justify-content-center align-items-center position-absolute rounded-circle"
       );
       top: 0;
       left: 0;
+
       .icon {
         flex: 0 1 62%;
       }
     }
   }
+
   .options {
     flex: 1 0 25%;
     grid-template-rows: 7% 85% 13%;
+
     @include xs {
       display: grid;
       grid-template-rows: repeat(12, 1fr);
     }
+
     grid-template-columns: repeat(12, 1fr);
-    // grid-template-areas:
-    //   "header"
-    //   "body"
-    //   "footer";
+    grid-template-areas: "header"
+    "body"
+    "body"
+    "body"
+    "body"
+    "body"
+    "body"
+    "body"
+    "footer"
+    "footer";
     display: flex;
+    min-height: 85vh;
     flex-direction: column;
     justify-content: space-between;
+
     .grid-header {
       grid-area: header;
       grid-column: 1 / -1;
     }
+
     .grid-body {
       grid-area: body;
       grid-column: 1 / -1;
     }
+
     .grid-footer {
       grid-area: footer;
       grid-column: 1 / -1;
-      grid-row: 11/-1;
+
       @include extend("d-flex justify-content-center align-items-center");
     }
+
     :not([lang="ar"]) & {
       @include extend("border-left");
     }
+
     [dir="rtl"] &,
     [lang="ar"] & {
       border-right: 1px solid #dee2e6 !important;
     }
+
     @include extend("border-right");
 
     transition: 0.3s;
+
     @media (max-width: 600px) {
       position: fixed;
       width: 100%;
+
       [dir="rtl"] &,
       [lang="ar"] & {
         right: calc(-100% - 3.25rem);
+
         &.expanded {
           right: 0;
         }
       }
+
       // left to right languages like (en)
       [dir="ltr"] &,
       :not([lang="ar"]) & {
         left: calc(-100% - 3.25rem);
+
         &.expanded {
           left: 0;
         }
       }
     }
+
     // @extend %border;
     border-bottom: 0;
 
@@ -175,10 +216,12 @@
 
     .list-group-item {
       cursor: pointer;
+
       &.active {
         @extend %active-list-item;
       }
     }
+
     @import "./split-pdf";
   }
 
@@ -191,9 +234,12 @@
       $r: red($color);
       $g: green($color);
       $b: blue($color);
-      --pulse-animation-color: #{$r}, #{$g}, #{$b};
+      --pulse-animation-color: #{$r},
+      #{$g},
+      #{$b};
       animation: pdfequips-pulse 2s infinite;
     }
   }
+
   width: 100%;
 }
