@@ -1,5 +1,5 @@
 import { useFileStore } from "@/src/file-store";
-import { calculatePages } from "@/src/utils";
+import { calculatePages, getPageCount } from "@/src/utils";
 import { XIcon, PlusIcon } from "@heroicons/react/solid";
 import { useCallback, useEffect, useState } from "react";
 import { TypeWithdisplayProp } from "./FixedRange";
@@ -7,6 +7,8 @@ import { Checkbox } from "pretty-checkbox-react";
 import { DragDropContext, Draggable, DropResult } from "react-beautiful-dnd";
 
 import { Droppable } from "react-beautiful-dnd";
+import { useSelector } from "react-redux";
+import { ToolState } from "@/src/store";
 type Ranges = {
   from: number;
   to: number;
@@ -33,19 +35,18 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
     setChecked((prev) => !prev);
   }, []);
   const { files } = useFileStore.getState();
-  const getPageCount = async () => {
-    if (files) {
-      setPageCount(await calculatePages(files[0]));
-    }
-  };
-  useEffect(() => {
-    getPageCount();
-    setRanges([{ from: 1, to: pageCount }]);
-  }, [pageCount, files]);
+  const state = useSelector((state: { tool: ToolState }) => state.tool);
 
   const [ranges, setRanges] = useState<{ from: number; to: number }[]>([
     { from: 1, to: pageCount as number },
   ]);
+
+  useEffect(() => {
+    // setRanges([{ from: 1, to: pageCount as number }]);
+    getPageCount(files, state, setPageCount);
+    setRanges([{ from: 1, to: pageCount }]);
+  }, []);
+
 
   const onDragEnd = (result: DropResult) => {
     // dropped outside the list
@@ -140,12 +141,12 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
                                         prevRanges.map((r, index) =>
                                           index === i
                                             ? {
-                                                ...r,
-                                                from: parseInt(
-                                                  e.target.value,
-                                                  10
-                                                ),
-                                              }
+                                              ...r,
+                                              from: parseInt(
+                                                e.target.value,
+                                                10
+                                              ),
+                                            }
                                             : { ...r }
                                         )
                                       )
@@ -169,12 +170,12 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
                                         prevRanges.map((r, index) =>
                                           index === i
                                             ? {
-                                                ...r,
-                                                to: parseInt(
-                                                  e.target.value,
-                                                  10
-                                                ),
-                                              }
+                                              ...r,
+                                              to: parseInt(
+                                                e.target.value,
+                                                10
+                                              ),
+                                            }
                                             : r
                                         )
                                       )

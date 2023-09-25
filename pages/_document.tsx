@@ -41,28 +41,15 @@ const MyDocument = ({ lang }: { lang: string }) => {
           rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         />
-        <script
+        {/* <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7391414384206267"
           crossOrigin="anonymous"
-        ></script>
+        ></script> */}
+        <meta name="google-adsense-account" content="ca-pub-7391414384206267" />
       </Head>
       <body>
         <Main />
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7391414384206267"
-          crossOrigin="anonymous"
-        ></script>
-        <ins
-          className="adsbygoogle"
-          style={{ display: "block" }}
-          data-ad-client="ca-pub-7391414384206267"
-          data-ad-slot="4202415647"
-          data-ad-format="auto"
-          data-full-width-responsive="true"
-        ></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         <NextScript />
       </body>
     </Html>

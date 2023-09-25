@@ -16,7 +16,7 @@ const ImageWithLoader = ({ imageUrl, loader_text }: {
         <>
             {showLoader && <Loader loader_text={loader_text} />}
             <img
-                className="img-fluid-custom object-fit-contain rounded item-img"
+                className="img-fluid-custom object-fit-contain rounded item-img border"
                 src={imageUrl}
                 alt="Selected file"
                 draggable={false}

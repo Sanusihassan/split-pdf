@@ -1,8 +1,14 @@
-import { ChangeEvent, useCallback, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { useSelectedOption } from "../../../src/hooks/handleOptionClick";
 import { InformationCircleIcon } from "@heroicons/react/solid";
 import "pretty-checkbox/src/pretty-checkbox.scss";
 import { Checkbox } from "pretty-checkbox-react";
+import { calculatePages, getPageCount } from "@/src/utils";
+import { useFileStore } from "@/src/file-store";
+import FileCard from "@/components/DisplayFile/FileCard";
+import { errors } from "@/src/content/content";
+import { ToolState } from "@/src/store";
+import { useSelector } from "react-redux";
 
 const SelectionAlert = ({ selectedPages }: { selectedPages: number }) => {
   return (
@@ -62,18 +68,24 @@ export const ExtractPages = ({
   const handleOptionClick = useSelectedOption(index, setIndex);
   // children
   const ExtractAll = () => {
+    const { files } = useFileStore.getState();
+    const state = useSelector((state: { tool: ToolState }) => state.tool);
+    const [pageCount, setPageCount] = useState(0);
+
+
+    useEffect(() => {
+      getPageCount(files, state, setPageCount);
+    }, []);
     return (
       <>
-        {/* select all */}
-        <SelectionAlert selectedPages={0} />
+        <SelectionAlert selectedPages={pageCount} />
       </>
     );
   };
   return (
     <div
-      className={`${
-        showExtractPages ? "" : "d-none "
-      }split-category extract-split`}
+      className={`${showExtractPages ? "" : "d-none "
+        }split-category extract-split`}
     >
       <h6 className="split-category-title">Extract Mode:</h6>
       <div className="btn-row">

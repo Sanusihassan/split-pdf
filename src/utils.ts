@@ -1,5 +1,5 @@
 import { NextRouter } from "next/router";
-import { Dispatch, useEffect, useMemo, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 import { AnyAction } from "@reduxjs/toolkit";
 import type { errors as _ } from "../content";
 import { setErrorCode, setErrorMessage, ToolState } from "./store";
@@ -292,3 +292,11 @@ export async function calculatePages(file: PDFFile): Promise<number> {
     return Promise.reject("File is not provided");
   }
 }
+
+
+export const getPageCount = async (files: File[], state: ToolState, setPageCount: Dispatch<SetStateAction<number>>) => {
+  if (files.length > 0) {
+    const selectedFile = files.filter(file => file.name === state.selectedFile);
+    setPageCount(await calculatePages(selectedFile[0]));
+  }
+};

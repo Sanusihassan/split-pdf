@@ -1,8 +1,10 @@
 import { useFileStore } from "@/src/file-store";
-import { calculatePages } from "@/src/utils";
+import { ToolState } from "@/src/store";
+import { getPageCount } from "@/src/utils";
 import { InformationCircleIcon } from "@heroicons/react/solid";
 import { useState, useEffect } from "react";
 import { Row } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 export type TypeWithdisplayProp = {
   display: boolean;
@@ -12,14 +14,10 @@ export const FixedRange = ({ display }: TypeWithdisplayProp) => {
   const [pages, setPages] = useState(1);
   const [pageCount, setPageCount] = useState(0);
   const { files } = useFileStore.getState();
-  const getPageCount = async () => {
-    if (files) {
-      setPageCount(await calculatePages(files[0]));
-    }
-  };
+  const state = useSelector((state: { tool: ToolState }) => state.tool);
   useEffect(() => {
-    getPageCount();
-  }, [pageCount, files]);
+    getPageCount(files, state, setPageCount);
+  }, [state.selectedFile]);
 
   return (
     <>
@@ -38,7 +36,7 @@ export const FixedRange = ({ display }: TypeWithdisplayProp) => {
           <InformationCircleIcon className="w-5 h-5" /> This PDF will be split
           in files of{" "}
           <span
-            style={pages > pageCount || pages <= 0 ? { color: "#fc271c" } : {}}
+            style={pages > pageCount || pages <= 0 ? { color: "#fc271c" } : undefined}
           >
             {pages}
           </span>{" "}
@@ -46,8 +44,8 @@ export const FixedRange = ({ display }: TypeWithdisplayProp) => {
           <strong>
             {pages > 0
               ? Math.round(
-                  pages >= pageCount ? 1 : (pageCount as number) / pages
-                )
+                pages >= pageCount ? 1 : (pageCount as number) / pages
+              )
               : `${parseInt(pageCount.toString())}`}{" "}
             PDF
           </strong>{" "}

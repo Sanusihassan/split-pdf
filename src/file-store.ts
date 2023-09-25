@@ -1,8 +1,7 @@
 /**
- * i'm still getting the errors, the below is my file store this might probably help
- Expected 1 arguments, but got 2.ts(2554)
-Parameter 'state' implicitly has an 'any' type.ts(7006)
-(parameter) state: any
+ * const [ranges, setRanges] = useState<{ from: number; to: number }[]>([
+    { from: 1, to: pageCount as number },
+  ]);
  */
 import { Dispatch, RefObject, SetStateAction } from "react";
 import { createStore } from "zustand";
@@ -17,6 +16,7 @@ export interface FileStore {
     file: File;
     imageUrl: string;
   }[];
+  ranges: { from: number; to: number }[];
   setFiles: (files: FileList | File[]) => void;
   setFileInput: (refEl: RefObject<HTMLInputElement> | null) => void;
   setSubmitBtn: (refEl: React.RefObject<HTMLButtonElement> | null) => void;
@@ -30,6 +30,10 @@ export interface FileStore {
     >
   >;
   setFilesLengthOnSubmit(value: number): void;
+  setRanges: Dispatch<SetStateAction<{
+    from: number;
+    to: number;
+  }[]>>
 }
 
 export const useFileStore = createStore<FileStore>((set) => ({
@@ -39,6 +43,7 @@ export const useFileStore = createStore<FileStore>((set) => ({
   submitBtn: null,
   imageUrls: [],
   filesLengthOnSubmit: 0,
+  ranges: [],
   setFiles: (files: FileList | File[]) => {
     const uniqueFiles = new Set<File>();
 
@@ -66,6 +71,11 @@ export const useFileStore = createStore<FileStore>((set) => ({
     }));
   },
   setFilesLengthOnSubmit(value: number) {
-    set({filesLengthOnSubmit: value});
+    set({ filesLengthOnSubmit: value });
+  },
+  setRanges(value: SetStateAction<{ from: number; to: number; }[]>) {
+    set((prevState) => ({
+      ranges: typeof value === "function" ? value(prevState.ranges) : value,
+    }));
   }
 }));
