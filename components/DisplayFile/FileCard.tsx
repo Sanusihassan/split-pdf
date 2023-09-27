@@ -18,6 +18,8 @@ type CardProps = OmitFileName<ActionProps> & {
   loader_text: string;
   fileDetailProps: [string, string, string];
   index?: number | string;
+  from?: number;
+  to?: number;
 };
 
 const FileCard = ({
@@ -26,6 +28,8 @@ const FileCard = ({
   extension,
   loader_text,
   fileDetailProps,
+  from,
+  to
 }: CardProps) => {
   const [imageUrls, setImageUrls] = useState<string[]>([]);
   const [pageCount, setPageCount] = useState(0);
@@ -40,15 +44,17 @@ const FileCard = ({
         dispatch,
         errors
       );
-      let _pageCount = await calculatePages(file);
+      if ("number" !== typeof (to) && "number" !== typeof (from)) {
+        let _pageCount = await calculatePages(file);
+        setPageCount(_pageCount);
+      }
       setToolTipSize(size);
-      setPageCount(_pageCount);
     })();
     const processFile = async () => {
       try {
         if (extension && extension === ".pdf") {
           if (isSubscribed) {
-            for (let i = 1; i <= pageCount; i += 1) {
+            for (let i = "number" === typeof (from) ? from : 1; i <= ("number" === typeof (to) ? to : pageCount); i += 1) {
               let url = await getNthPageAsImage(file, dispatch, errors, i);
               setImageUrls(prevUrls => [...prevUrls, url]);
             }

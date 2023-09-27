@@ -29,21 +29,28 @@ function MyApp({ Component, pageProps, lang }: AppProps & { lang: string }) {
   return (
     <>
       <Head>
-        <script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=G-NY5F91MF0B`}
-        ></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-  
-      gtag('config', 'G-NY5F91MF0B');
-    `,
-          }}
-        ></script>
+        {/* JSX expressions must have one parent element.ts(2657) */}
+        {"production" === process.env.NODE_ENV ?
+          (
+            <>
+              <script
+                async
+                src={`https://www.googletagmanager.com/gtag/js?id=G-NY5F91MF0B`}
+              ></script>
+              <script
+                dangerouslySetInnerHTML={{
+                  __html: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'G-NY5F91MF0B');
+      `,
+                }}
+              ></script>
+            </>
+          ) : null
+        }
       </Head>
       <ReduxProvider store={store}>
         <Component useFileStore={useFileStore} {...pageProps} lang={lang} />

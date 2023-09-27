@@ -11,10 +11,9 @@ import {
   GlobeIcon,
   DocumentTextIcon,
 } from "@heroicons/react/outline";
-import Link from "next/link";
 import { NavDropdown } from "react-bootstrap";
 import type { nav_content } from "../../content";
-import MarkdownIcon from "../icons/Markdown";
+
 
 import { useDispatch, useSelector } from "react-redux";
 import { setPath, ToolState } from "../../src/store";

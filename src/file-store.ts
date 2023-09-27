@@ -16,7 +16,7 @@ export interface FileStore {
     file: File;
     imageUrl: string;
   }[];
-  ranges: { from: number; to: number }[];
+
   setFiles: (files: FileList | File[]) => void;
   setFileInput: (refEl: RefObject<HTMLInputElement> | null) => void;
   setSubmitBtn: (refEl: React.RefObject<HTMLButtonElement> | null) => void;
@@ -30,10 +30,6 @@ export interface FileStore {
     >
   >;
   setFilesLengthOnSubmit(value: number): void;
-  setRanges: Dispatch<SetStateAction<{
-    from: number;
-    to: number;
-  }[]>>
 }
 
 export const useFileStore = createStore<FileStore>((set) => ({
@@ -43,7 +39,6 @@ export const useFileStore = createStore<FileStore>((set) => ({
   submitBtn: null,
   imageUrls: [],
   filesLengthOnSubmit: 0,
-  ranges: [],
   setFiles: (files: FileList | File[]) => {
     const uniqueFiles = new Set<File>();
 
@@ -73,9 +68,4 @@ export const useFileStore = createStore<FileStore>((set) => ({
   setFilesLengthOnSubmit(value: number) {
     set({ filesLengthOnSubmit: value });
   },
-  setRanges(value: SetStateAction<{ from: number; to: number; }[]>) {
-    set((prevState) => ({
-      ranges: typeof value === "function" ? value(prevState.ranges) : value,
-    }));
-  }
 }));

@@ -1,4 +1,3 @@
-// this is a very crowded tsx component, how can i simplify it further by separating the logics / parts to other components
 import { useCallback, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 
@@ -98,18 +97,19 @@ const Tool: React.FC<ToolProps> = ({
       <div
         className="tools-page container-fluid position-relative"
         {...(state!.showTool && getRootProps())}
-        // onClick={(e) => {
-        //   // e.preventDefault();
-        // }}
+      // onClick={(e) => {
+      //   // e.preventDefault();
+      // }}
       >
-        {/* <input type="checkbox" /> */}
         {isDragActive && (
           <div className="overlay display-4">{tools.drop_files}</div>
         )}
         <div
-          className={`text-center ${
-            !showTool ? "" : "d-flex"
-          } flex-column tools ${state!.showTool ? "" : "d-none"}`}
+          className={`text-center ${!showTool ? "" : "d-flex"
+            } flex-column tools ${state!.showTool ? "" : "d-none"}`}
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
         >
           <h1 className="display-3">
             <bdi>{data.title}</bdi>
@@ -127,7 +127,7 @@ const Tool: React.FC<ToolProps> = ({
           <p>{tools.or_drop}</p>
           <ErrorElement />
         </div>
-        {/* ) : ( */}
+
         <EditPage
           extension={data.type}
           edit_page={edit_page}
@@ -137,7 +137,7 @@ const Tool: React.FC<ToolProps> = ({
           errors={errors}
         />
         <DownloadFile lang={lang} downloadFile={downloadFile} />
-        {/* )} */}
+
       </div>
     </>
   );

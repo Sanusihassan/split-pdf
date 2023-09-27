@@ -3,3 +3,9 @@
   background-color: darken(#f8f9fa, 20%);
   border-color: darken(#f8f9fa, 20%);
 }
+
+%range-title {
+  padding-left: 0 !important;
+  color: map-get($color-map, "split-pdf");
+  font-weight: 500;
+}

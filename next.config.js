@@ -6,6 +6,7 @@ module.exports = {
     includePaths: [path.join(__dirname, "node_modules")],
   },
   output: "standalone",
+  // reactStrictMode: false,
   webpack: (config, { isServer }) => {
     // Only run this configuration on the client side
     if (!isServer) {

@@ -41,7 +41,6 @@
 }
 
 @import "./scss/minxins";
-@import "./scss/placeholders";
 @include list-group;
 @include api;
 
@@ -67,6 +66,7 @@ $color-map: (
   "translate-pdf": #185abc,
 );
 
+@import "./scss/placeholders";
 // html,
 // body,
 // #__next,

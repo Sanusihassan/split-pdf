@@ -1,14 +1,19 @@
+// why the draggable elements on this component are'nt animatable i.e they're not moving from their positions
+// in other words their movement is not notable to the ee
 import { useFileStore } from "@/src/file-store";
-import { calculatePages, getPageCount } from "@/src/utils";
+import { getPageCount } from "@/src/utils";
 import { XIcon, PlusIcon } from "@heroicons/react/solid";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { TypeWithdisplayProp } from "./FixedRange";
 import { Checkbox } from "pretty-checkbox-react";
 import { DragDropContext, Draggable, DropResult } from "react-beautiful-dnd";
 
 import { Droppable } from "react-beautiful-dnd";
 import { useSelector } from "react-redux";
-import { ToolState } from "@/src/store";
+import { ToolState, setGlobalRanges } from "@/src/store";
+// import { v4 as uuidv4 } from 'uuid';
+import { useDispatch } from "react-redux";
+
 type Ranges = {
   from: number;
   to: number;
@@ -36,16 +41,19 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
   }, []);
   const { files } = useFileStore.getState();
   const state = useSelector((state: { tool: ToolState }) => state.tool);
-
+  const dispatch = useDispatch();
   const [ranges, setRanges] = useState<{ from: number; to: number }[]>([
-    { from: 1, to: pageCount as number },
+    { from: 1, to: 3 },
   ]);
-
   useEffect(() => {
-    // setRanges([{ from: 1, to: pageCount as number }]);
     getPageCount(files, state, setPageCount);
     setRanges([{ from: 1, to: pageCount }]);
-  }, []);
+    dispatch(setGlobalRanges(ranges));
+  }, [state.selectedFile]);
+
+  useEffect(() => {
+    dispatch(setGlobalRanges(ranges));
+  }, [ranges]);
 
 
   const onDragEnd = (result: DropResult) => {
@@ -91,6 +99,7 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
             type="number"
             className="form-control"
             value={from}
+            max={pageCount > 0 ? pageCount : undefined}
             onChange={(e) => setFrom(e.target.value)}
             placeholder="From"
           />
@@ -100,6 +109,7 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
             type="number"
             className="form-control"
             value={to}
+            max={pageCount > 0 ? pageCount : undefined}
             onChange={(e) => setTo(e.target.value)}
             placeholder="To"
           />
@@ -136,20 +146,23 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
                                     type="number"
                                     className="form-control"
                                     value={range.from}
-                                    onChange={(e) =>
-                                      setRanges((prevRanges) =>
-                                        prevRanges.map((r, index) =>
-                                          index === i
-                                            ? {
-                                              ...r,
-                                              from: parseInt(
-                                                e.target.value,
-                                                10
-                                              ),
-                                            }
-                                            : { ...r }
-                                        )
-                                      )
+                                    onChange={
+                                      (e) => {
+                                        setRanges((prevRanges) =>
+                                          prevRanges.map((r, index) =>
+                                            index === i
+                                              ? {
+                                                ...r,
+                                                from: parseInt(
+                                                  e.target.value,
+                                                  10
+                                                ),
+                                              }
+                                              : { ...r }
+                                          )
+                                        );
+                                        dispatch(setGlobalRanges(ranges));
+                                      }
                                     }
                                     placeholder="From"
                                   />
@@ -165,20 +178,23 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
                                     type="number"
                                     className="form-control"
                                     value={range.to}
-                                    onChange={(e) =>
-                                      setRanges((prevRanges) =>
-                                        prevRanges.map((r, index) =>
-                                          index === i
-                                            ? {
-                                              ...r,
-                                              to: parseInt(
-                                                e.target.value,
-                                                10
-                                              ),
-                                            }
-                                            : r
+                                    onChange={
+                                      (e) => {
+                                        setRanges((prevRanges) =>
+                                          prevRanges.map((r, index) =>
+                                            index === i
+                                              ? {
+                                                ...r,
+                                                to: parseInt(
+                                                  e.target.value,
+                                                  10
+                                                ),
+                                              }
+                                              : r
+                                          )
                                         )
-                                      )
+                                        dispatch(setGlobalRanges(ranges));
+                                      }
                                     }
                                     placeholder="To"
                                   />
@@ -186,7 +202,7 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
                                 {/* <div className="position-absolute delete-button"> */}
                                 <button
                                   className="btn btn-link text-danger"
-                                  onClick={() => handleDeleteRangeClick(i)}
+                                  onClick={() => { handleDeleteRangeClick(i); dispatch(setGlobalRanges(ranges)) }}
                                 >
                                   <XIcon className="icon" />
                                 </button>
@@ -200,6 +216,7 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
                   )}
                 </Draggable>
               ))}
+              {provided.placeholder}
             </div>
           )}
         </Droppable>
@@ -207,7 +224,7 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
       <div className="row justify-content-center add-btn">
         <button
           className="col-6 btn btn-dark row align-items-center"
-          onClick={handleAddRangeClick}
+          onClick={() => { handleAddRangeClick(); dispatch(setGlobalRanges(ranges)) }}
         >
           <PlusIcon className="icon mr-2" />
           <span>Add Range</span>

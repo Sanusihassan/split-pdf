@@ -1,4 +1,4 @@
-import { applyMiddleware, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface ToolState {
   showTool: boolean;
@@ -15,6 +15,7 @@ export interface ToolState {
   showOptions: boolean;
   nav_height: number;
   selectedFile: string;
+  ranges: { from: number; to: number }[];
 }
 
 const initialState: ToolState = {
@@ -31,7 +32,8 @@ const initialState: ToolState = {
   showDownloadBtn: false,
   showOptions: false,
   nav_height: 0,
-  selectedFile: ""
+  selectedFile: "",
+  ranges: []
 };
 
 const toolSlice = createSlice({
@@ -86,6 +88,10 @@ const toolSlice = createSlice({
     },
     setSelectedFile(state: ToolState, action: PayloadAction<string>) {
       state.selectedFile = action.payload;
+    },
+    setGlobalRanges(state: ToolState, action: PayloadAction<{ from: number; to: number; }[]>) {
+      state.ranges = action.payload;
+      console.log(state.ranges);
     }
   },
 });
@@ -105,7 +111,8 @@ export const {
   setShowDownloadBtn,
   setShowOptions,
   setNavHeight,
-  setSelectedFile
+  setSelectedFile,
+  setGlobalRanges
 } = toolSlice.actions;
 
 export default toolSlice.reducer;

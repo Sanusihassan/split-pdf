@@ -297,6 +297,6 @@ export async function calculatePages(file: PDFFile): Promise<number> {
 export const getPageCount = async (files: File[], state: ToolState, setPageCount: Dispatch<SetStateAction<number>>) => {
   if (files.length > 0) {
     const selectedFile = files.filter(file => file.name === state.selectedFile);
-    setPageCount(await calculatePages(selectedFile[0]));
+    setPageCount(await calculatePages(selectedFile[0] || files[0]));
   }
 };

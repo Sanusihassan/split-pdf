@@ -97,4 +97,18 @@
     width: 1.3em;
     height: 1.3em;
   }
+
+  // display layouts:
+  .range-layout {
+    .range {
+      border: 2px dashed var(--gray);
+      width: fit-content;
+      @include extend("p-2");
+
+      h6 {
+        @include extend("range-title mb-0");
+        // margin: 0 !important;
+      }
+    }
+  }
 }

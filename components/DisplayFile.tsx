@@ -37,7 +37,7 @@ const DisplayFile = ({
   const [showSpinner, setShowSpinner] = useState(true);
   const [toolTipSizes, setToolTipSizes] = useState<string[]>([]);
   // actual files
-  const { files, setFiles, imageUrls, setImageUrls } = useFileStore.getState();
+  const { files } = useFileStore.getState();
   const state = useSelector((state: { tool: ToolState }) => state.tool);
   const dispatch = useDispatch();
   // router
@@ -61,11 +61,11 @@ const DisplayFile = ({
       isSubscribed = false;
     };
   }, [extension, state.rerender]);
-  const handleDragEnd = (result: any) => {
-    if (!result.destination) {
-      return;
-    }
-  };
+  // const handleDragEnd = (result: any) => {
+  //   if (!result.destination) {
+  //     return;
+  //   }
+  // };
 
   return (
     <>

@@ -1,12 +1,10 @@
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useSelectedOption } from "../../../src/hooks/handleOptionClick";
 import { InformationCircleIcon } from "@heroicons/react/solid";
 import "pretty-checkbox/src/pretty-checkbox.scss";
 import { Checkbox } from "pretty-checkbox-react";
-import { calculatePages, getPageCount } from "@/src/utils";
+import { getPageCount } from "@/src/utils";
 import { useFileStore } from "@/src/file-store";
-import FileCard from "@/components/DisplayFile/FileCard";
-import { errors } from "@/src/content/content";
 import { ToolState } from "@/src/store";
 import { useSelector } from "react-redux";
 
