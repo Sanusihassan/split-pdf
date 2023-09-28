@@ -1,22 +1,12 @@
-import { useEffect, useState, RefObject, useContext } from "react";
+import { useEffect } from "react";
 import "react-tooltip/dist/react-tooltip.css";
-
-import {
-  getFileDetailsTooltipContent,
-  getPlaceHoderImageUrl,
-  isDraggableExtension,
-} from "../src/utils";
-
 import { useRouter } from "next/router";
-
 import { validateFiles } from "../src/utils";
-
 import type { errors as _, edit_page } from "../content";
-import Files from "./DisplayFile/Files";
-// import { ToolStoreContext } from "../src/ToolStoreContext";
 import { useSelector, useDispatch } from "react-redux";
-import { ToolState, resetErrorMessage, setPath } from "../src/store";
+import { ToolState, resetErrorMessage, setErrorMessage, setPath } from "../src/store";
 import { useFileStore } from "../src/file-store";
+import { FileViewer } from "./DisplayFile/FileViwer";
 type propTypes = {
   extension: string;
   pages: string;
@@ -34,8 +24,6 @@ const DisplayFile = ({
   errors,
   edit_page,
 }: propTypes) => {
-  const [showSpinner, setShowSpinner] = useState(true);
-  const [toolTipSizes, setToolTipSizes] = useState<string[]>([]);
   // actual files
   const { files } = useFileStore.getState();
   const state = useSelector((state: { tool: ToolState }) => state.tool);
@@ -51,33 +39,29 @@ const DisplayFile = ({
     if (isValid) {
       dispatch(resetErrorMessage());
     }
-    // const max_files = 2;
-    // if (state && files.length > max_files) {
-    //   state?.setErrorMessage(errors.MAX_FILES_EXCEEDED.message);
-    // }
+    const max_files = 5;
+    if (state && files.length > max_files) {
+      dispatch(setErrorMessage(errors.MAX_FILES_EXCEEDED.message));
+    }
     let isSubscribed = true;
-    console.log(toolTipSizes);
     return () => {
       isSubscribed = false;
     };
-  }, [extension, state.rerender]);
-  // const handleDragEnd = (result: any) => {
-  //   if (!result.destination) {
-  //     return;
-  //   }
-  // };
+  }, [extension]);
+
 
   return (
     <>
-      <Files
-        errors={errors}
-        extension={extension}
-        setToolTipSizes={setToolTipSizes}
-        toolTipSizes={toolTipSizes}
-        loader_text={edit_page.loader_text}
-        showSpinner={showSpinner}
-        fileDetailProps={[pages, page, lang]}
-      />
+      <div
+        className="display-file"
+      >
+        <FileViewer
+          errors={errors}
+          loader_text={edit_page["loader_text"]}
+          fileDetailProps={[pages, page, lang]}
+          extension={extension}
+        />
+      </div>
     </>
   );
 };

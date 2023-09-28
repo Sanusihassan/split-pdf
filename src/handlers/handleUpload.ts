@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Dispatch, RefObject } from "react";
-import type { ToolData, errorType } from "../../components/Tool";
+// import type { ToolData, errorType } from "../../components/Tool";
 import { downloadConvertedFile } from "../downloadFile";
 import type { errors as _ } from "../../content";
 import { AnyAction } from "@reduxjs/toolkit";
@@ -42,7 +42,7 @@ export const handleUpload = async (
   let url;
   // @ts-ignore
   if (process.env.NODE_ENV === "development") {
-    url = `http://127.0.0.1:5000/${state.path}`;
+    url = `http://149.100.159.150:5000/${state.path}`;
     // url = `https://5000-planetcreat-pdfequipsap-te4zoi6qkr3.ws-eu102.gitpod.io/${state.path}`;
   } else {
     url = `/api/${state.path}`;
@@ -87,11 +87,11 @@ export const handleUpload = async (
       outputFileName: `${originalFileName}.pptx`,
     },
     "application/vnd.openxmlformats-officedocument.presentationml.presentation":
-      {
-        outputFileMimeType:
-          "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-        outputFileName: `${originalFileName}.pptx`,
-      },
+    {
+      outputFileMimeType:
+        "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      outputFileName: `${originalFileName}.pptx`,
+    },
     "text/plain": {
       outputFileMimeType: "text/plain",
       outputFileName: `${originalFileName}.txt`,

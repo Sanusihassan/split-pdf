@@ -4,7 +4,7 @@ import { AnyAction } from "@reduxjs/toolkit";
 import type { errors as _ } from "../content/content"; // import the errors constant
 
 import { validateFiles } from "../utils";
-import { ToolState, hideTool, resetErrorMessage, setRerender } from "../store";
+import { ToolState, hideTool, resetErrorMessage } from "../store";
 export const handleChange = (
   e: React.ChangeEvent<HTMLInputElement>,
   dispatch: Dispatch<AnyAction>,
@@ -20,6 +20,5 @@ export const handleChange = (
   if (isValid && files) {
     dispatch(hideTool());
     dispatch(resetErrorMessage());
-    dispatch(setRerender(!state.rerender));
   }
 };

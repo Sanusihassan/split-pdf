@@ -1,27 +1,20 @@
 import { useRouter } from "next/router";
 import DisplayFile from "./DisplayFile";
 import {
-  Dispatch,
-  RefObject,
-  SetStateAction,
-  useContext,
   useEffect,
   useRef,
   useState,
 } from "react";
 
-import Options, { OptionsProps } from "./DisplayFile/Options";
+import Options from "./DisplayFile/Options";
 import type { edit_page } from "../content";
 import ErrorElement from "./ErrorElement";
 import type { errors as _ } from "../content";
-import { Spinner } from "react-bootstrap";
 import { CogIcon } from "@heroicons/react/outline";
-// import { ToolStoreContext } from "../src/ToolStoreContext";
 import { useDispatch, useSelector } from "react-redux";
 import {
   ToolState,
   resetErrorMessage,
-  setIsSubmitted,
   setPath,
   setShowOptions,
 } from "../src/store";
@@ -37,8 +30,6 @@ type editPageProps = {
   lang: string;
   errors: _;
 };
-// the error message is inside the editPage component
-// calculate image height;
 
 const EditPage = ({
   extension,
@@ -56,7 +47,7 @@ const EditPage = ({
   const state = useSelector((state: { tool: ToolState }) => state.tool);
   const dispatch = useDispatch();
   // actual files;
-  const { files, setFiles, fileInput, submitBtn } = useFileStore.getState();
+  const { files, fileInput } = useFileStore.getState();
   useEffect(() => {
     if (state.errorCode == "ERR_NO_FILES_SELECTED" && files.length > 0) {
       dispatch(resetErrorMessage());
@@ -64,7 +55,7 @@ const EditPage = ({
     if (state.path !== k) {
       dispatch(setPath(k));
     }
-  }, [files, state.rerender, state.errorCode]);
+  }, [state.errorCode]);
 
   const router = useRouter();
   let k = router.asPath.replace(/^\/[a-z]{2}\//, "").replace(/^\//, "");

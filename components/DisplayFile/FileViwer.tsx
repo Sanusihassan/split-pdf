@@ -1,5 +1,4 @@
 import type { errors } from "@/content";
-import FileCard from "./FileCard";
 import { useFileStore } from "@/src/file-store";
 import { SelectedFiles } from "./SelectedFiles";
 import { ToolState, setSelectedFile } from "@/src/store";
@@ -8,7 +7,6 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { RangeLayout } from "./RangeLayout";
 import { v4 as uuidv4 } from 'uuid';
-{/* SelectedFiles is a dropdown of files to select to view, i want to display only one file (the selected one) if i've displayed the selected files the other ones should not be visible */ }
 export const FileViewer = ({
     errors,
     loader_text,
@@ -22,11 +20,6 @@ export const FileViewer = ({
 }) => {
     const { files } = useFileStore.getState();
     const state = useSelector((state: { tool: ToolState }) => state.tool);
-    // const _print = (...args: any) => {
-    //     console.log(...args);
-    //     return true;
-    // }
-
     const dispatch = useDispatch();
     useEffect(() => {
         if (state.selectedFile == "" && files.length) {
@@ -35,7 +28,7 @@ export const FileViewer = ({
     }, [state.selectedFile, files])
     return (<>
         <SelectedFiles />
-        {files.map(file => (
+        {files.map((file, i) => (
             file.name === state.selectedFile ?
                 <RangeLayout
                     file={file}
@@ -43,6 +36,7 @@ export const FileViewer = ({
                     loader_text={loader_text}
                     fileDetailProps={fileDetailProps}
                     extension={extension}
+                    key={uuidv4()}
                 />
                 : null
         ))}

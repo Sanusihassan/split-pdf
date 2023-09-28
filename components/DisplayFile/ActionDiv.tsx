@@ -1,24 +1,9 @@
-import { RefreshIcon, TrashIcon } from "@heroicons/react/solid";
-import { useRotatedImage, validateFiles } from "../../src/utils";
-import { Dispatch, SetStateAction, useCallback, useContext } from "react";
-import type { errors as _ } from "../../content";
-// import { ToolStoreContext } from "../../src/ToolStoreContext";
+import { TrashIcon } from "@heroicons/react/solid";
 import { useRouter } from "next/router";
-import { useSelector, useDispatch } from "react-redux";
-import { ToolState, setRerender } from "../../src/store";
+import { useSelector } from "react-redux";
+import { ToolState } from "../../src/store";
 import { useFileStore } from "../../src/file-store";
-
-export type ActionProps = {
-  index: number;
-  extension: string;
-  errors: _;
-  fileName: string;
-};
-
-/**
- * it's working fine, but the changes from this actiondiv component is not reflected ouside of it
- * it's a next.js app, the updates are not available on other components
- */
+import { ActionProps } from "@/src/globalProps";
 
 export const ActionDiv = ({
   index,
@@ -29,9 +14,7 @@ export const ActionDiv = ({
   const state = useSelector((state: { tool: ToolState }) => state.tool);
   // the files:
   const { files, setFiles } = useFileStore.getState();
-  const dispatch = useDispatch();
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    dispatch(setRerender(!state.rerender));
     //  const newFiles = store.files.filter((file) => file.name !== item.file.name);
     const newFiles = files.filter((file) => file.name !== fileName);
     setFiles(newFiles);
@@ -50,25 +33,11 @@ export const ActionDiv = ({
 
   return (
     <div
-      className={`action-div d-flex ${
-        extension == ".html" ? "justify-content-end" : "justify-content-between"
-      }`}
+      className={`action-div d-flex ${extension == ".html" ? "justify-content-end" : "justify-content-between"
+        }`}
     >
       <button
         className="btn btn-light"
-        // onClick={() => {
-        //   const newImageUrls = [...imageUrls];
-        //   newImageUrls.splice(index, 1);
-        //   const isValid = validateFiles(files, extension, errors, dispatch);
-        //   if(isValid) {
-        //     dispatch(resetErrorMessage());
-        //   }
-        //   setImageUrls(newImageUrls);
-        // }}
-        // i think the problem might be with this onclick handler
-        // which might not set the files correctly
-        // this is a handler for deletion each file has a delete button
-        // the files array on my mobx store should be updated and it should be reflected on all of my application.
         onClick={(e) => handleClick(e)}
       >
         <TrashIcon className="icon hero-icon" />

@@ -10,18 +10,8 @@ function LanguageDropdown() {
   const state: ToolState = useSelector(
     (state: { tool: ToolState }) => state.tool
   );
-  // const dispatch = useDispatch();
-  // as you can see from this function it's setting a cookie using this function:
-  /**
-   * export const setLanguage = (language: string) => {
-      Cookies.set("languageToken", language, { expires: 365 });
-    };
-   */
-  // i want to get the token in nginx to serve the HTML file for the requested language code according to the languageToken
-  // note that english is the default language and it's value is empty string
   const setLangToken = (
     language: string,
-    // @ts-ignore
     e: React.MouseEvent<HTMLAnchorElement>
   ) => {
     setLanguage(language);

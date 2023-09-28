@@ -13,22 +13,8 @@ import { useDispatch } from "react-redux";
 import { useFileStore } from "../src/file-store";
 import { FileInputForm } from "./Tool/FileInputForm";
 import DownloadFile from "./DownloadFile";
+import { ToolData } from "@/src/globalProps";
 
-export type errorType = {
-  response: {
-    data: {
-      error: string;
-      text: () => Promise<string>; // Add type for text() function
-    };
-  };
-};
-
-export type ToolData = {
-  title: string;
-  description: string;
-  color: string;
-  type: string;
-};
 
 type ToolProps = {
   data: ToolData;
@@ -90,7 +76,6 @@ const Tool: React.FC<ToolProps> = ({
     ".jpg": ".jpg, .jpeg",
     ".html": ".html, .htm",
   };
-  // return <input type="checkbox" />;
 
   return (
     <>
@@ -107,9 +92,9 @@ const Tool: React.FC<ToolProps> = ({
         <div
           className={`text-center ${!showTool ? "" : "d-flex"
             } flex-column tools ${state!.showTool ? "" : "d-none"}`}
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
+        // onClick={(e) => {
+        //   e.stopPropagation();
+        // }}
         >
           <h1 className="display-3">
             <bdi>{data.title}</bdi>

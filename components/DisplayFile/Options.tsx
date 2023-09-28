@@ -1,10 +1,5 @@
-import { useRouter } from "next/router";
-import type { edit_page as _ } from "../../content";
+import { OptionsProps } from "@/src/globalProps";
 import { SplitPDF } from "../Options/SplitPDF";
-
-export interface OptionsProps {
-  edit_page: _;
-}
 
 const Options = ({ edit_page }: OptionsProps) => {
   return <SplitPDF />;

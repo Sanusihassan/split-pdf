@@ -1,3 +1,9 @@
+/**
+ * how can i solve this issue?:
+ * Warning: You have opted-out of Automatic Static Optimization due to `getInitialProps` in `pages/_app`. This does not opt-out pages with `getStaticProps`
+Read more: https://nextjs.org/docs/messages/opt-out-auto-static-optimization
+ */
+// this is my _app.tsx file:
 import type { AppContext, AppProps } from "next/app";
 import Head from "next/head";
 import "../index.scss";
@@ -26,6 +32,7 @@ const store = configureStore({
 });
 
 function MyApp({ Component, pageProps, lang }: AppProps & { lang: string }) {
+
   return (
     <>
       <Head>
@@ -53,11 +60,13 @@ function MyApp({ Component, pageProps, lang }: AppProps & { lang: string }) {
         }
       </Head>
       <ReduxProvider store={store}>
-        <Component useFileStore={useFileStore} {...pageProps} lang={lang} />
+        <Component useFileStore={useFileStore} {...pageProps} lang={lang ? lang : "en"} />
       </ReduxProvider>
     </>
   );
 }
+
+
 MyApp.getInitialProps = async ({
   Component,
   ctx,
@@ -73,5 +82,11 @@ MyApp.getInitialProps = async ({
 
   return { pageProps, lang };
 };
+
+
+// In your page component file
+
+
+
 
 export default MyApp;

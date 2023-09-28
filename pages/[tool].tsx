@@ -1,8 +1,6 @@
-"use client";
 import Head from "next/head";
-import NavBar from "../components/NavBar";
+// import NavBar from "../components/NavBar";
 import Tool from "../components/Tool";
-import { useRouter } from "next/router";
 import {
   edit_page,
   errors,
@@ -40,16 +38,6 @@ export async function getStaticProps({
 }
 
 export default ({ item }: { item: data_type }) => {
-  const router = useRouter();
-  let path = router.asPath;
-  // translate this to hindi
-  let appology_message = {
-    title: "Sorry, This feature is not implemented yet.",
-    reason: `We apologize for the inconvenience. This feature is currently under
-    development and will be available in a future update. Thank you for
-    your understanding.`,
-  };
-
   return (
     <>
       <Head>
@@ -61,37 +49,21 @@ export default ({ item }: { item: data_type }) => {
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         />
       </Head>
-      <NavBar nav_content={nav_content} lang="" />
-      {path == "/split-pdf" && "production" === process.env.NODE_ENV ? (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            flexDirection: "column",
-            alignItems: "center",
-            height: "100vh",
-          }}
-        >
-          <h2 className="display-4 text-center">{appology_message.title}</h2>
-          <p className="text-center">{appology_message.reason}</p>
-        </div>
-      ) : (
-        <Tool
-          tools={tools}
-          data={item}
-          lang=""
-          errors={errors}
-          edit_page={edit_page}
-          pages={edit_page.pages}
-          page={edit_page.page}
-          downloadFile={downloadFile}
-        />
-      )}
+      {/* <NavBar nav_content={nav_content} lang="" /> */}
+      <Tool
+        tools={tools}
+        data={item}
+        lang=""
+        errors={errors}
+        edit_page={edit_page}
+        pages={edit_page.pages}
+        page={edit_page.page}
+        downloadFile={downloadFile}
+      />
     </>
   );
 };
 
-// export default ToolPage;
 export const routes = {
   "/split-pdf": { item: tool["Split_PDF"] },
 };

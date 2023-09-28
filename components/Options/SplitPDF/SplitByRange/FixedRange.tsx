@@ -1,4 +1,5 @@
 import { useFileStore } from "@/src/file-store";
+import { TypeWithdisplayProp } from "@/src/globalProps";
 import { ToolState } from "@/src/store";
 import { getPageCount } from "@/src/utils";
 import { InformationCircleIcon } from "@heroicons/react/solid";
@@ -6,9 +7,6 @@ import { useState, useEffect } from "react";
 import { Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 
-export type TypeWithdisplayProp = {
-  display: boolean;
-};
 
 export const FixedRange = ({ display }: TypeWithdisplayProp) => {
   const [pages, setPages] = useState(1);

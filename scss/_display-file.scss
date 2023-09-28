@@ -1,7 +1,7 @@
 /// i want to modify this so that one row should have only 4 elements max
 %grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(24%, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(24%, 1fr));
 
   @media (max-width: 600px) {
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -100,10 +100,34 @@
 
   // display layouts:
   .range-layout {
+    // display: flex;
+    // flex-wrap: wrap;
+    /**
+    i have the following code on my css,
+      what i want is that it should take two equal items on one row 48% each
+      but when there is only one item it should be 100%
+      
+      */
+    // this is not giving me the results i want, i currently have 3 items right? the first two items took 48% and they're on the first row, but the third item is on a new row on it's own that's fine, but it's also taking 48% it should automatically take 100% since it's the only one on that row
+
+    // display: grid;
+    // grid-template-columns: repeat(auto-fill, minmax(48%, 1fr));
+    // grid-auto-rows: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-flow: dense;
+    gap: 2%;
+
     .range {
       border: 2px dashed var(--gray);
-      width: fit-content;
       @include extend("p-2");
+
+      // &:nth-child(odd):not(:first-child) {
+      //   grid-column: 1 / -1;
+      // }
+      &:last-child:not(:nth-of-type(even)) {
+        grid-column: 1 / -1;
+      }
 
       h6 {
         @include extend("range-title mb-0");

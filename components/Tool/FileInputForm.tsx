@@ -56,7 +56,7 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
       // }, 3000);
       // }
     });
-  }, [state.rerender]);
+  }, []);
   // path
   const router = useRouter();
   let path = router.asPath.replace(/^\/[a-z]{2}\//, "").replace(/^\//, "");

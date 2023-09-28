@@ -3,21 +3,37 @@
 import { useFileStore } from "@/src/file-store";
 import { getPageCount } from "@/src/utils";
 import { XIcon, PlusIcon } from "@heroicons/react/solid";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { TypeWithdisplayProp } from "./FixedRange";
+import { useCallback, useEffect, useState } from "react";
 import { Checkbox } from "pretty-checkbox-react";
 import { DragDropContext, Draggable, DropResult } from "react-beautiful-dnd";
 
 import { Droppable } from "react-beautiful-dnd";
 import { useSelector } from "react-redux";
 import { ToolState, setGlobalRanges } from "@/src/store";
-// import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import { useDispatch } from "react-redux";
+import { TypeWithdisplayProp } from "@/src/globalProps";
 
+
+/**
+ * i want to add an id property to this:
+ */
 type Ranges = {
   from: number;
   to: number;
+  id: string;
 }[];
+
+// const reorder = (
+//   list: Ranges,
+//   startIndex: number,
+//   endIndex: number
+// ): Ranges => {
+//   const result = Array.from(list);
+//   const [removed] = result.splice(startIndex, 1);
+//   result.splice(endIndex, 0, removed);
+//   return result;
+// };
 
 const reorder = (
   list: Ranges,
@@ -26,10 +42,11 @@ const reorder = (
 ): Ranges => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
+  removed.id = uuidv4(); // Add an id here
   result.splice(endIndex, 0, removed);
-
   return result;
 };
+
 
 export const CustomRange = ({ display }: TypeWithdisplayProp) => {
   const [from, setFrom] = useState("");
@@ -42,12 +59,12 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
   const { files } = useFileStore.getState();
   const state = useSelector((state: { tool: ToolState }) => state.tool);
   const dispatch = useDispatch();
-  const [ranges, setRanges] = useState<{ from: number; to: number }[]>([
-    { from: 1, to: 3 },
+  const [ranges, setRanges] = useState<{ from: number; to: number; id: string; }[]>([
+    { from: 1, to: pageCount, id: uuidv4() },
   ]);
   useEffect(() => {
     getPageCount(files, state, setPageCount);
-    setRanges([{ from: 1, to: pageCount }]);
+    setRanges([{ from: 1, to: pageCount, id: uuidv4() }]);
     dispatch(setGlobalRanges(ranges));
   }, [state.selectedFile]);
 
@@ -71,18 +88,19 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
     setRanges(updatedRanges);
   };
   const handleAddRangeClick = () => {
+    const id = uuidv4();
     if (from && to) {
-      setRanges([...ranges, { from: parseInt(from), to: parseInt(to) }]);
+      setRanges([...ranges, { from: parseInt(from), to: parseInt(to), id }]);
       setFrom("");
       setTo("");
     } else {
       if (ranges.length > 0) {
         const lastRange = ranges[ranges.length - 1];
         if (lastRange.to == pageCount) {
-          setRanges([...ranges, { from: pageCount, to: pageCount }]);
+          setRanges([...ranges, { from: pageCount, to: pageCount, id }]);
         }
       } else {
-        setRanges([...ranges, { from: 1, to: pageCount }]);
+        setRanges([...ranges, { from: 1, to: pageCount, id }]);
       }
     }
   };
@@ -120,7 +138,7 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
           {(provided) => (
             <div ref={provided.innerRef} {...provided.droppableProps}>
               {ranges.map((range, i) => (
-                <Draggable key={i} draggableId={i.toString()} index={i}>
+                <Draggable key={range.id} draggableId={range.id} index={i}>
                   {(provided) => (
                     <div
                       ref={provided.innerRef}
@@ -132,7 +150,7 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
                           <div className="card">
                             <div className="card-body">
                               <h6 className="ignore-margin card-title split-category-title">
-                                Range {i}
+                                Range {i + 1}
                               </h6>
                               <div className="row flex-nowrap justify-content-between align-items-center range-input-wrapper">
                                 <div className="row flex-nowrap input-group">
