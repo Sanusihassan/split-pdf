@@ -1,5 +1,3 @@
-// why the draggable elements on this component are'nt animatable i.e they're not moving from their positions
-// in other words their movement is not notable to the ee
 import { useFileStore } from "@/src/file-store";
 import { getPageCount } from "@/src/utils";
 import { XIcon, PlusIcon } from "@heroicons/react/solid";
@@ -15,9 +13,6 @@ import { useDispatch } from "react-redux";
 import { TypeWithdisplayProp } from "@/src/globalProps";
 
 
-/**
- * i want to add an id property to this:
- */
 type Ranges = {
   from: number;
   to: number;
@@ -47,18 +42,38 @@ const reorder = (
   return result;
 };
 
-
+// in this file:
 export const CustomRange = ({ display }: TypeWithdisplayProp) => {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const [pageCount, setPageCount] = useState(0);
   const [checked, setChecked] = useState(false);
-  const onChange = useCallback(() => {
+  const handleCheckChange = useCallback(() => {
     setChecked((prev) => !prev);
   }, []);
   const { files } = useFileStore.getState();
   const state = useSelector((state: { tool: ToolState }) => state.tool);
   const dispatch = useDispatch();
+  const updateGlobalRanges = useCallback(
+    (updatedRanges: { from: number; to: number; id: string }[]) => {
+      dispatch(setGlobalRanges(updatedRanges));
+    },
+    [dispatch]
+  );
+  const onChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>, index: number, property: "from" | "to") => {
+      const value = parseInt(e.target.value, 10);
+      setRanges((prevRanges) => {
+        const updatedRanges = prevRanges.map((range, i) =>
+          i === index ? { ...range, [property]: value } : range
+        );
+        updateGlobalRanges(updatedRanges);
+        return updatedRanges;
+      });
+    },
+    [updateGlobalRanges]
+  );
+
   const [ranges, setRanges] = useState<{ from: number; to: number; id: string; }[]>([
     { from: 1, to: pageCount, id: uuidv4() },
   ]);
@@ -166,20 +181,21 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
                                     value={range.from}
                                     onChange={
                                       (e) => {
-                                        setRanges((prevRanges) =>
-                                          prevRanges.map((r, index) =>
-                                            index === i
-                                              ? {
-                                                ...r,
-                                                from: parseInt(
-                                                  e.target.value,
-                                                  10
-                                                ),
-                                              }
-                                              : { ...r }
-                                          )
-                                        );
-                                        dispatch(setGlobalRanges(ranges));
+                                        // setRanges((prevRanges) =>
+                                        //   prevRanges.map((r, index) =>
+                                        //     index === i
+                                        //       ? {
+                                        //         ...r,
+                                        //         from: parseInt(
+                                        //           e.target.value,
+                                        //           10
+                                        //         ),
+                                        //       }
+                                        //       : { ...r }
+                                        //   )
+                                        // );
+                                        // dispatch(setGlobalRanges(ranges));
+                                        onChange(e, i, "from");
                                       }
                                     }
                                     placeholder="From"
@@ -198,20 +214,21 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
                                     value={range.to}
                                     onChange={
                                       (e) => {
-                                        setRanges((prevRanges) =>
-                                          prevRanges.map((r, index) =>
-                                            index === i
-                                              ? {
-                                                ...r,
-                                                to: parseInt(
-                                                  e.target.value,
-                                                  10
-                                                ),
-                                              }
-                                              : r
-                                          )
-                                        )
-                                        dispatch(setGlobalRanges(ranges));
+                                        // setRanges((prevRanges) =>
+                                        //   prevRanges.map((r, index) =>
+                                        //     index === i
+                                        //       ? {
+                                        //         ...r,
+                                        //         to: parseInt(
+                                        //           e.target.value,
+                                        //           10
+                                        //         ),
+                                        //       }
+                                        //       : r
+                                        //   )
+                                        // )
+                                        // dispatch(setGlobalRanges(ranges));
+                                        onChange(e, i, "to");
                                       }
                                     }
                                     placeholder="To"
@@ -252,7 +269,7 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
         animation="smooth"
         color="primary"
         defaultChecked={checked}
-        onChange={onChange}
+        onChange={handleCheckChange}
         className="ml-1 my-3 mb-0"
       >
         Merge all ranges in one PDF file.

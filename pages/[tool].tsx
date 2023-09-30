@@ -1,5 +1,5 @@
 import Head from "next/head";
-// import NavBar from "../components/NavBar";
+import NavBar from "../components/NavBar";
 import Tool from "../components/Tool";
 import {
   edit_page,
@@ -49,7 +49,7 @@ export default ({ item }: { item: data_type }) => {
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         />
       </Head>
-      {/* <NavBar nav_content={nav_content} lang="" /> */}
+      <NavBar nav_content={nav_content} lang="" />
       <Tool
         tools={tools}
         data={item}

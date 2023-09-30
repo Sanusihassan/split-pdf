@@ -10,6 +10,7 @@ import {
 import { useDispatch } from "react-redux";
 import ImageWithLoader from "./ImageWithLoader";
 import { ActionProps } from "@/src/globalProps";
+import EllipsisIcon from "../icons/Ellipsis";
 type OmitFileName<T extends ActionProps> = Omit<T, "fileName" | "index">;
 
 type CardProps = OmitFileName<ActionProps> & {
@@ -18,11 +19,29 @@ type CardProps = OmitFileName<ActionProps> & {
   loader_text: string;
   fileDetailProps: [string, string, string];
   index?: number | string;
-  from?: number;
-  to?: number;
-  setIsloaded?: Dispatch<SetStateAction<boolean>>
-
+  range?: { from: number; to: number };
+  layout?: "extract" | "range"
 };
+
+const RangeFileCard = ({
+  image1Url,
+  image2Url,
+  loader_text
+}: {
+  image1Url: string;
+  image2Url: string;
+  loader_text: string;
+}) => {
+  return (
+    <div
+      className="position-relative"
+    >
+      <ImageWithLoader imageUrl={image1Url} loader_text={loader_text} />
+      <EllipsisIcon className="icon" />
+      <ImageWithLoader imageUrl={image2Url} loader_text={loader_text} />
+    </div>
+  )
+}
 
 const FileCard = ({
   file,
@@ -30,23 +49,35 @@ const FileCard = ({
   extension,
   loader_text,
   fileDetailProps,
-  from,
-  to,
-  setIsloaded
+  range,
+  layout
 }: CardProps) => {
   const [imageUrls, setImageUrls] = useState<string[]>([]);
   const [pageCount, setPageCount] = useState(0);
   const [tooltipSize, setToolTipSize] = useState("");
   const dispatch = useDispatch();
   let isSubscribed = true;
+  let from: any, to: any;
+  if (range && (range.from > 0 && range.to > 0) && (range.from <= range.to) && (layout && layout === "range")) {
+    from = range.from;
+    to = range.to;
+  }
   const processFile = async () => {
     try {
       setImageUrls([]);
       if (extension && extension === ".pdf") {
         if (isSubscribed) {
-          for (let i = "number" === typeof (from) ? from : 1; i <= ("number" === typeof (to) ? to : pageCount); i += 1) {
-            let url = await getNthPageAsImage(file, dispatch, errors, i);
-            setImageUrls(prevUrls => [...prevUrls, url]);
+          if (layout === "extract") {
+            for (let i = 1; i <= pageCount; i += 1) {
+              let url = await getNthPageAsImage(file, dispatch, errors, i);
+              setImageUrls(prevUrls => [...prevUrls, url]);
+            }
+          } else {
+            console.log(from, to)
+            let startUrl = await getNthPageAsImage(file, dispatch, errors, (from ? from : 1));
+            let endUrl = await getNthPageAsImage(file, dispatch, errors, (to ? to : (pageCount > 0 ? pageCount : 2)));
+            setImageUrls(prevUrls => [...prevUrls, startUrl]);
+            setImageUrls(prevUrls => [...prevUrls, endUrl]);
           }
         }
       } else if (extension && extension !== ".jpg") {
@@ -64,9 +95,6 @@ const FileCard = ({
     }
   };
   useEffect(() => {
-    if (setIsloaded) {
-      setIsloaded(true);
-    }
     (async () => {
       let size = await getFileDetailsTooltipContent(
         file,
@@ -74,7 +102,7 @@ const FileCard = ({
         dispatch,
         errors
       );
-      if ("number" !== typeof (to) && "number" !== typeof (from)) {
+      if ("number" !== typeof (to) || "number" !== typeof (from)) {
         let _pageCount = await calculatePages(file);
         setPageCount(_pageCount);
       }
@@ -92,15 +120,17 @@ const FileCard = ({
           <Loader loader_text={loader_text} animate={false} />
         </div>
         : null}
-      <div className="pages">{
-        imageUrls.map((imageUrl, index) => (
-          <div
-            key={index.toString()}
-            className="position-relative"
-          >
-            <ImageWithLoader imageUrl={imageUrl} loader_text={loader_text} />
-          </div>
-        ))}
+      <div className="pages">
+        {
+          layout == "range" ?
+            imageUrls.map((imageUrl, index) => (
+              <div
+                key={index.toString()}
+                className="position-relative"
+              >
+                <ImageWithLoader imageUrl={imageUrl} loader_text={loader_text} />
+              </div>
+            )) : <RangeFileCard image1Url={imageUrls[0]} image2Url={imageUrls[1]} loader_text={loader_text} />}
       </div>
     </>
   );
