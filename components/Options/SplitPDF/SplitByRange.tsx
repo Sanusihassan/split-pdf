@@ -5,12 +5,16 @@ import { FixedRange } from "./SplitByRange/FixedRange";
 
 
 
-export const SplitByRange = () => {
+export const SplitByRange = ({
+  showSplitByRange
+}: {
+  showSplitByRange: boolean;
+}) => {
   const [index, setIndex] = useState(0);
   const handleOptionClick = useSelectedOption(index, setIndex);
 
   return (
-    <div className="split-category range-split">
+    <div className={`${showSplitByRange ? "" : "d-none "}split-category range-split`}>
       <header className="header">
         <h6 className="split-category-title header">Range Mode:</h6>
         <div className="row justify-content-between btn-row">

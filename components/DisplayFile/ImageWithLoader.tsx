@@ -15,13 +15,13 @@ const ImageWithLoader = ({ imageUrl, loader_text }: {
     return (
         <>
             {showLoader && <Loader loader_text={loader_text} />}
-            <img
+            {imageUrl && imageUrl.length > 0 ? <img
                 className="img-fluid-custom object-fit-contain rounded item-img border"
                 src={imageUrl}
-                alt="Selected file"
+                alt={imageUrl}
                 draggable={false}
                 onLoad={handleImageLoaded}
-            />
+            /> : null}
         </>
     );
 };

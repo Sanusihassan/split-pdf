@@ -17,7 +17,7 @@ export function SubmitBtn({ k, edit_page }: { k: string, edit_page: edit_page })
           submitBtn?.current?.click();
         }
       }}
-      disabled={state!.errorMessage.length > 0}
+      disabled={state!.errorMessage.length > 0 || state.selectedPages.length === 0}
     >
       <bdi>
         {

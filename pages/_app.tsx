@@ -1,9 +1,3 @@
-/**
- * how can i solve this issue?:
- * Warning: You have opted-out of Automatic Static Optimization due to `getInitialProps` in `pages/_app`. This does not opt-out pages with `getStaticProps`
-Read more: https://nextjs.org/docs/messages/opt-out-auto-static-optimization
- */
-// this is my _app.tsx file:
 import type { AppContext, AppProps } from "next/app";
 import Head from "next/head";
 import "../index.scss";
@@ -15,6 +9,7 @@ import toolReducer from "../src/store";
 
 // zustand store
 import { createStore } from "zustand";
+import React, { useState } from "react";
 interface FileStore {
   files: File[];
   setFiles: (files: File[]) => void;
@@ -31,8 +26,20 @@ const store = configureStore({
   },
 });
 
-function MyApp({ Component, pageProps, lang }: AppProps & { lang: string }) {
+// ranges context
+export const RangeContext = React.createContext<{
+  ranges: { from: number; to: number; }[];
+  setRanges: React.Dispatch<React.SetStateAction<{ from: number; to: number; }[]>>;
+}>({
+  ranges: [],
+  setRanges: () => { },
+});
 
+
+function MyApp({ Component, pageProps, lang }: AppProps & { lang: string }) {
+  const [ranges, setRanges] = useState<{ from: number; to: number; }[]>([
+    { from: 1, to: 1 },
+  ]);
   return (
     <>
       <Head>
@@ -60,7 +67,9 @@ function MyApp({ Component, pageProps, lang }: AppProps & { lang: string }) {
         }
       </Head>
       <ReduxProvider store={store}>
-        <Component useFileStore={useFileStore} {...pageProps} lang={lang ? lang : "en"} />
+        <RangeContext.Provider value={{ ranges, setRanges }}>
+          <Component useFileStore={useFileStore} {...pageProps} lang={lang ? lang : "en"} />
+        </RangeContext.Provider>
       </ReduxProvider>
     </>
   );

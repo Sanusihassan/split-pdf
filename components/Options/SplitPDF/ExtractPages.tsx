@@ -1,60 +1,9 @@
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelectedOption } from "../../../src/hooks/handleOptionClick";
-import { InformationCircleIcon } from "@heroicons/react/solid";
-import { Checkbox } from "pretty-checkbox-react";
-import { getPageCount } from "@/src/utils";
-import { useFileStore } from "@/src/file-store";
-import { ToolState } from "@/src/store";
-import { useSelector } from "react-redux";
-
-const SelectionAlert = ({ selectedPages }: { selectedPages: number }) => {
-  return (
-    <div className="alert alert-info">
-      <InformationCircleIcon className="w-5 h-5" /> Every selected page of this
-      PDF file will be converted in one PDF file.
-      <strong>{selectedPages} PDF</strong> will be created.
-    </div>
-  );
-};
-
-const SelectAll = ({ showSelectAll }: { showSelectAll: boolean }) => {
-  const [inputVal, setInputVal] = useState("");
-  const [checked, setChecked] = useState(false);
-
-  const onChange = useCallback(() => {
-    setChecked((prev) => !prev);
-  }, []);
-  return (
-    <div className={`${showSelectAll ? "" : "d-none "}select-all`}>
-      <h6 className="title">Pages to Extract:</h6>
-      <form>
-        <input
-          type="text"
-          className="form-control"
-          placeholder="example: 2,8-32"
-          value={inputVal}
-          onChange={(e) => {
-            console.log("changing...");
-            setInputVal(e.target.value);
-          }}
-        />
-        {/* <div className="input-group merge-input"> */}
-        <Checkbox
-          animation="smooth"
-          color="primary"
-          defaultChecked={checked}
-          onChange={onChange}
-          className="ml-1 my-3 mb-0"
-        >
-          Merge extracted pdf in one pdf file.
-        </Checkbox>
-        {/* </div> */}
-      </form>
-
-      <SelectionAlert selectedPages={0} />
-    </div>
-  );
-};
+import { ExtractAll } from "./ExtractPages/ExtractAll";
+import { SelectPages } from "./ExtractPages/SelectPages";
+import { useDispatch } from "react-redux";
+import { setSelectedPages } from "@/src/store";
 
 export const ExtractPages = ({
   showExtractPages,
@@ -62,23 +11,14 @@ export const ExtractPages = ({
   showExtractPages: boolean;
 }) => {
   const [index, setIndex] = useState(0);
+  const dispatch = useDispatch();
+  // const handleOptionClick = (index: number) => {
+  //   if (index == 0) {
+  //     
+  //   }
+
+  // }
   const handleOptionClick = useSelectedOption(index, setIndex);
-  // children
-  const ExtractAll = () => {
-    const { files } = useFileStore.getState();
-    const state = useSelector((state: { tool: ToolState }) => state.tool);
-    const [pageCount, setPageCount] = useState(0);
-
-
-    useEffect(() => {
-      getPageCount(files, state, setPageCount);
-    }, []);
-    return (
-      <>
-        <SelectionAlert selectedPages={pageCount} />
-      </>
-    );
-  };
   return (
     <div
       className={`${showExtractPages ? "" : "d-none "
@@ -88,21 +28,27 @@ export const ExtractPages = ({
       <div className="btn-row">
         <button
           className={`btn ${index === 0 ? "active" : ""}`}
-          onClick={() => handleOptionClick(0)}
+          onClick={() => {
+            handleOptionClick(0);
+            dispatch(setSelectedPages("all"));
+          }}
           title="Extract all pages"
         >
           Extract all pages
         </button>
         <button
           className={`btn ${index === 1 ? "active" : ""}`}
-          onClick={() => handleOptionClick(1)}
+          onClick={() => {
+            handleOptionClick(1);
+            dispatch(setSelectedPages(""));
+          }}
           title="Select pages"
         >
           Select pages
         </button>
       </div>
-      {index == 0 ? <ExtractAll /> : null}
-      <SelectAll showSelectAll={index == 1} />
+      <ExtractAll showExtractAll={index == 0} />
+      <SelectPages showSelectPages={index == 1} />
     </div>
   );
 };

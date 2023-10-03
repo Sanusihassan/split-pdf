@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { RangeLayout } from "./RangeLayout";
 import { v4 as uuidv4 } from 'uuid';
+import { ExtractLayout } from "./ExtractLayout";
 export const FileViewer = ({
     errors,
     loader_text,
@@ -30,14 +31,24 @@ export const FileViewer = ({
         <SelectedFiles />
         {files.map((file, i) => (
             file.name === state.selectedFile ?
-                <RangeLayout
-                    file={file}
-                    errors={errors}
-                    loader_text={loader_text}
-                    fileDetailProps={fileDetailProps}
-                    extension={extension}
-                    key={uuidv4()}
-                />
+                (state.layout === "extract" ?
+                    <ExtractLayout
+                        file={file}
+                        errors={errors}
+                        loader_text={loader_text}
+                        fileDetailProps={fileDetailProps}
+                        extension={extension}
+                        key={uuidv4()}
+                    />
+                    :
+                    <RangeLayout
+                        file={file}
+                        errors={errors}
+                        loader_text={loader_text}
+                        fileDetailProps={fileDetailProps}
+                        extension={extension}
+                        key={uuidv4()}
+                    />)
                 : null
         ))}
         {/* {currentFile === undefined ? (

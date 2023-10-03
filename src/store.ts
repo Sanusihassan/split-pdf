@@ -14,7 +14,8 @@ export interface ToolState {
   showOptions: boolean;
   nav_height: number;
   selectedFile: string;
-  ranges: { from: number; to: number, id: string }[];
+  layout: "extract" | "range",
+  selectedPages: string;
 }
 
 const initialState: ToolState = {
@@ -31,7 +32,8 @@ const initialState: ToolState = {
   showOptions: false,
   nav_height: 0,
   selectedFile: "",
-  ranges: []
+  layout: "range",
+  selectedPages: "all"
 };
 
 const toolSlice = createSlice({
@@ -84,9 +86,11 @@ const toolSlice = createSlice({
     setSelectedFile(state: ToolState, action: PayloadAction<string>) {
       state.selectedFile = action.payload;
     },
-    setGlobalRanges(state: ToolState, action: PayloadAction<{ from: number; to: number; id: string }[]>) {
-      state.ranges = action.payload;
-      console.log(state.ranges);
+    setLayout(state: ToolState, action: PayloadAction<"extract" | "range">) {
+      state.layout = action.payload;
+    },
+    setSelectedPages(state: ToolState, action: PayloadAction<string>) {
+      state.selectedPages = action.payload;
     }
   },
 });
@@ -106,7 +110,8 @@ export const {
   setShowOptions,
   setNavHeight,
   setSelectedFile,
-  setGlobalRanges
+  setLayout,
+  setSelectedPages
 } = toolSlice.actions;
 
 export default toolSlice.reducer;
