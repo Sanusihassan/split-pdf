@@ -7,15 +7,16 @@ import { useState, useEffect } from "react";
 import { Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 
-
 export const FixedRange = ({ display }: TypeWithdisplayProp) => {
   const [pages, setPages] = useState(1);
   const [pageCount, setPageCount] = useState(0);
   const { files } = useFileStore.getState();
-  const state = useSelector((state: { tool: ToolState }) => state.tool);
+  const selectedFile = useSelector(
+    (state: { tool: ToolState }) => state.tool.selectedFile
+  );
   useEffect(() => {
-    getPageCount(files, state, setPageCount);
-  }, [state.selectedFile]);
+    getPageCount(files, selectedFile, setPageCount);
+  }, [selectedFile]);
 
   return (
     <>
@@ -34,7 +35,9 @@ export const FixedRange = ({ display }: TypeWithdisplayProp) => {
           <InformationCircleIcon className="w-5 h-5" /> This PDF will be split
           in files of{" "}
           <span
-            style={pages > pageCount || pages <= 0 ? { color: "#fc271c" } : undefined}
+            style={
+              pages > pageCount || pages <= 0 ? { color: "#fc271c" } : undefined
+            }
           >
             {pages}
           </span>{" "}
@@ -42,8 +45,8 @@ export const FixedRange = ({ display }: TypeWithdisplayProp) => {
           <strong>
             {pages > 0
               ? Math.round(
-                pages >= pageCount ? 1 : (pageCount as number) / pages
-              )
+                  pages >= pageCount ? 1 : (pageCount as number) / pages
+                )
               : `${parseInt(pageCount.toString())}`}{" "}
             PDF
           </strong>{" "}

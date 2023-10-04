@@ -178,7 +178,11 @@ export const validateFiles = (
   extension: string,
   errors: _,
   dispatch: Dispatch<AnyAction>,
-  state: ToolState
+  state: {
+    path: string;
+    click: boolean;
+    focus: boolean;
+  }
 ) => {
   const files = Array.from(_files); // convert FileList to File[] array
 
@@ -294,9 +298,9 @@ export async function calculatePages(file: PDFFile): Promise<number> {
 }
 
 
-export const getPageCount = async (files: File[], state: ToolState, setPageCount: Dispatch<SetStateAction<number>>) => {
+export const getPageCount = async (files: File[], stateSelectedFile: string, setPageCount: Dispatch<SetStateAction<number>>) => {
   if (files.length > 0) {
-    const selectedFile = files.filter(file => file.name === state.selectedFile);
+    const selectedFile = files.filter(file => file.name === stateSelectedFile);
     setPageCount(await calculatePages(selectedFile[0] || files[0]));
   }
 };

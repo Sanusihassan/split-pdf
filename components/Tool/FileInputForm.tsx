@@ -34,11 +34,29 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
 }) => {
   let t: NodeJS.Timer;
   // redux state & dispatch
-  const state = useSelector((state: { tool: ToolState }) => state.tool);
+  const statePath = useSelector(
+    (state: { tool: ToolState }) => state.tool.path
+  );
+  const stateFocus = useSelector(
+    (state: { tool: ToolState }) => state.tool.focus
+  );
+  const stateClick = useSelector(
+    (state: { tool: ToolState }) => state.tool.click
+  );
+  const errorMessage = useSelector(
+    (state: { tool: ToolState }) => state.tool.errorMessage
+  );
   const dispatch = useDispatch();
   // file store
-  const { files, setFiles, setFileInput, setDownloadBtn, setSubmitBtn, filesLengthOnSubmit, setFilesLengthOnSubmit } =
-    useFileStore.getState();
+  const {
+    files,
+    setFiles,
+    setFileInput,
+    setDownloadBtn,
+    setSubmitBtn,
+    filesLengthOnSubmit,
+    setFilesLengthOnSubmit,
+  } = useFileStore.getState();
   // refs
   const fileInput = useRef<HTMLInputElement>(null);
   const submitBtn = useRef<HTMLButtonElement>(null);
@@ -52,7 +70,11 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
       dispatch(setClick(false));
       // if (state.click !== state.focus && (!files.length || files.length == 1)) {
       // t = setInterval(() => {
-      validateFiles(files, data.type, errors, dispatch, state);
+      validateFiles(files, data.type, errors, dispatch, {
+        path: statePath,
+        focus: stateFocus,
+        click: stateClick,
+      });
       // }, 3000);
       // }
     });
@@ -66,7 +88,17 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
         e.stopPropagation();
       }}
       onSubmit={(e) =>
-        handleUpload(e, downloadBtn, dispatch, state, files, errors, filesLengthOnSubmit, setFilesLengthOnSubmit)
+        handleUpload(
+          e,
+          downloadBtn,
+          dispatch,
+          statePath,
+          errorMessage,
+          files,
+          errors,
+          filesLengthOnSubmit,
+          setFilesLengthOnSubmit
+        )
       }
       method="POST"
       encType="multipart/form-data"
@@ -99,22 +131,18 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
           accept={
             acceptedFileTypes[data.type as keyof typeof acceptedFileTypes]
           }
-          multiple={state.path !== "split-pdf" && state.path !== "pdf-to-pdf-a"}
+          multiple={statePath !== "split-pdf" && statePath !== "pdf-to-pdf-a"}
           ref={fileInput}
           className="position-absolute file-input"
           onClick={(e) => {
             e.stopPropagation();
           }}
           onChange={(e) => {
-            handleChange(
-              e,
-              dispatch,
-              setFiles,
-              data.type,
-              errors,
-              files,
-              state
-            );
+            handleChange(e, dispatch, setFiles, data.type, errors, files, {
+              path: statePath,
+              focus: stateFocus,
+              click: stateClick,
+            });
           }}
         />
       </div>

@@ -12,7 +12,11 @@ export const handleChange = (
   extension: string,
   errors: typeof _,
   files: File[],
-  state: ToolState
+  state: {
+    path: string;
+    click: boolean;
+    focus: boolean;
+  }
 ) => {
   const _files = (e.target?.files as FileList) || null;
   setFiles([...files, ...Array.from(!_files ? [] : _files)]);

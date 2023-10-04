@@ -39,13 +39,16 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
     setChecked((prev) => !prev);
   }, []);
   const { files } = useFileStore.getState();
-  const state = useSelector((state: { tool: ToolState }) => state.tool);
+
+  const selectedFile = useSelector(
+    (state: { tool: ToolState }) => state.tool.selectedFile
+  );
   const { ranges, setRanges } = useContext(RangeContext);
   useEffect(() => {
-    getPageCount(files, state, setPageCount);
+    getPageCount(files, selectedFile, setPageCount);
     setRanges([{ from: 1, to: pageCount }]);
     // dispatch(setGlobalRanges(ranges));
-  }, [state.selectedFile]);
+  }, [selectedFile]);
 
   // useEffect(() => {
   //   console.log("called here...")
