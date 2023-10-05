@@ -16,15 +16,21 @@ interface RangeProps {
 
 export const RangeLayout = React.memo(
   ({ file, errors, loader_text, fileDetailProps, extension }: RangeProps) => {
+    // can i conditionally set the ranges to fixedRanges depending on the rangeType: "custom" | "fixed"
+    const rangeType = useSelector(
+      (state: { tool: ToolState }) => state.tool.rangeType
+    );
+    const fixedRanges = useSelector(
+      (state: { tool: ToolState }) => state.tool.fixedRanges
+    );
     const ranges = useSelector(
       (state: { tool: ToolState }) => state.tool.ranges
     );
-    useEffect(() => {
-      console.log("component updated");
-    }, [ranges]);
+
+    useEffect(() => {}, [ranges]);
     return (
       <div className="range-layout mt-2">
-        {ranges.map((range, i) => (
+        {(rangeType == "custom" ? ranges : fixedRanges).map((range, i) => (
           <div className="range" key={i}>
             <h6 className="text-uppercase">range {i + 1}</h6>
             <FileCard

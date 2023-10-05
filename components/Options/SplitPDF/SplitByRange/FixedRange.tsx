@@ -1,6 +1,6 @@
 import { useFileStore } from "@/src/file-store";
 import { TypeWithdisplayProp } from "@/src/globalProps";
-import { ToolState, setRanges } from "@/src/store";
+import { ToolState, setFixedRanges } from "@/src/store";
 import { getPageCount } from "@/src/utils";
 import { InformationCircleIcon } from "@heroicons/react/solid";
 import { useState, useEffect } from "react";
@@ -27,7 +27,7 @@ export const FixedRange = ({ display }: TypeWithdisplayProp) => {
         const to = Math.min((i + 1) * pages, pageCount);
         return { from, to };
       });
-      dispatch(setRanges(ranges));
+      dispatch(setFixedRanges(ranges));
     }
   }, [selectedFile, pageCount, pages, rangeType]);
 
