@@ -48,8 +48,8 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
   const dispatch = useDispatch();
   useEffect(() => {
     getPageCount(files, selectedFile, setPageCount);
-    dispatch(setRanges([{ from: 1, to: pageCount > 0 ? pageCount : 1 }]));
-  }, [selectedFile]);
+    dispatch(setRanges([{ from: 1, to: pageCount }]));
+  }, [selectedFile, pageCount]);
 
   const onDragEnd = (result: DropResult) => {
     // dropped outside the list

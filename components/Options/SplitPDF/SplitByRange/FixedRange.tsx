@@ -1,22 +1,35 @@
 import { useFileStore } from "@/src/file-store";
 import { TypeWithdisplayProp } from "@/src/globalProps";
-import { ToolState } from "@/src/store";
+import { ToolState, setRanges } from "@/src/store";
 import { getPageCount } from "@/src/utils";
 import { InformationCircleIcon } from "@heroicons/react/solid";
 import { useState, useEffect } from "react";
 import { Row } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export const FixedRange = ({ display }: TypeWithdisplayProp) => {
   const [pages, setPages] = useState(1);
   const [pageCount, setPageCount] = useState(0);
   const { files } = useFileStore.getState();
+  const dispatch = useDispatch();
   const selectedFile = useSelector(
     (state: { tool: ToolState }) => state.tool.selectedFile
   );
+  const rangeType = useSelector(
+    (state: { tool: ToolState }) => state.tool.rangeType
+  );
   useEffect(() => {
     getPageCount(files, selectedFile, setPageCount);
-  }, [selectedFile]);
+    if (rangeType == "fixed") {
+      const totalRanges = pages >= pageCount ? 1 : Math.ceil(pageCount / pages);
+      const ranges = Array.from({ length: totalRanges }, (_, i) => {
+        const from = i * pages + 1;
+        const to = Math.min((i + 1) * pages, pageCount);
+        return { from, to };
+      });
+      dispatch(setRanges(ranges));
+    }
+  }, [selectedFile, pageCount, pages, rangeType]);
 
   return (
     <>

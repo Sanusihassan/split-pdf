@@ -17,6 +17,7 @@ export interface ToolState {
   layout: "extract" | "range";
   selectedPages: string;
   ranges: { from: number; to: number }[];
+  rangeType: "custom" | "fixed";
 }
 
 const initialState: ToolState = {
@@ -36,6 +37,7 @@ const initialState: ToolState = {
   layout: "range",
   selectedPages: "all",
   ranges: [],
+  rangeType: "custom"
 };
 
 const toolSlice = createSlice({
@@ -108,8 +110,10 @@ const toolSlice = createSlice({
       } else {
         state.ranges = action.payload;
       }
-      console.log(action.payload);
     },
+    setRangeType(state: ToolState, action: PayloadAction<"custom" | "fixed">) {
+      state.rangeType = action.payload;
+    }
   },
 });
 
@@ -131,6 +135,7 @@ export const {
   setLayout,
   setSelectedPages,
   setRanges,
+  setRangeType
 } = toolSlice.actions;
 
 export default toolSlice.reducer;

@@ -12,7 +12,6 @@ import {
   setShowDownloadBtn,
 } from "../store";
 
-// this is the handleUpload function that is calling the download function maybe the issue is here
 export const handleUpload = async (
   e: React.FormEvent<HTMLFormElement>,
   downloadBtn: RefObject<HTMLAnchorElement>,
