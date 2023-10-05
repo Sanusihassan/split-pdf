@@ -46,6 +46,15 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
   const errorMessage = useSelector(
     (state: { tool: ToolState }) => state.tool.errorMessage
   );
+  const rangeType = useSelector(
+    (state: { tool: ToolState }) => state.tool.rangeType
+  );
+  const fixedRanges = useSelector(
+    (state: { tool: ToolState }) => state.tool.fixedRanges
+  );
+  const ranges = useSelector(
+    (state: { tool: ToolState }) => state.tool.ranges
+  );
   const dispatch = useDispatch();
   // file store
   const {
@@ -78,7 +87,7 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
       // }, 3000);
       // }
     });
-  }, []);
+  }, [rangeType]);
   // path
   const router = useRouter();
   let path = router.asPath.replace(/^\/[a-z]{2}\//, "").replace(/^\//, "");
@@ -97,6 +106,7 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
           files,
           errors,
           filesLengthOnSubmit,
+          (rangeType == "custom" ? ranges : fixedRanges),
           setFilesLengthOnSubmit
         )
       }

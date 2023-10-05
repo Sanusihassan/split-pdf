@@ -21,6 +21,7 @@ export const handleUpload = async (
   files: File[],
   errors: _,
   filesLengthOnSubmit: number,
+  ranges: { from: number; to: number }[],
   setFilesLengthOnSubmit: (value: number) => void
 ) => {
   e.preventDefault();
@@ -38,10 +39,12 @@ export const handleUpload = async (
   for (let i = 0; i < files.length; i++) {
     formData.append("files", files[i]);
   }
+  formData.append("ranges", JSON.stringify(ranges));
+
   let url;
   // @ts-ignore
   if (process.env.NODE_ENV === "development") {
-    url = `http://149.100.159.150:5000/${path}`;
+    url = `https://5000-sanusihassa-pdfequipsap-j70j04nk5er.ws-eu105.gitpod.io/${path}`;
     // url = `https://5000-planetcreat-pdfequipsap-te4zoi6qkr3.ws-eu102.gitpod.io/${path}`;
   } else {
     url = `/api/${path}`;
@@ -61,7 +64,7 @@ export const handleUpload = async (
     "application/pdf": {
       outputFileMimeType: "application/pdf",
       outputFileName: `${originalFileName}.pdf`,
-    }
+    },
   };
 
   try {
