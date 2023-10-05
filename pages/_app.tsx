@@ -26,55 +26,42 @@ const store = configureStore({
   },
 });
 
-// ranges context
-export const RangeContext = React.createContext<{
-  ranges: { from: number; to: number; }[];
-  setRanges: React.Dispatch<React.SetStateAction<{ from: number; to: number; }[]>>;
-}>({
-  ranges: [],
-  setRanges: () => { },
-});
-
 
 function MyApp({ Component, pageProps, lang }: AppProps & { lang: string }) {
-  const [ranges, setRanges] = useState<{ from: number; to: number; }[]>([
-    { from: 1, to: 1 },
-  ]);
   return (
     <>
       <Head>
         {/* JSX expressions must have one parent element.ts(2657) */}
-        {"production" === process.env.NODE_ENV ?
-          (
-            <>
-              <script
-                async
-                src={`https://www.googletagmanager.com/gtag/js?id=G-NY5F91MF0B`}
-              ></script>
-              <script
-                dangerouslySetInnerHTML={{
-                  __html: `
+        {"production" === process.env.NODE_ENV ? (
+          <>
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=G-NY5F91MF0B`}
+            ></script>
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
     
         gtag('config', 'G-NY5F91MF0B');
       `,
-                }}
-              ></script>
-            </>
-          ) : null
-        }
+              }}
+            ></script>
+          </>
+        ) : null}
       </Head>
       <ReduxProvider store={store}>
-        <RangeContext.Provider value={{ ranges, setRanges }}>
-          <Component useFileStore={useFileStore} {...pageProps} lang={lang ? lang : "en"} />
-        </RangeContext.Provider>
+        <Component
+          useFileStore={useFileStore}
+          {...pageProps}
+          lang={lang ? lang : "en"}
+        />
       </ReduxProvider>
     </>
   );
 }
-
 
 MyApp.getInitialProps = async ({
   Component,
@@ -92,10 +79,6 @@ MyApp.getInitialProps = async ({
   return { pageProps, lang };
 };
 
-
 // In your page component file
-
-
-
 
 export default MyApp;

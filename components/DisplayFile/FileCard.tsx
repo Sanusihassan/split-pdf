@@ -1,4 +1,4 @@
-// this ExtractFileCard rerenders it's parent when it changes the selectedPages state on the dispatch(setSelectedP..
+//
 import type { errors as _ } from "../../content";
 import { useEffect, useState } from "react";
 import { Loader } from "./Loader";
@@ -8,15 +8,14 @@ import {
   getNthPageAsImage,
   getPlaceHoderImageUrl,
 } from "../../src/utils";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import ImageWithLoader from "./ImageWithLoader";
 import { ActionProps } from "@/src/globalProps";
-import EllipsisIcon from "../icons/Ellipsis";
-import { CheckCircleIcon } from "@heroicons/react/outline";
 import React from "react";
-import { ToolState, setSelectedPages } from "@/src/store";
 type OmitFileName<T extends ActionProps> = Omit<T, "fileName" | "index">;
 import isEqual from "lodash.isequal";
+import { RangeFileCard } from "./FileCard/RangeFileCard";
+import { ExtractFileCard } from "./FileCard/ExtractFileCard";
 
 type CardProps = OmitFileName<ActionProps> & {
   file: File;
@@ -27,99 +26,6 @@ type CardProps = OmitFileName<ActionProps> & {
   layout?: "extract" | "range";
 };
 
-const RangeFileCard = ({
-  image1Url,
-  image2Url,
-  loader_text,
-  fromToEqual,
-}: {
-  image1Url: string;
-  image2Url?: string;
-  loader_text: string;
-  fromToEqual: boolean;
-}) => {
-  return (
-    <div
-      className={`position-relative range-file-card${
-        fromToEqual ? " one-item-grid" : ""
-      }`}
-    >
-      {fromToEqual ? (
-        <div className="only-child">
-          <ImageWithLoader imageUrl={image1Url} loader_text={loader_text} />
-        </div>
-      ) : (
-        <>
-          <ImageWithLoader imageUrl={image1Url} loader_text={loader_text} />
-          <EllipsisIcon className="icon" />
-          <ImageWithLoader
-            imageUrl={image2Url || ""}
-            loader_text={loader_text}
-          />
-        </>
-      )}
-    </div>
-  );
-};
-
-const ExtractLayout = ({
-  imageUrls,
-  loader_text,
-}: {
-  imageUrls: string[];
-  loader_text: string;
-}) => {
-  return imageUrls.map((imageUrl, index) => (
-    <div key={index.toString()} className="position-relative">
-      <ExtractFileCard index={index} />
-      <ImageWithLoader imageUrl={imageUrl} loader_text={loader_text} />
-    </div>
-  ));
-};
-
-const ExtractFileCard = React.memo(({ index }: { index: number }) => {
-  const selectedPages = useSelector(
-    (state: { tool: ToolState }) => state.tool.selectedPages
-  );
-  const [showMark, setShowMark] = useState(selectedPages == "all");
-  useEffect(() => {
-    setShowMark(selectedPages == "all");
-  }, [selectedPages]);
-  const dispatch = useDispatch();
-  return (
-    <div
-      onClick={() => {
-        setShowMark(!showMark);
-        if (selectedPages != "all") {
-          const pageIndex = `${index + 1}`;
-          if (selectedPages.includes(pageIndex)) {
-            // If the page index is already included, remove it
-            const pagesArray = selectedPages.split(",");
-            const pageIndexInArray = pagesArray.indexOf(pageIndex);
-            if (pageIndexInArray > -1) {
-              pagesArray.splice(pageIndexInArray, 1);
-            }
-            dispatch(setSelectedPages(pagesArray.join(",")));
-          } else {
-            // If the page index is not included, add it
-            dispatch(
-              setSelectedPages(
-                `${
-                  selectedPages?.length === 0
-                    ? pageIndex
-                    : `${selectedPages},${pageIndex}`
-                }`
-              )
-            );
-          }
-        }
-      }}
-      className="extract-file-card"
-    >
-      <CheckCircleIcon className={`icon${showMark ? "" : " d-none"}`} />
-    </div>
-  );
-});
 const FileCard = React.memo(
   ({
     file,
@@ -148,7 +54,6 @@ const FileCard = React.memo(
       from = range.from;
       to = range.to;
     }
-    // const state = useSelector((state: { tool: ToolState }) => state.tool);
     const processFile = async () => {
       try {
         setImageUrls([]);
@@ -217,7 +122,7 @@ const FileCard = React.memo(
       return () => {
         isSubscribed = false;
       };
-    }, [extension, file, pageCount]);
+    }, [extension, file, pageCount, range]);
     return (
       <>
         {imageUrls.length == 0 ? (
@@ -227,10 +132,17 @@ const FileCard = React.memo(
         ) : null}
         <div className="pages">
           {layout == "extract" ? (
-            <ExtractLayout imageUrls={imageUrls} loader_text={loader_text} />
+            imageUrls.map((imageUrl, index) => (
+              <div key={index.toString()} className="position-relative">
+                <ExtractFileCard index={index} />
+                <ImageWithLoader
+                  imageUrl={imageUrl}
+                  loader_text={loader_text}
+                />
+              </div>
+            ))
           ) : (
             <>
-              {/* <Ranges imageUrls={imageUrls} index={1} loader_text={loader_text} /> */}
               <RangeFileCard
                 image1Url={imageUrls[0]}
                 image2Url={imageUrls[1]}

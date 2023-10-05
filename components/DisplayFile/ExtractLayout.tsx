@@ -1,9 +1,5 @@
 import { FileCardProps } from "@/src/globalProps";
 import FileCard from "./FileCard";
-import { ToolState } from "@/src/store";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-
 export const ExtractLayout = ({
   file,
   errors,
@@ -11,12 +7,6 @@ export const ExtractLayout = ({
   fileDetailProps,
   extension,
 }: FileCardProps) => {
-  const selectedPages = useSelector(
-    (state: { tool: ToolState }) => state.tool.selectedPages
-  );
-  useEffect(() => {
-    console.log("ExtractLayout => ", selectedPages)
-  }, [selectedPages]);
   return (
     <>
       <FileCard

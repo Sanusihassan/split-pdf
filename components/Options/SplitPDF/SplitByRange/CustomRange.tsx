@@ -2,15 +2,15 @@
 import { useFileStore } from "@/src/file-store";
 import { getPageCount } from "@/src/utils";
 import { XIcon, PlusIcon } from "@heroicons/react/solid";
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Checkbox } from "pretty-checkbox-react";
 import { DragDropContext, Draggable, DropResult } from "react-beautiful-dnd";
 
 import { Droppable } from "react-beautiful-dnd";
 import { useSelector } from "react-redux";
-import { ToolState } from "@/src/store";
+import { ToolState, setRanges } from "@/src/store";
 import { TypeWithdisplayProp } from "@/src/globalProps";
-import { RangeContext } from "@/pages/_app";
+import { useDispatch } from "react-redux";
 
 type Ranges = {
   from: number;
@@ -28,7 +28,7 @@ const reorder = (
   return result;
 };
 
-// the issue still occurs, i think because when updating any of them i'm updating them all at once 
+// the issue still occurs, i think because when updating any of them i'm updating them all at once
 // and this is the code that does crud on the ranges:
 export const CustomRange = ({ display }: TypeWithdisplayProp) => {
   const [from, setFrom] = useState("");
@@ -43,18 +43,13 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
   const selectedFile = useSelector(
     (state: { tool: ToolState }) => state.tool.selectedFile
   );
-  const { ranges, setRanges } = useContext(RangeContext);
+  const ranges = useSelector((state: { tool: ToolState }) => state.tool.ranges);
+  // const { ranges, setRanges } = useContext(RangeContext);
+  const dispatch = useDispatch();
   useEffect(() => {
     getPageCount(files, selectedFile, setPageCount);
-    setRanges([{ from: 1, to: pageCount }]);
-    // dispatch(setGlobalRanges(ranges));
+    dispatch(setRanges([{ from: 1, to: pageCount > 0 ? pageCount : 1 }]));
   }, [selectedFile]);
-
-  // useEffect(() => {
-  //   console.log("called here...")
-  //   dispatch(setGlobalRanges(ranges));
-  // }, [ranges]);
-
 
   const onDragEnd = (result: DropResult) => {
     // dropped outside the list
@@ -68,27 +63,29 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
       result.destination.index
     );
 
-    setRanges(updatedRanges);
+    dispatch(setRanges(updatedRanges));
   };
   const handleAddRangeClick = () => {
     if (from && to) {
-      setRanges([...ranges, { from: parseInt(from), to: parseInt(to) }]);
+      dispatch(
+        setRanges([...ranges, { from: parseInt(from), to: parseInt(to) }])
+      );
       setFrom("");
       setTo("");
     } else {
       if (ranges.length > 0) {
         const lastRange = ranges[ranges.length - 1];
         if (lastRange.to == pageCount) {
-          setRanges([...ranges, { from: pageCount, to: pageCount }]);
+          dispatch(setRanges([...ranges, { from: pageCount, to: pageCount }]));
         }
       } else {
-        setRanges([...ranges, { from: 1, to: pageCount }]);
+        dispatch(setRanges([...ranges, { from: 1, to: pageCount }]));
       }
     }
   };
 
   const handleDeleteRangeClick = (index: number) => {
-    setRanges(ranges.filter((range, i) => i !== index));
+    dispatch(setRanges(ranges.filter((range, i) => i !== index)));
   };
 
   return (
@@ -120,7 +117,11 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
           {(provided) => (
             <div ref={provided.innerRef} {...provided.droppableProps}>
               {ranges.map((range, i) => (
-                <Draggable key={i.toString()} draggableId={i.toString()} index={i}>
+                <Draggable
+                  key={i.toString()}
+                  draggableId={i.toString()}
+                  index={i}
+                >
                   {(provided) => (
                     <div
                       ref={provided.innerRef}
@@ -166,14 +167,19 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
                                     //   }
                                     // }
                                     onChange={(e) => {
-                                      setRanges((prevRanges) =>
-                                        prevRanges.map((r, index) =>
-                                          index === i
-                                            ? {
-                                              ...r,
-                                              from: parseInt(e.target.value, 10),
-                                            }
-                                            : r
+                                      dispatch(
+                                        setRanges((prevRanges) =>
+                                          prevRanges.map((r, index) =>
+                                            index === i
+                                              ? {
+                                                  ...r,
+                                                  from: parseInt(
+                                                    e.target.value,
+                                                    10
+                                                  ),
+                                                }
+                                              : r
+                                          )
                                         )
                                       );
                                     }}
@@ -211,14 +217,19 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
                                     //   }
                                     // }
                                     onChange={(e) => {
-                                      setRanges((prevRanges) =>
-                                        prevRanges.map((r, index) =>
-                                          index === i
-                                            ? {
-                                              ...r,
-                                              to: parseInt(e.target.value, 10),
-                                            }
-                                            : r
+                                      dispatch(
+                                        setRanges((prevRanges) =>
+                                          prevRanges.map((r, index) =>
+                                            index === i
+                                              ? {
+                                                  ...r,
+                                                  to: parseInt(
+                                                    e.target.value,
+                                                    10
+                                                  ),
+                                                }
+                                              : r
+                                          )
                                         )
                                       );
                                     }}
@@ -228,7 +239,9 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
                                 {/* <div className="position-absolute delete-button"> */}
                                 <button
                                   className="btn btn-link text-danger"
-                                  onClick={() => { handleDeleteRangeClick(i); }}
+                                  onClick={() => {
+                                    handleDeleteRangeClick(i);
+                                  }}
                                 >
                                   <XIcon className="icon" />
                                 </button>
@@ -250,7 +263,9 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
       <div className="row justify-content-center add-btn">
         <button
           className="col-6 btn btn-dark row align-items-center"
-          onClick={() => { handleAddRangeClick(); }}
+          onClick={() => {
+            handleAddRangeClick();
+          }}
         >
           <PlusIcon className="icon mr-2" />
           <span>Add Range</span>
