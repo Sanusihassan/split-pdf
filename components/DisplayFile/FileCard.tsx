@@ -13,7 +13,7 @@ import ImageWithLoader from "./ImageWithLoader";
 import { ActionProps } from "@/src/globalProps";
 import React from "react";
 type OmitFileName<T extends ActionProps> = Omit<T, "fileName" | "index">;
-import isEqual from "lodash.isequal";
+// import isEqual from "lodash.isequal";
 import { RangeFileCard } from "./FileCard/RangeFileCard";
 import { ExtractFileCard } from "./FileCard/ExtractFileCard";
 
@@ -155,7 +155,7 @@ const FileCard = React.memo(
       </>
     );
   },
-  (prevProps, nextProps) => isEqual(prevProps.range, nextProps.range)
+  // (prevProps, nextProps) => isEqual(prevProps.range, nextProps.range)
 );
 
 export default FileCard;

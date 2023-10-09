@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-
 // redux
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -32,8 +31,7 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
   lang,
   tools,
 }) => {
-  let t: NodeJS.Timer;
-  // redux state & dispatch
+  // redux state
   const statePath = useSelector(
     (state: { tool: ToolState }) => state.tool.path
   );
@@ -49,11 +47,20 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
   const rangeType = useSelector(
     (state: { tool: ToolState }) => state.tool.rangeType
   );
+  const layout = useSelector(
+    (state: { tool: ToolState }) => state.tool.layout
+  );
   const fixedRanges = useSelector(
     (state: { tool: ToolState }) => state.tool.fixedRanges
   );
   const ranges = useSelector(
     (state: { tool: ToolState }) => state.tool.ranges
+  );
+  const selectedPages = useSelector(
+    (state: { tool: ToolState }) => state.tool.selectedPages
+  );
+  const merge = useSelector(
+    (state: { tool: ToolState }) => state.tool.merge
   );
   const dispatch = useDispatch();
   // file store
@@ -101,13 +108,15 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
           e,
           downloadBtn,
           dispatch,
-          statePath,
           errorMessage,
           files,
           errors,
           filesLengthOnSubmit,
           (rangeType == "custom" ? ranges : fixedRanges),
-          setFilesLengthOnSubmit
+          selectedPages,
+          setFilesLengthOnSubmit,
+          merge,
+          layout,
         )
       }
       method="POST"

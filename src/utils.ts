@@ -2,7 +2,7 @@ import { NextRouter } from "next/router";
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 import { AnyAction } from "@reduxjs/toolkit";
 import type { errors as _ } from "../content";
-import { setErrorCode, setErrorMessage, ToolState } from "./store";
+import { setErrorCode, setErrorMessage, setPageCount, ToolState } from "./store";
 import { getDocument } from "pdfjs-dist";
 import { PDFDocumentProxy, PageViewport, RenderTask } from "pdfjs-dist";
 const pdfjsWorker = await import('pdfjs-dist/build/pdf.worker.entry');
@@ -298,9 +298,9 @@ export async function calculatePages(file: PDFFile): Promise<number> {
 }
 
 
-export const getPageCount = async (files: File[], stateSelectedFile: string, setPageCount: Dispatch<SetStateAction<number>>) => {
+export const getPageCount = async (files: File[], stateSelectedFile: string, dispatch: Dispatch<AnyAction>) => {
   if (files.length > 0) {
     const selectedFile = files.filter(file => file.name === stateSelectedFile);
-    setPageCount(await calculatePages(selectedFile[0] || files[0]));
+    dispatch(setPageCount(await calculatePages(selectedFile[0] || files[0])))
   }
 };

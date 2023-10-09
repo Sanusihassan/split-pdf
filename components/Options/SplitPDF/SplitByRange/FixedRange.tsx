@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 export const FixedRange = ({ display }: TypeWithdisplayProp) => {
   const [pages, setPages] = useState(1);
-  const [pageCount, setPageCount] = useState(0);
   const { files } = useFileStore.getState();
   const dispatch = useDispatch();
   const selectedFile = useSelector(
@@ -18,8 +17,13 @@ export const FixedRange = ({ display }: TypeWithdisplayProp) => {
   const rangeType = useSelector(
     (state: { tool: ToolState }) => state.tool.rangeType
   );
+  const pageCount = useSelector(
+    (state: { tool: ToolState }) => state.tool.pageCount
+  );
   useEffect(() => {
-    getPageCount(files, selectedFile, setPageCount);
+    if (!pageCount) {
+      getPageCount(files, selectedFile, dispatch);
+    }
     if (rangeType == "fixed") {
       const totalRanges = pages >= pageCount ? 1 : Math.ceil(pageCount / pages);
       const ranges = Array.from({ length: totalRanges }, (_, i) => {
@@ -58,8 +62,8 @@ export const FixedRange = ({ display }: TypeWithdisplayProp) => {
           <strong>
             {pages > 0
               ? Math.round(
-                  pages >= pageCount ? 1 : (pageCount as number) / pages
-                )
+                pages >= pageCount ? 1 : (pageCount as number) / pages
+              )
               : `${parseInt(pageCount.toString())}`}{" "}
             PDF
           </strong>{" "}

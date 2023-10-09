@@ -33,7 +33,6 @@ const reorder = (
 export const CustomRange = ({ display }: TypeWithdisplayProp) => {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
-  const [pageCount, setPageCount] = useState(0);
   const [checked, setChecked] = useState(false);
   const handleCheckChange = useCallback(() => {
     setChecked((prev) => !prev);
@@ -43,11 +42,14 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
   const selectedFile = useSelector(
     (state: { tool: ToolState }) => state.tool.selectedFile
   );
+  const pageCount = useSelector(
+    (state: { tool: ToolState }) => state.tool.pageCount
+  );
+
   const ranges = useSelector((state: { tool: ToolState }) => state.tool.ranges);
-  // const { ranges, setRanges } = useContext(RangeContext);
   const dispatch = useDispatch();
   useEffect(() => {
-    getPageCount(files, selectedFile, setPageCount);
+    getPageCount(files, selectedFile, dispatch);
     dispatch(setRanges([{ from: 1, to: pageCount }]));
   }, [selectedFile, pageCount]);
 
@@ -172,12 +174,12 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
                                           prevRanges.map((r, index) =>
                                             index === i
                                               ? {
-                                                  ...r,
-                                                  from: parseInt(
-                                                    e.target.value,
-                                                    10
-                                                  ),
-                                                }
+                                                ...r,
+                                                from: parseInt(
+                                                  e.target.value,
+                                                  10
+                                                ),
+                                              }
                                               : r
                                           )
                                         )
@@ -222,12 +224,12 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
                                           prevRanges.map((r, index) =>
                                             index === i
                                               ? {
-                                                  ...r,
-                                                  to: parseInt(
-                                                    e.target.value,
-                                                    10
-                                                  ),
-                                                }
+                                                ...r,
+                                                to: parseInt(
+                                                  e.target.value,
+                                                  10
+                                                ),
+                                              }
                                               : r
                                           )
                                         )

@@ -16,13 +16,16 @@ export const handleUpload = async (
   e: React.FormEvent<HTMLFormElement>,
   downloadBtn: RefObject<HTMLAnchorElement>,
   dispatch: Dispatch<AnyAction>,
-  path: string,
+  // path: string,
   errorMessage: string,
   files: File[],
   errors: _,
   filesLengthOnSubmit: number,
   ranges: { from: number; to: number }[],
-  setFilesLengthOnSubmit: (value: number) => void
+  selectedPages: string,
+  setFilesLengthOnSubmit: (value: number) => void,
+  merge: boolean,
+  layout: "extract" | "range"
 ) => {
   e.preventDefault();
   dispatch(setIsSubmitted(true));
@@ -34,18 +37,24 @@ export const handleUpload = async (
     dispatch(resetErrorMessage());
     return;
   }
-
+  let path = "";
   const formData = new FormData();
   for (let i = 0; i < files.length; i++) {
     formData.append("files", files[i]);
   }
-  formData.append("ranges", JSON.stringify(ranges));
+  if (layout === "extract") {
+    path = "extract-pages"
+    formData.append("selectedPages", selectedPages);
+    formData.append("merge", merge.toString());
+  } else {
+    formData.append("ranges", JSON.stringify(ranges));
+    path = "split-by-range"
+  }
 
   let url;
   // @ts-ignore
   if (process.env.NODE_ENV === "development") {
-    url = `https://5000-sanusihassa-pdfequipsap-j70j04nk5er.ws-eu105.gitpod.io/${path}`;
-    // url = `https://5000-planetcreat-pdfequipsap-te4zoi6qkr3.ws-eu102.gitpod.io/${path}`;
+    url = `http://149.100.159.150:5000/api/${path}`;
   } else {
     url = `/api/${path}`;
   }

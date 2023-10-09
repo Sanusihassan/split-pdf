@@ -1,9 +1,9 @@
 // complete code:
 import { Checkbox } from "pretty-checkbox-react";
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { SelectionAlert } from "./SelectionAlert";
 import { useDispatch, useSelector } from "react-redux";
-import { ToolState, setSelectedPages } from "@/src/store";
+import { ToolState, setMerge, setSelectedPages } from "@/src/store";
 
 export const SelectPages = ({
   showSelectPages,
@@ -11,13 +11,18 @@ export const SelectPages = ({
   showSelectPages: boolean;
 }) => {
   const [inputVal, setInputVal] = useState("");
-  const [checked, setChecked] = useState(false);
+  // const [checked, setChecked] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout>({} as NodeJS.Timeout);
   const dispatch = useDispatch();
   const selectedPages = useSelector(
     (state: { tool: ToolState }) => state.tool.selectedPages
   );
+  const merge = useSelector(
+    (state: { tool: ToolState }) => state.tool.merge
+  );
   const onChange = useCallback(() => {
-    setChecked((prev) => !prev);
+    // how can i modify this funciton to be used like this:
+    dispatch(setMerge((prev) => !prev))
     if (selectedPages !== "" && selectedPages !== "all") {
       setInputVal(selectedPages);
     }
@@ -38,23 +43,26 @@ export const SelectPages = ({
           value={inputVal}
           onChange={(e) => {
             setInputVal(e.target.value);
-          }}
-          onBlur={(e) => {
-            const pattern = /^(\d+(?:-\d+)?,)*(\d+(?:-\d+)?)$/;
-            if (pattern.test(e.target.value.replace(/\s/g, ""))) {
-              setInputVal(e.target.value);
-              dispatch(setSelectedPages(e.target.value));
-            } else {
-              setInputVal("");
-              dispatch(setSelectedPages(""));
+            if (timeoutRef.current) {
+              clearTimeout(timeoutRef.current);
             }
+            timeoutRef.current = setTimeout(() => {
+              const pattern = /^(\d+(?:-\d+)?,)*(\d+(?:-\d+)?)$/;
+              if (pattern.test(e.target.value.replace(/\s/g, ""))) {
+                setInputVal(e.target.value);
+                dispatch(setSelectedPages(e.target.value));
+              } else {
+                setInputVal("");
+                dispatch(setSelectedPages(""));
+              }
+            }, 500);
           }}
         />
         {/* <div className="input-group merge-input"> */}
         <Checkbox
           animation="smooth"
           color="primary"
-          defaultChecked={checked}
+          defaultChecked={merge}
           onChange={onChange}
           className="ml-1 my-3 mb-0"
         >
@@ -63,7 +71,7 @@ export const SelectPages = ({
         {/* </div> */}
       </form>
 
-      <SelectionAlert selectedPages={0} />
+      <SelectionAlert selectedPages={selectedPages.split(/[,|-]/).length} />
     </div>
   );
 };

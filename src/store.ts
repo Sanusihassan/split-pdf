@@ -19,6 +19,8 @@ export interface ToolState {
   ranges: { from: number; to: number }[];
   fixedRanges: { from: number; to: number }[];
   rangeType: "custom" | "fixed";
+  pageCount: number;
+  merge: boolean;
 }
 
 const initialState: ToolState = {
@@ -40,6 +42,8 @@ const initialState: ToolState = {
   ranges: [],
   fixedRanges: [],
   rangeType: "custom",
+  pageCount: 0,
+  merge: false
 };
 
 const toolSlice = createSlice({
@@ -103,8 +107,8 @@ const toolSlice = createSlice({
       action: PayloadAction<
         | { from: number; to: number }[]
         | ((
-            prevRanges: { from: number; to: number }[]
-          ) => { from: number; to: number }[])
+          prevRanges: { from: number; to: number }[]
+        ) => { from: number; to: number }[])
       >
     ) {
       if (typeof action.payload === "function") {
@@ -118,8 +122,8 @@ const toolSlice = createSlice({
       action: PayloadAction<
         | { from: number; to: number }[]
         | ((
-            prevRanges: { from: number; to: number }[]
-          ) => { from: number; to: number }[])
+          prevRanges: { from: number; to: number }[]
+        ) => { from: number; to: number }[])
       >
     ) {
       if (typeof action.payload === "function") {
@@ -130,6 +134,16 @@ const toolSlice = createSlice({
     },
     setRangeType(state: ToolState, action: PayloadAction<"custom" | "fixed">) {
       state.rangeType = action.payload;
+    },
+    setPageCount(state: ToolState, action: PayloadAction<number>) {
+      state.pageCount = action.payload;
+    },
+    setMerge: (state, action: PayloadAction<boolean | ((prev: boolean) => boolean)>) => {
+      if (typeof action.payload === 'boolean') {
+        state.merge = action.payload;
+      } else if (typeof action.payload === 'function') {
+        state.merge = action.payload(state.merge);
+      }
     },
   },
 });
@@ -154,6 +168,8 @@ export const {
   setRanges,
   setFixedRanges,
   setRangeType,
+  setPageCount,
+  setMerge
 } = toolSlice.actions;
 
 export default toolSlice.reducer;

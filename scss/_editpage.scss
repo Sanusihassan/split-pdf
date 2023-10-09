@@ -114,6 +114,8 @@
 
   .options {
     flex: 1 0 25%;
+    align-self: flex-start;
+    min-height: 100%;
     grid-template-rows: 7% 85% 13%;
 
     @include xs {
@@ -133,7 +135,6 @@
     "footer"
     "footer";
     display: flex;
-    min-height: 85vh;
     flex-direction: column;
     justify-content: space-between;
 
