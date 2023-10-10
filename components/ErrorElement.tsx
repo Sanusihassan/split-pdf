@@ -7,6 +7,10 @@ const ErrorElement = () => {
   const showErrorMessage = useSelector(
     (state: { tool: ToolState }) => state.tool.showErrorMessage
   );
+
+  const errorMessage = useSelector(
+    (state: { tool: ToolState }) => state.tool.errorMessage
+  );
   return (
     <>
       <div
@@ -20,7 +24,7 @@ const ErrorElement = () => {
           className="w-5 h-5 hide-on-ltr"
           viewBox="0 0 22 22"
         />{" "}
-        <bdi className="d-inline-flex">{showErrorMessage}</bdi>{" "}
+        <bdi className="d-inline-flex">{errorMessage}</bdi>{" "}
         <ExclamationCircleIcon
           className="w-5 h-5 hide-on-rtl"
           viewBox="0 0 22 22"
