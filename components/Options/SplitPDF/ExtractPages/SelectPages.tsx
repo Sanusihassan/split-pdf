@@ -4,11 +4,18 @@ import { useState, useCallback, useEffect, useRef } from "react";
 import { SelectionAlert } from "./SelectionAlert";
 import { useDispatch, useSelector } from "react-redux";
 import { ToolState, setMerge, setSelectedPages } from "@/src/store";
+import { edit_page } from "@/content";
 
 export const SelectPages = ({
   showSelectPages,
+  lang,
+  content,
+  alert_content
 }: {
   showSelectPages: boolean;
+  lang: string;
+  content: edit_page["options"]["extract_pages_options"]["select_pages_content"];
+  alert_content: edit_page["options"]["extract_pages_options"]["selection_alert_content"];
 }) => {
   const [inputVal, setInputVal] = useState("");
   // const [checked, setChecked] = useState(false);
@@ -21,7 +28,6 @@ export const SelectPages = ({
     (state: { tool: ToolState }) => state.tool.merge
   );
   const onChange = useCallback(() => {
-    // how can i modify this funciton to be used like this:
     dispatch(setMerge((prev) => !prev))
     if (selectedPages !== "" && selectedPages !== "all") {
       setInputVal(selectedPages);
@@ -34,12 +40,12 @@ export const SelectPages = ({
   }, [selectedPages]);
   return (
     <div className={`${showSelectPages ? "" : "d-none "}select-all`}>
-      <h6 className="title">Pages to Extract:</h6>
+      <h6 className="title">{content.pages_to_extract}</h6>
       <form>
         <input
           type="text"
           className="form-control"
-          placeholder="example: 2,8-32"
+          placeholder={content.page_selection_example}
           value={inputVal}
           onChange={(e) => {
             setInputVal(e.target.value);
@@ -55,7 +61,7 @@ export const SelectPages = ({
                 setInputVal("");
                 dispatch(setSelectedPages(""));
               }
-            }, 500);
+            }, 2000);
           }}
         />
         {/* <div className="input-group merge-input"> */}
@@ -66,12 +72,12 @@ export const SelectPages = ({
           onChange={onChange}
           className="ml-1 my-3 mb-0"
         >
-          Merge extracted pdf in one pdf file.
+          {content.merge}
         </Checkbox>
         {/* </div> */}
       </form>
 
-      <SelectionAlert selectedPages={selectedPages.split(/[,|-]/).length} />
+      <SelectionAlert selectedPages={selectedPages.split(/[,|-]/).length} content={alert_content} lang={lang} />
     </div>
   );
 };

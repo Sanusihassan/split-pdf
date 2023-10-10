@@ -12,6 +12,7 @@
   .option-row {
     // outline: 1px solid;
     width: 100%;
+    min-height: 5em;
     justify-content: space-between;
     @extend %list-group;
     flex-direction: row;
@@ -22,29 +23,42 @@
     }
 
     .option {
+      height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       text-align: center;
       cursor: pointer;
 
-      @include extend("list-group-item list-group-item-action py-0");
+      @include extend("list-group-item list-group-item-action py-0 position-relative");
 
-      &:hover {
-        background-color: unset;
-        color: var(--bs-list-group-color);
-      }
+      // &:hover {
+      //   background-color: unset;
+      //   color: var(--bs-list-group-color);
+      // }
 
-      &.active,
-      &.active:hover {
-        @extend %active-list-item;
-        color: var(--bs-list-group-color);
-      }
+      // &.active,
+      // &.active:hover {
+      //   @extend %active-list-item;
+      //   color: var(--bs-list-group-color);
+      // }
 
       .option-icon {
         width: 32px;
         height: 32px;
         margin-bottom: 4px;
+      }
+
+      .check-icon {
+        @include extend("check-icon");
+        top: 2.5%;
+        left: 2.5%;
+
+        @include ar-wrapper {
+          left: unset;
+          right: 2.5%;
+        }
       }
 
       // .option-title {
@@ -218,5 +232,12 @@
   .pretty input:checked~.state.p-primary label:after,
   .pretty.p-toggle .state.p-primary label:after {
     background-color: map-get($color-map, split-pdf) !important;
+  }
+
+  .pretty .state label:before,
+  .pretty .state label:after {
+    @include ar-wrapper {
+      left: unset !important;
+    }
   }
 }

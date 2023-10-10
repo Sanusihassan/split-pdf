@@ -75,6 +75,7 @@
     @include extend("position-fixed rounded-circle");
     width: 2em;
     height: 2em;
+    z-index: 555;
 
     // what i'm trying to do is when the language is not arabic apply this style
     :not([lang="ar"]) & {
@@ -200,11 +201,8 @@
 
     h5 {
       text-transform: uppercase;
-
       text-align: center;
-
       padding: 0.5rem;
-      margin-bottom: 1rem;
     }
 
     .option-title {

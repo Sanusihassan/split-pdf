@@ -102,12 +102,12 @@ const EditPage = ({
           style={
             showOptions
               ? {
-                  top:
-                    navHeight +
-                    (gearRef.current
-                      ? (gearRef.current as HTMLElement).clientHeight
-                      : 0),
-                }
+                top:
+                  navHeight +
+                  (gearRef.current
+                    ? (gearRef.current as HTMLElement).clientHeight
+                    : 0),
+              }
               : {}
           }
         >
@@ -119,8 +119,8 @@ const EditPage = ({
         style={
           showOptions
             ? {
-                top: navHeight,
-              }
+              top: navHeight,
+            }
             : {}
         }
       >
@@ -128,14 +128,14 @@ const EditPage = ({
           <bdi>
             {
               edit_page.edit_page_titles[
-                k.replace(/-/g, "_") as keyof typeof edit_page.edit_page_titles
+              k.replace(/-/g, "_") as keyof typeof edit_page.edit_page_titles
               ]
             }
           </bdi>
         </h5>
         {/* {"development" == process.env.NODE_ENV ? (
           ) : null} */}
-        <Options edit_page={edit_page} />
+        <Options edit_page={edit_page} lang={lang} />
         <SubmitBtn k={k} edit_page={edit_page} />
       </section>
     </aside>

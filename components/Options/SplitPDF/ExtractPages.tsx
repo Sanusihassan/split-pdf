@@ -4,27 +4,26 @@ import { ExtractAll } from "./ExtractPages/ExtractAll";
 import { SelectPages } from "./ExtractPages/SelectPages";
 import { useDispatch } from "react-redux";
 import { setSelectedPages } from "@/src/store";
+import { edit_page } from "@/content";
 
 export const ExtractPages = ({
   showExtractPages,
+  lang,
+  content
 }: {
   showExtractPages: boolean;
+  content: edit_page["options"]["extract_pages_options"],
+  lang: string;
 }) => {
   const [index, setIndex] = useState(0);
   const dispatch = useDispatch();
-  // const handleOptionClick = (index: number) => {
-  //   if (index == 0) {
-  //     
-  //   }
-
-  // }
   const handleOptionClick = useSelectedOption(index, setIndex);
   return (
     <div
       className={`${showExtractPages ? "" : "d-none "
         }split-category extract-split`}
     >
-      <h6 className="split-category-title">Extract Mode:</h6>
+      <h6 className="split-category-title">{content.extract_mode}</h6>
       <div className="btn-row">
         <button
           className={`btn ${index === 0 ? "active" : ""}`}
@@ -32,9 +31,9 @@ export const ExtractPages = ({
             handleOptionClick(0);
             dispatch(setSelectedPages("all"));
           }}
-          title="Extract all pages"
+          title={content.extract_all}
         >
-          Extract all pages
+          {content.extract_all}
         </button>
         <button
           className={`btn ${index === 1 ? "active" : ""}`}
@@ -42,13 +41,13 @@ export const ExtractPages = ({
             handleOptionClick(1);
             dispatch(setSelectedPages(""));
           }}
-          title="Select pages"
+          title={content.select_pages}
         >
-          Select pages
+          {content.select_pages}
         </button>
       </div>
-      <ExtractAll showExtractAll={index == 0} />
-      <SelectPages showSelectPages={index == 1} />
+      <ExtractAll showExtractAll={index == 0} content={content.selection_alert_content} lang={lang} />
+      <SelectPages showSelectPages={index == 1} alert_content={content.selection_alert_content} lang={lang} content={content.select_pages_content} />
     </div>
   );
 };

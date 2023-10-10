@@ -9,3 +9,18 @@
   color: map-get($color-map, "split-pdf");
   font-weight: 500;
 }
+
+%check-icon {
+  fill: #10ac84;
+  stroke: white;
+  top: 1%;
+  left: 1%;
+  width: 1.5em;
+  height: 1.5em;
+  @include extend("position-absolute");
+
+  @include ar-wrapper {
+    left: unset;
+    right: 1%;
+  }
+}

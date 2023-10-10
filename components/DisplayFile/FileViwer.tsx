@@ -13,11 +13,13 @@ export const FileViewer = ({
   loader_text,
   fileDetailProps,
   extension,
+  select_files_placeholder
 }: {
   errors: errors;
   loader_text: string;
   fileDetailProps: [string, string, string];
   extension: string;
+  select_files_placeholder: string;
 }) => {
   const { files } = useFileStore.getState();
   const selectedFile = useSelector(
@@ -34,7 +36,7 @@ export const FileViewer = ({
   }, [selectedFile, files, stateLayout]);
   return (
     <>
-      <SelectedFiles />
+      <SelectedFiles select_files_placeholder={select_files_placeholder} />
       {files.map((file, i) =>
         file.name === selectedFile ? (
           stateLayout === "extract" ? (

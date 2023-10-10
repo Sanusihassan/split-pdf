@@ -29,6 +29,16 @@ const AllSelectionComponent = React.memo(() => {
  * but every range selected by hyphen also to be selected i.e all of the range but this is not working as i've commneted the code.
  */
 
+/**
+ * let's say i've changed the input value to 1-3 changing the selectedPages to that value and the uploaded pdf file page count is 3
+ * then on the IndividualSelectionComponent all of the check icons would be checked and that's fine, but when i click on each of them
+ * 1 - it toggles the check icon which is fine and it's what i'm expecting
+ * 2 - it's not updating the selectedPages
+ * 3 - if the clicked item is the first or last item it can be toggled but if it's on the middle it cannot be toggled, it's unchecked and checked automatically.
+ * 4 - what i'm expecting is that let's say the selectedPages value is 1-3, then i click on the 2th item this would toggle it and hence remove it from the range and updating the range to 1,3 because 2 is unchecked.
+ */
+
+
 const IndividualSelectionComponent = React.memo(
   ({ index }: { index: number }) => {
     const selectedPages = useSelector(
@@ -57,27 +67,78 @@ const IndividualSelectionComponent = React.memo(
 
     const dispatch = useDispatch();
 
+    // const handleClick = () => {
+    //   const pageIndex = index + 1;
+    //   let pagesArray = selectedPages.split(",").flatMap((page: string) => {
+    //     if (page.includes("-")) {
+    //       const [start, end] = page.split("-").map(Number);
+    //       return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+    //     } else {
+    //       return [Number(page)];
+    //     }
+    //   });
+
+    //   if (pagesArray.includes(pageIndex)) {
+    //     pagesArray = pagesArray.filter((page) => page !== pageIndex);
+    //   } else {
+    //     pagesArray.push(pageIndex);
+    //   }
+    //   pagesArray.sort((a, b) => a - b);
+
+    //   let newSelectedPages = "";
+    //   let start = pagesArray[0];
+    //   for (let i = 1; i < pagesArray.length; i++) {
+    //     if (pagesArray[i] !== pagesArray[i - 1] + 1) {
+    //       newSelectedPages += start === pagesArray[i - 1] ? `${start},` : `${start}-${pagesArray[i - 1]},`;
+    //       start = pagesArray[i];
+    //     }
+    //   }
+    //   newSelectedPages += start === pagesArray[pagesArray.length - 1] ? `${start}` : `${start}-${pagesArray[pagesArray.length - 1]}`;
+
+    //   dispatch(setSelectedPages(newSelectedPages));
+    //   setShowMark(!showMark);
+    // };
+
     const handleClick = () => {
-      setShowMark(!showMark);
-      const pageIndex = `${index + 1}`;
-      if (selectedPages.includes(pageIndex)) {
-        const pagesArray = selectedPages.split(",");
-        const pageIndexInArray = pagesArray.indexOf(pageIndex);
-        if (pageIndexInArray > -1) {
-          pagesArray.splice(pageIndexInArray, 1);
+      const pageIndex = index + 1;
+      let pagesArray = selectedPages.split(",").flatMap((page: string) => {
+        if (page.includes("-")) {
+          const [start, end] = page.split("-").map(Number);
+          return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+        } else {
+          return [Number(page)];
         }
-        dispatch(setSelectedPages(pagesArray.join(",")));
-      } else {
-        dispatch(
-          setSelectedPages(
-            `${selectedPages.length === 0
-              ? pageIndex
-              : `${selectedPages},${pageIndex}`
-            }`
-          )
-        );
+      });
+
+      if (pageIndex === 1 && pagesArray.length === 0) {
+        let newSelectedPages = "1";
+        dispatch(setSelectedPages(newSelectedPages));
+        setShowMark(!showMark);
+        return;
       }
+
+      if (pagesArray.includes(pageIndex)) {
+        pagesArray = pagesArray.filter((page) => page !== pageIndex);
+      } else {
+        pagesArray.push(pageIndex);
+      }
+      pagesArray.sort((a, b) => a - b);
+
+      let newSelectedPages = "";
+      let start = pagesArray[0];
+      for (let i = 1; i < pagesArray.length; i++) {
+        if (pagesArray[i] !== pagesArray[i - 1] + 1) {
+          newSelectedPages += start === pagesArray[i - 1] ? `${start},` : `${start}-${pagesArray[i - 1]},`;
+          start = pagesArray[i];
+        }
+      }
+      newSelectedPages += start === pagesArray[pagesArray.length - 1] ? `${start}` : `${start}-${pagesArray[pagesArray.length - 1]}`;
+
+      dispatch(setSelectedPages(newSelectedPages));
+      setShowMark(!showMark);
     };
+
+
 
     return (
       <div onClick={handleClick} className="extract-file-card">

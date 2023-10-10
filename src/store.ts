@@ -100,7 +100,7 @@ const toolSlice = createSlice({
       state.layout = action.payload;
     },
     setSelectedPages(state: ToolState, action: PayloadAction<string>) {
-      state.selectedPages = action.payload;
+      state.selectedPages = action.payload === "undefined" ? "" : action.payload;
     },
     setRanges(
       state: ToolState,

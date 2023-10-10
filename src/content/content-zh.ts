@@ -66,140 +66,64 @@ export const tool: _tool = {
 
 export const downloadFile: _downloadFile = {
   titles: {
-    "merge-pdf": ["PDF文件已合并！", "PDF文件已合并！"],
     "split-pdf": ["PDF文件已拆分！"],
-    "compress-pdf": ["PDF文件已压缩！", "PDF文件已压缩！"],
-    "pdf-to-powerpoint": [
-      "PDF文件已转换为PowerPoint！",
-      "PDF文件已转换为PowerPoint！",
-    ],
-    "jpg-to-pdf": ["JPG文件已转换为PDF！", "JPG文件已转换为PDF！"],
-    "word-to-pdf": ["Word文件已转换为PDF！", "Word文件已转换为PDF！"],
-    "powerpoint-to-pdf": [
-      "PowerPoint文件已转换为PDF！",
-      "PowerPoint文件已转换为PDF！",
-    ],
-    "excel-to-pdf": ["Excel文件已转换为PDF！", "Excel文件已转换为PDF！"],
-    "html-to-pdf": ["HTML文件已转换为PDF！", "HTML文件已转换为PDF！"],
-    "pdf-to-jpg": ["PDF文件已转换为JPG！", "PDF文件已转换为JPG！"],
-    "pdf-to-word": ["PDF文件已转换为Word！", "PDF文件已转换为Word！"],
-    "pdf-to-excel": ["PDF文件已转换为Excel！", "PDF文件已转换为Excel！"],
-    "pdf-to-pdf-a": ["PDF文件已转换为PDF/A！", "PDF文件已转换为PDF/A！"],
-    "web-to-pdf": ["网站已转换为PDF！", "网站已转换为PDF！"],
-    "pdf-to-text": ["PDF文件已转换为文本！", "PDF文件已转换为文本！"],
-    "markdown-to-pdf": [
-      "Markdown文件已转换为PDF！",
-      "Markdown文件已转换为PDF！",
-    ],
-    "pdf-to-html": ["PDF文件已转换为HTML！", "PDF文件已转换为HTML！"],
-    "pdf-to-markdown": [
-      "PDF文件已转换为Markdown！",
-      "PDF文件已转换为Markdown！",
-    ],
   },
   btnText: {
-    "merge-pdf": ["下载合并后的PDF文件", "下载合并后的PDF文件"],
     "split-pdf": ["下载拆分后的PDF文件", "下载拆分后的PDF文件"],
-    "compress-pdf": ["下载压缩后的PDF文件", "下载压缩后的PDF文件"],
-    "pdf-to-powerpoint": [
-      "下载转换后的PowerPoint文件",
-      "下载转换后的PowerPoint文件",
-    ],
-    "jpg-to-pdf": ["下载转换后的PDF文件", "下载转换后的PDF文件"],
-    "word-to-pdf": ["下载转换后的PDF文件", "下载转换后的PDF文件"],
-    "powerpoint-to-pdf": ["下载转换后的PDF文件", "下载转换后的PDF文件"],
-    "excel-to-pdf": ["下载转换后的PDF文件", "下载转换后的PDF文件"],
-    "html-to-pdf": ["下载转换后的PDF文件", "下载转换后的PDF文件"],
-    "pdf-to-jpg": ["下载转换后的JPG文件", "下载转换后的JPG文件"],
-    "pdf-to-word": ["下载转换后的Word文件", "下载转换后的Word文件"],
-    "pdf-to-excel": ["下载转换后的Excel文件", "下载转换后的Excel文件"],
-    "pdf-to-pdf-a": ["下载转换后的PDF/A文件", "下载转换后的PDF/A文件"],
-    "web-to-pdf": ["下载转换后的PDF文件", "下载转换后的PDF文件"],
-    "pdf-to-text": ["下载转换后的文本文件", "下载转换后的文本文件"],
-    "markdown-to-pdf": ["下载转换后的PDF文件", "下载转换后的PDF文件"],
-    "pdf-to-html": ["下载转换后的HTML文件", "下载转换后的HTML文件"],
-    "pdf-to-markdown": ["下载转换后的Markdown文件", "下载转换后的Markdown文件"],
   },
   backto: {
-    "merge-pdf": "返回合并PDF",
     "split-pdf": "返回拆分PDF",
-    "compress-pdf": "返回压缩PDF",
-    "pdf-to-powerpoint": "返回PDF转Powerpoint",
-    "jpg-to-pdf": "返回JPG转PDF",
-    "word-to-pdf": "返回Word转PDF",
-    "powerpoint-to-pdf": "返回Powerpoint转PDF",
-    "excel-to-pdf": "返回Excel转PDF",
-    "html-to-pdf": "返回HTML转PDF",
-    "pdf-to-jpg": "返回PDF转JPG",
-    "pdf-to-word": "返回PDF转Word",
-    "pdf-to-excel": "返回PDF转Excel",
-    "pdf-to-pdf-a": "返回PDF转PDF-A",
-    "web-to-pdf": "返回Web转PDF",
-    "pdf-to-text": "返回PDF转文本",
-    "markdown-to-pdf": "返回Markdown转PDF",
-    "pdf-to-html": "返回PDF转HTML",
-    "pdf-to-markdown": "返回PDF转Markdown",
   },
 };
 
 export const edit_page: _edit_page = {
   edit_page_titles: {
-    merge_pdf: "合并PDF选项",
     split_pdf: "拆分PDF选项",
-    compress_pdf: "压缩PDF选项",
-    pdf_to_powerpoint: "PDF转Powerpoint选项",
-    jpg_to_pdf: "JPG转PDF选项",
-    word_to_pdf: "WORD转PDF选项",
-    powerpoint_to_pdf: "Powerpoint转PDF选项",
-    excel_to_pdf: "EXCEL转PDF选项",
-    html_to_pdf: "HTML转PDF选项",
-    pdf_to_jpg: "PDF转JPG选项",
-    pdf_to_word: "PDF转WORD选项",
-    pdf_to_excel: "PDF转EXCEL选项",
-    pdf_to_pdf_a: "PDF转PDF/A选项",
-    pdf_to_text: "PDF 转文本选项",
   },
   loader_text: "请稍等...",
   add_more_button: "添加更多文件",
-  action_buttons: {
-    merge_pdf: "合并PDF",
-    split_pdf: "拆分PDF",
-    compress_pdf: "压缩PDF",
-    pdf_to_powerpoint: "转换为PowerPoint",
-    jpg_to_pdf: "转换为PDF",
-    word_to_pdf: "转换为PDF",
-    powerpoint_to_pdf: "转换为PDF",
-    excel_to_pdf: "转换为PDF",
-    html_to_pdf: "转换为PDF",
-    pdf_to_jpg: "转换为JPG",
-    pdf_to_word: "转换为Word",
-    pdf_to_excel: "转换为Excel",
-    pdf_to_pdf_a: "转换为PDF/A",
-    pdf_to_text: "转换为文本",
-    translate_pdf: "翻译 PDF",
+  options: {
+    split_by_range: "按范围分割",
+    extract_pages: "提取页面",
+    split_by_range_options: {
+      range_mode: "范围模式：",
+      custom_range: "自定义范围",
+      fixed_range: "固定范围",
+      custom_range_options: {
+        range: "范围",
+        from: "从",
+        to: "到",
+        add_range: "添加范围",
+        merge: "将所有范围合并为一个PDF文件。"
+      },
+      fixed_range_options: {
+        split_into: "分割成页面范围：",
+        alert_info: "此PDF将分割为文件",
+        pages: "页",
+        will_be_created: "将被创建。"
+      }
+    },
+    extract_pages_options: {
+      extract_mode: "提取模式：",
+      extract_all: "提取所有页面",
+      select_pages: "选择页面",
+      selection_alert_content: {
+        selection_alert: "此PDF文件的每个选择的页面将被转换为一个PDF文件。",
+        will_be_created: "将被创建。"
+      },
+      select_pages_content: {
+        pages_to_extract: "要提取的页面：",
+        merge: "合并提取的PDF为一个PDF文件。",
+        page_selection_example: "示例：2，8-32"
+      }
+    }
   },
+  action_buttons: {
+    split_pdf: "拆分PDF",
+  },
+  select_files_placeholder: "选择文件",
   pages: "页",
   page: "页",
-  compress_pdf: [
-    {
-      title: "推荐压缩",
-      description: "文件大小和质量之间的最佳平衡",
-    },
-    {
-      title: "较少压缩",
-      description: "较小的文件大小但质量较低",
-    },
-    {
-      title: "极度压缩",
-      description: "文件大小显著减小但质量明显降低",
-    },
-    {
-      title: "自定义压缩",
-      description: "选择自己的压缩量",
-    },
-  ],
-  merge_pdf:
-    "使用拖放改变PDF文件合并的顺序。单击并   按住一个文件,将其移动到所需位置,然后释放鼠标按钮。   PDF文件从上到下合并。要删除文件,请单击文件顶部的删除   图标。要旋转页面,请单击页面缩略图顶部的旋转图标,然后选择所需的旋转角度。文件处于   所需的顺序和方向,单击“合并”按钮将它们合并为一个PDF文件。",
 };
 
 export const tools: _tools = {
@@ -223,31 +147,12 @@ export const errors: _errors = {
     message: "文件不是受支持的类型。",
     types: {
       PDF: "请选择一个有效的PDF文件。",
-      JPG: "请选择一个有效的JPEG图片文件。",
-      DOC: "请选择一个有效的Word文档文件。",
-      DOCX: "请选择一个有效的Word文档文件。",
-      XLS: "请选择一个有效的Excel电子表格文件。",
-      XLSX: "请选择一个有效的Excel电子表格文件。",
-      PPT: "请选择一个有效的PowerPoint演示文稿文件。",
-      PPTX: "请选择一个有效的PowerPoint演示文稿文件。",
     },
     code: "ERR_INVALID_FILE_TYPE",
   },
   FILE_CORRUPT: {
     message: "文件已损坏，无法处理。请选择一个有效的文件。",
     code: "ERR_FILE_CORRUPT",
-  },
-  MISSING_FONTS: {
-    message: "文件缺少字体。请确保所有字体都嵌入在PDF文件中。",
-    code: "ERR_MISSING_FONTS",
-  },
-  INVALID_IMAGE_DATA: {
-    message: "文件包含无效的图像数据。请确保所有图像格式正确。",
-    code: "ERR_INVALID_IMAGE_DATA",
-  },
-  SECURITY_RISK: {
-    message: "文件存在安全风险，无法处理。请选择一个有效的文件。",
-    code: "ERR_SECURITY_RISK",
   },
   MAX_FILES_EXCEEDED: {
     message: "您已超出允许的最大文件数。请删除一些文件并重试。",
@@ -264,9 +169,5 @@ export const errors: _errors = {
   ERR_NETWORK: {
     message: "网络错误，请检查您的互联网连接并重试。",
     code: "ERR_NETWORK",
-  },
-  ERR_UPLOAD_COUNT: {
-    message: "请至少上传两个文件以合并。",
-    code: "ERR_UPLOAD_COUNT",
-  },
+  }
 };

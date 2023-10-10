@@ -44,6 +44,10 @@ export default ({ item, lang }: { item: data_type; lang: string }) => {
         <title>{`PDFEquips | ${item.title}`}</title>
         <meta name="description" content={item.description} />
         <link rel="icon" href="/logo.png" />
+        <link
+          rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        />
       </Head>
       <NavBar lang={lang} nav_content={nav_content} />
       <Tool

@@ -1,11 +1,16 @@
 import { useFileStore } from "@/src/file-store";
 import { ToolState } from "@/src/store";
 import { getPageCount } from "@/src/utils";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SelectionAlert } from "./SelectionAlert";
+import { edit_page } from "@/content";
 
-export const ExtractAll = ({ showExtractAll }: { showExtractAll: boolean }) => {
+export const ExtractAll = ({ showExtractAll, content, lang }: {
+  showExtractAll: boolean;
+  content: edit_page["options"]["extract_pages_options"]["selection_alert_content"];
+  lang: string;
+}) => {
   const { files } = useFileStore.getState();
   const selectedFile = useSelector(
     (state: { tool: ToolState }) => state.tool.selectedFile
@@ -23,7 +28,7 @@ export const ExtractAll = ({ showExtractAll }: { showExtractAll: boolean }) => {
   }, [pageCount]);
   return (
     <div className={`${showExtractAll ? "" : "d-none"}`}>
-      <SelectionAlert selectedPages={pageCount} />
+      <SelectionAlert selectedPages={pageCount} content={content} lang={lang} />
     </div>
   );
 };

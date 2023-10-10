@@ -78,168 +78,64 @@ export const tools: _tools = {
 
 export const downloadFile: _downloadFile = {
   titles: {
-    "merge-pdf": ["تم دمج ملفات ال PDF!", "تم دمج ملف ال PDF!"],
     "split-pdf": ["تم تقسيم ملف ال PDF!"],
-    "compress-pdf": ["تم ضغط ملفات ال PDF!", "تم ضغط ملف ال PDF!"],
-    "pdf-to-powerpoint": [
-      "تم تحويل ملفات PDF إلى PowerPoint!",
-      "تم تحويل ملف PDF إلى PowerPoint!",
-    ],
-    "jpg-to-pdf": ["تم تحويل ملفات JPG إلى PDF!", "تم تحويل ملف JPG إلى PDF!"],
-    "word-to-pdf": [
-      "تم تحويل ملفات Word إلى PDF!",
-      "تم تحويل ملف Word إلى PDF!",
-    ],
-    "powerpoint-to-pdf": [
-      "تم تحويل ملفات PowerPoint إلى PDF!",
-      "تم تحويل ملف PowerPoint إلى PDF!",
-    ],
-    "excel-to-pdf": [
-      "تم تحويل ملفات Excel إلى PDF!",
-      "تم تحويل ملف Excel إلى PDF!",
-    ],
-    "html-to-pdf": [
-      "تم تحويل ملفات HTML إلى PDF!",
-      "تم تحويل ملف HTML إلى PDF!",
-    ],
-    "pdf-to-jpg": ["تم تحويل ملفات PDF إلى JPG!", "تم تحويل ملف PDF إلى JPG!"],
-    "pdf-to-word": [
-      "تم تحويل ملفات PDF إلى Word!",
-      "تم تحويل ملف PDF إلى Word!",
-    ],
-    "pdf-to-excel": [
-      "تم تحويل ملفات PDF إلى Excel!",
-      "تم تحويل ملف PDF إلى Excel!",
-    ],
-    "pdf-to-pdf-a": [
-      "تم تحويل ملفات PDF إلى PDF/A!",
-      "تم تحويل ملف PDF إلى PDF/A!",
-    ],
-    "web-to-pdf": [
-      "تم تحويل المواقع إلى ملفات PDF!",
-      "تم تحويل الموقع إلى ملف PDF!",
-    ],
-    "pdf-to-text": ["تم تحويل ملفات PDF إلى نص!", "تم تحويل ملف PDF إلى نص!"],
-    "markdown-to-pdf": [
-      "تم تحويل ملفات Markdown إلى PDF!",
-      "تم تحويل ملف Markdown إلى PDF!",
-    ],
-    "pdf-to-html": [
-      "تم تحويل ملفات PDF إلى HTML!",
-      "تم تحويل ملف PDF إلى HTML!",
-    ],
-    "pdf-to-markdown": [
-      "تم تحويل ملفات PDF إلى Markdown!",
-      "تم تحويل ملف PDF إلى Markdown!",
-    ],
   },
   btnText: {
-    "merge-pdf": ["تحميل ملفات PDF المدموجة", "تحميل ملف PDF مدموج"],
     "split-pdf": ["تحميل ملفات PDF المقسمة", "تحميل ملف PDF مقسم"],
-    "compress-pdf": ["تحميل ملفات PDF المضغوطة", "تحميل ملف PDF مضغوط"],
-    "pdf-to-powerpoint": [
-      "تحميل ملفات PowerPoint المحولة",
-      "تحميل ملف PowerPoint المحول",
-    ],
-    "jpg-to-pdf": ["تحميل ملفات PDF المحولة", "تحميل ملف PDF المحول"],
-    "word-to-pdf": ["تحميل ملفات PDF المحولة", "تحميل ملف PDF المحول"],
-    "powerpoint-to-pdf": ["تحميل ملفات PDF المحولة", "تحميل ملف PDF المحول"],
-    "excel-to-pdf": ["تحميل ملفات PDF المحولة", "تحميل ملف PDF المحول"],
-    "html-to-pdf": ["تحميل ملفات PDF المحولة", "تحميل ملف PDF المحول"],
-    "pdf-to-jpg": ["تحميل ملفات JPG المحولة", "تحميل ملف JPG المحول"],
-    "pdf-to-word": ["تحميل ملفات Word المحولة", "تحميل ملف Word المحول"],
-    "pdf-to-excel": ["تحميل ملفات Excel المحولة", "تحميل ملف Excel المحول"],
-    "pdf-to-pdf-a": ["تحميل ملفات PDF/A المحولة", "تحميل ملف PDF/A المحول"],
-    "web-to-pdf": ["تحميل ملفات PDF المحولة", "تحميل ملف PDF المحول"],
-    "pdf-to-text": ["تحميل ملفات النص المحولة", "تحميل ملف النص المحول"],
-    "markdown-to-pdf": ["تحميل ملفات PDF المحولة", "تحميل ملف PDF المحول"],
-    "pdf-to-html": ["تحميل ملفات HTML المحولة", "تحميل ملف HTML المحول"],
-    "pdf-to-markdown": [
-      "تحميل ملفات Markdown المحولة",
-      "تحميل ملف Markdown المحول",
-    ],
   },
   backto: {
-    "merge-pdf": "العودة إلى دمج ملفات PDF",
     "split-pdf": "العودة إلى تقسيم ملفات PDF",
-    "compress-pdf": "العودة إلى ضغط ملفات PDF",
-    "pdf-to-powerpoint": "العودة إلى PDF إلى باوربوينت",
-    "jpg-to-pdf": "العودة إلى JPG إلى PDF",
-    "word-to-pdf": "العودة إلى Word إلى PDF",
-    "powerpoint-to-pdf": "العودة إلى باوربوينت إلى PDF",
-    "excel-to-pdf": "العودة إلى Excel إلى PDF",
-    "html-to-pdf": "العودة إلى HTML إلى PDF",
-    "pdf-to-jpg": "العودة إلى PDF إلى JPG",
-    "pdf-to-word": "العودة إلى PDF إلى Word",
-    "pdf-to-excel": "العودة إلى PDF إلى Excel",
-    "pdf-to-pdf-a": "العودة إلى PDF إلى PDF-A",
-    "web-to-pdf": "العودة إلى Web إلى PDF",
-    "pdf-to-text": "العودة إلى PDF إلى النص",
-    "markdown-to-pdf": "العودة إلى Markdown إلى PDF",
-    "pdf-to-html": "العودة إلى PDF إلى HTML",
-    "pdf-to-markdown": "العودة إلى PDF إلى Markdown",
   },
 };
 
 export const edit_page: _edit_page = {
   edit_page_titles: {
-    merge_pdf: "خيارات دمج ملف PDF",
     split_pdf: "خيارات تقسيم ملف PDF",
-    compress_pdf: "خيارات ضغط ملف PDF",
-    pdf_to_powerpoint: "خيارات تحويل ملف PDF إلى باوربوينت",
-    jpg_to_pdf: "خيارات تحويل ملف JPG إلى PDF",
-    word_to_pdf: "خيارات تحويل ملف WORD إلى PDF",
-    powerpoint_to_pdf: "خيارات تحويل ملف POWERPOINT إلى PDF",
-    excel_to_pdf: "خيارات تحويل ملف EXCEL إلى PDF",
-    html_to_pdf: "خيارات تحويل ملف HTML إلى PDF",
-    pdf_to_jpg: "خيارات تحويل ملف PDF إلى JPG",
-    pdf_to_word: "خيارات تحويل ملف PDF إلى WORD",
-    pdf_to_excel: "خيارات تحويل ملف PDF إلى EXCEL",
-    pdf_to_pdf_a: "خيارات تحويل ملف PDF إلى PDF/A",
-    pdf_to_text: "خيارات تحويل PDF إلى نص",
+  },
+  options: {
+    split_by_range: "تقسيم حسب النطاق",
+    extract_pages: "استخراج الصفحات",
+    split_by_range_options: {
+      range_mode: "وضع النطاق:",
+      custom_range: "نطاق مخصص",
+      fixed_range: "نطاق ثابت",
+      custom_range_options: {
+        range: "النطاق",
+        from: "من",
+        to: "إلى",
+        add_range: "إضافة نطاق",
+        merge: "دمج جميع النطاقات في ملف PDF واحد."
+      },
+      fixed_range_options: {
+        split_into: "تقسيم في نطاق صفحات:",
+        alert_info: "سيتم تقسيم هذا الملف PDF إلى ملفات من",
+        pages: "صفحات",
+        will_be_created: "سيتم إنشاء",
+      }
+    },
+    extract_pages_options: {
+      extract_mode: "وضع الاستخراج:",
+      extract_all: "استخراج كافة الصفحات",
+      select_pages: "حدد الصفحات",
+      selection_alert_content: {
+        selection_alert: "كل صفحة محددة من ملف PDF هذا سيتم تحويلها إلى ملف PDF واحد.",
+        will_be_created: "سيتم إنشاؤه."
+      },
+      select_pages_content: {
+        pages_to_extract: "الصفحات المراد استخراجها:",
+        merge: "دمج ملف pdf المستخرج في ملف pdf واحد.",
+        page_selection_example: "مثال: 2,8-32"
+      }
+    }
   },
   loader_text: "يرجى الانتظار...",
   add_more_button: "إضافة المزيد من الملفات",
   action_buttons: {
-    merge_pdf: "دمج PDF",
     split_pdf: "تقسيم PDF",
-    compress_pdf: "ضغط PDF",
-    translate_pdf: "ترجمة PDF",
-    pdf_to_powerpoint: "تحويل إلى Powerpoint",
-    jpg_to_pdf: "تحويل إلى PDF",
-    word_to_pdf: "تحويل إلى PDF",
-    powerpoint_to_pdf: "تحويل إلى PDF",
-    excel_to_pdf: "تحويل إلى PDF",
-    html_to_pdf: "تحويل إلى PDF",
-    pdf_to_jpg: "تحويل إلى JPG",
-    pdf_to_word: "تحويل إلى Word",
-    pdf_to_excel: "تحويل إلى Excel",
-    pdf_to_pdf_a: "تحويل إلى PDF/A",
-    pdf_to_text: "تحويل إلى نص",
   },
+  select_files_placeholder: "اختر الملفات",
   pages: "صفحة",
   page: "صفحة واحدة",
-  compress_pdf: [
-    {
-      title: "ضغط مُستَحسَن",
-      description: "أفضل توازن بين الحجم والجودة",
-    },
-    {
-      title: "ضغط أقل",
-      description: "حجم ملف أصغر ولكن جودة أقل",
-    },
-    {
-      title: "ضغط شديد",
-      description: "حجم ملف أصغر بشكل كبير ولكن جودة أقل بكثير",
-    },
-    {
-      title: "ضغط مخصص",
-      description: "اختيار كمية الضغط الخاصة بك",
-    },
-  ],
-  merge_pdf: `استخدم السحب والإفلات لتغيير ترتيب ملفات PDF للدمج. انقر واستمر في الضغط على الملف، وانقله إلى الموقع المطلوب، وانترك زر الفأرة.
-  تتم عملية دمج ملفات PDF من الأعلى إلى الأسفل. لإزالة ملف، انقر على أيقونة الحذف في الجزء العلوي من الملف. لتدوير صفحة، انقر على أيقونة الدوران في الجزء العلوي من صورة المصغّرة وحدد زاوية الدوران المطلوبة. بمجرد ترتيب الملفات بالترتيب والاتجاه المطلوبين، انقر على زر "دمج" لدمجها في ملف PDF واحد.
-  `,
 };
 
 
@@ -257,34 +153,12 @@ export const errors: _errors = {
     message: "الملف غير مدعوم.",
     types: {
       PDF: "يرجى اختيار ملف PDF صالح.",
-      JPG: "يرجى اختيار ملف صورة JPEG صالح.",
-      DOC: "يرجى اختيار ملف مستند Word صالح.",
-      DOCX: "يرجى اختيار ملف مستند Word صالح.",
-      XLS: "يرجى اختيار ملف جدول بيانات Excel صالح.",
-      XLSX: "يرجى اختيارملف جدول بيانات Excel صالح.",
-      PPT: "يرجى اختيار ملف عرض تقديمي PowerPoint صالح.",
-      PPTX: "يرجى اختيار ملف عرض تقديمي PowerPoint صالح.",
     },
     code: "ERR_INVALID_FILE_TYPE",
   },
   FILE_CORRUPT: {
     message: "الملف تالف ولا يمكن معالجته. يرجى اختيار ملف صالح.",
     code: "ERR_FILE_CORRUPT",
-  },
-  MISSING_FONTS: {
-    message:
-      "الملف يحتوي على خطوط أحرف مفقودة. يرجى التأكد من تضمين جميع الخطوط في ملف PDF.",
-    code: "ERR_MISSING_FONTS",
-  },
-  INVALID_IMAGE_DATA: {
-    message:
-      "الملف يحتوي على بيانات صورة غير صالحة. يرجى التأكد من تنسيق جميع الصور بشكل صحيح.",
-    code: "ERR_INVALID_IMAGE_DATA",
-  },
-  SECURITY_RISK: {
-    message:
-      "الملف يحتوي على مخاطر أمان ولا يمكن معالجته. يرجى اختيار ملف صالح.",
-    code: "ERR_SECURITY_RISK",
   },
   MAX_FILES_EXCEEDED: {
     message:
@@ -304,9 +178,5 @@ export const errors: _errors = {
     message:
       "حدث خطأ في الشبكة. يرجى التحقق من اتصالك بالإنترنت وحاول مرة أخرى.",
     code: "ERR_NETWORK",
-  },
-  ERR_UPLOAD_COUNT: {
-    message: "يرجى رفع ملفين على الأقل للدمج.",
-    code: "ERR_UPLOAD_COUNT",
   },
 };

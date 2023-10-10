@@ -97,19 +97,23 @@
     width: 1.3em;
     height: 1.3em;
   }
+
   .range-file-card {
     &:not(.one-item-grid) {
       display: grid;
       grid-template-columns: 2fr .5fr 2fr;
     }
+
     &.one-item-grid {
       display: flex;
       align-items: center;
       justify-content: center;
+
       .only-child {
         flex: 0 1 78%;
       }
     }
+
     .icon {
       align-self: center;
       justify-self: center;
@@ -117,21 +121,18 @@
       width: 2em;
       height: 2em;
     }
+
     .only-child {
       grid-column: 1 / -1;
       justify-self: center;
     }
   }
+
   .extract-file-card {
     @include extend("position-absolute w-100 h-100");
+
     .icon {
-      fill: #10ac84;
-      stroke: white;
-      top: 1%;
-      left: 1%;
-      width: 1.5em;
-      height: 1.5em;
-      @include extend("position-absolute");
+      @include extend("check-icon");
     }
   }
 

@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { ToolState, setRanges } from "@/src/store";
 import { TypeWithdisplayProp } from "@/src/globalProps";
 import { useDispatch } from "react-redux";
+import { edit_page } from "@/content";
 
 type Ranges = {
   from: number;
@@ -30,7 +31,9 @@ const reorder = (
 
 // the issue still occurs, i think because when updating any of them i'm updating them all at once
 // and this is the code that does crud on the ranges:
-export const CustomRange = ({ display }: TypeWithdisplayProp) => {
+export const CustomRange = ({ display, content }: TypeWithdisplayProp & {
+  content: edit_page["options"]["split_by_range_options"]["custom_range_options"]
+}) => {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const [checked, setChecked] = useState(false);
@@ -100,7 +103,7 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
             value={from}
             max={pageCount > 0 ? pageCount : undefined}
             onChange={(e) => setFrom(e.target.value)}
-            placeholder="From"
+            placeholder={content.from}
           />
         </div>
         <div className="col">
@@ -110,7 +113,7 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
             value={to}
             max={pageCount > 0 ? pageCount : undefined}
             onChange={(e) => setTo(e.target.value)}
-            placeholder="To"
+            placeholder={content.to}
           />
         </div>
       </div>
@@ -135,7 +138,7 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
                           <div className="card">
                             <div className="card-body">
                               <h6 className="ignore-margin card-title split-category-title">
-                                Range {i + 1}
+                                {content.range} {i + 1}
                               </h6>
                               <div className="row flex-nowrap justify-content-between align-items-center range-input-wrapper">
                                 <div className="row flex-nowrap input-group">
@@ -143,7 +146,7 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
                                     className="input-group-text"
                                     id="basic-addon1"
                                   >
-                                    From
+                                    {content.from}
                                   </span>
                                   <input
                                     type="number"
@@ -185,7 +188,7 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
                                         )
                                       );
                                     }}
-                                    placeholder="From"
+                                    placeholder={content.from}
                                   />
                                 </div>
                                 <div className="row flex-nowrap input-group">
@@ -193,7 +196,7 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
                                     className="input-group-text"
                                     id="basic-addon1"
                                   >
-                                    To
+                                    {content.to}
                                   </span>
                                   <input
                                     type="number"
@@ -235,7 +238,7 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
                                         )
                                       );
                                     }}
-                                    placeholder="To"
+                                    placeholder={content.to}
                                   />
                                 </div>
                                 {/* <div className="position-absolute delete-button"> */}
@@ -270,7 +273,7 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
           }}
         >
           <PlusIcon className="icon mr-2" />
-          <span>Add Range</span>
+          <span>{content.add_range}</span>
         </button>
       </div>
       <Checkbox
@@ -280,7 +283,7 @@ export const CustomRange = ({ display }: TypeWithdisplayProp) => {
         onChange={handleCheckChange}
         className="ml-1 my-3 mb-0"
       >
-        Merge all ranges in one PDF file.
+        {content.merge}
       </Checkbox>
     </div>
   );

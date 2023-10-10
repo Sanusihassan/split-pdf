@@ -74,6 +74,7 @@ const DisplayFile = ({
           loader_text={edit_page["loader_text"]}
           fileDetailProps={[pages, page, lang]}
           extension={extension}
+          select_files_placeholder={edit_page["select_files_placeholder"]}
         />
       </div>
     </>

@@ -1,7 +1,6 @@
 import Head from "next/head";
 import NavBar from "../../components/NavBar";
 import Tool from "../../components/Tool";
-import { useRouter } from "next/router";
 import {
   edit_page,
   nav_content,
@@ -45,6 +44,10 @@ export default ({ item, lang }: { item: data_type; lang: string }) => {
         <title>{`PDFEquips | ${item.title}`}</title>
         <meta name="description" content={item.description} />
         <link rel="icon" href="/logo.png" />
+        <link
+          rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        />
       </Head>
       <NavBar nav_content={nav_content} lang={lang} />
       <Tool
