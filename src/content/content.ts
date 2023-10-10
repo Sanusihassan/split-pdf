@@ -114,7 +114,7 @@ export const tools = {
 
 export const downloadFile = {
   titles: {
-    "split-pdf": ["PDF file has been split!"],
+    "split-pdf": ["PDF file has been split!", "PDF files have been split!"],
   },
 
   btnText: {

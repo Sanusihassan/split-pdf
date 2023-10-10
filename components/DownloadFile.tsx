@@ -23,19 +23,19 @@ const DownloadFile = ({
   );
   const dispatch = useDispatch();
   const path = statePath;
-  useEffect(() => {}, [downloadFile, showDownloadBtn]);
+  useEffect(() => { }, [downloadFile, showDownloadBtn]);
   return (
     <div
-      className={`download-page flex-column align-items-center justify-content-center text-center${
-        showDownloadBtn ? " d-flex" : " d-none"
-      }`}
+      className={`download-page flex-column align-items-center justify-content-center text-center${showDownloadBtn ? " d-flex" : " d-none"
+        }`}
     >
       <h3 className="text-center mb-4">
         <bdi>
           {downloadFile.titles &&
             downloadFile.titles[path as keyof typeof downloadFile.titles] &&
             downloadFile.titles[path as keyof typeof downloadFile.titles][
-              files && files.length > 1 ? 0 : 1
+            // files && files.length > 1 ? 0 : 1
+            0
             ]}
         </bdi>
       </h3>
@@ -68,7 +68,7 @@ const DownloadFile = ({
             {downloadFile.btnText &&
               downloadFile.btnText[path as keyof typeof downloadFile.btnText] &&
               downloadFile.btnText[path as keyof typeof downloadFile.btnText][
-                files && files.length > 1 ? 0 : 1
+              files && files.length > 1 ? 0 : 1
               ]}
           </bdi>
         </button>

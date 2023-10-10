@@ -66,7 +66,7 @@ export const tool: _tool = {
 
 export const downloadFile: _downloadFile = {
   titles: {
-    "split-pdf": ["PDF फ़ाइल को विभाजित किया गया है!"],
+    "split-pdf": ["PDF फ़ाइल को विभाजित किया गया है!", "पीडीएफ फाइलें विभाजित हो गई हैं!"],
   },
   btnText: {
     "split-pdf": [

@@ -1,10 +1,12 @@
 const path = require("path");
 const TerserPlugin = require("terser-webpack-plugin");
+const isProd = process.env.NODE_ENV === "production";
 
 module.exports = {
   sassOptions: {
     includePaths: [path.join(__dirname, "node_modules")],
   },
+  assetPrefix: isProd ? "/split-pdf" : "",
   output: "standalone",
   reactStrictMode: false,
   webpack: (config, { isServer }) => {

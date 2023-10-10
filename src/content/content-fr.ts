@@ -73,7 +73,7 @@ export const tools: _tools = {
 
 export const downloadFile: _downloadFile = {
   titles: {
-    "split-pdf": ["Fichier PDF divisé avec succès !"],
+    "split-pdf": ["Fichier PDF divisé avec succès !", "Les fichiers PDF ont été divisés !"],
   },
   btnText: {
     "split-pdf": [

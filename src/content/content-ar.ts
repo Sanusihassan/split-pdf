@@ -78,7 +78,7 @@ export const tools: _tools = {
 
 export const downloadFile: _downloadFile = {
   titles: {
-    "split-pdf": ["تم تقسيم ملف ال PDF!"],
+    "split-pdf": ["تم تقسيم ملف ال PDF!", "تم تقسيم ملفات PDF!"],
   },
   btnText: {
     "split-pdf": ["تحميل ملفات PDF المقسمة", "تحميل ملف PDF مقسم"],

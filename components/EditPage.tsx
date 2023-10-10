@@ -48,6 +48,9 @@ const EditPage = ({
   const showTool = useSelector(
     (state: { tool: ToolState }) => state.tool.showTool
   );
+  const showDownloadBtn = useSelector(
+    (state: { tool: ToolState }) => state.tool.showDownloadBtn
+  );
   const navHeight = useSelector(
     (state: { tool: ToolState }) => state.tool.nav_height
   );
@@ -64,13 +67,14 @@ const EditPage = ({
     if (statePath !== k) {
       dispatch(setPath(k));
     }
-  }, [errorCode]);
+  }, [errorCode, showTool]);
 
   const router = useRouter();
   let k = router.asPath.replace(/^\/[a-z]{2}\//, "").replace(/^\//, "");
   const gearRef = useRef(null);
   return (
-    <aside className={`edit-page ${showTool || showTool ? "d-none" : ""}`}>
+    <aside className={`edit-page ${showTool || showDownloadBtn ? "d-none" : ""
+      }`}>
       <section className="edit-area position-relative">
         <DisplayFile
           extension={extension}

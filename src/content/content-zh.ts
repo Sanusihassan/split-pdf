@@ -66,7 +66,7 @@ export const tool: _tool = {
 
 export const downloadFile: _downloadFile = {
   titles: {
-    "split-pdf": ["PDF文件已拆分！"],
+    "split-pdf": ["PDF文件已拆分！", "PDF 文件已被分割！"],
   },
   btnText: {
     "split-pdf": ["下载拆分后的PDF文件", "下载拆分后的PDF文件"],
