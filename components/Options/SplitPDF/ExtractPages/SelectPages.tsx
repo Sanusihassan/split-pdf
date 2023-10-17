@@ -10,7 +10,7 @@ export const SelectPages = ({
   showSelectPages,
   lang,
   content,
-  alert_content
+  alert_content,
 }: {
   showSelectPages: boolean;
   lang: string;
@@ -24,11 +24,9 @@ export const SelectPages = ({
   const selectedPages = useSelector(
     (state: { tool: ToolState }) => state.tool.selectedPages
   );
-  const merge = useSelector(
-    (state: { tool: ToolState }) => state.tool.merge
-  );
+  const merge = useSelector((state: { tool: ToolState }) => state.tool.merge);
   const onChange = useCallback(() => {
-    dispatch(setMerge((prev) => !prev))
+    dispatch(setMerge((prev) => !prev));
     if (selectedPages !== "" && selectedPages !== "all") {
       setInputVal(selectedPages);
     }
@@ -36,6 +34,8 @@ export const SelectPages = ({
   useEffect(() => {
     if (selectedPages !== "" && selectedPages !== "all") {
       setInputVal(selectedPages);
+    } else {
+      setInputVal("");
     }
   }, [selectedPages]);
   return (
@@ -77,7 +77,11 @@ export const SelectPages = ({
         {/* </div> */}
       </form>
 
-      <SelectionAlert selectedPages={selectedPages.split(/[,|-]/).length} content={alert_content} lang={lang} />
+      <SelectionAlert
+        selectedPages={selectedPages.split(/[,|-]/).length}
+        content={alert_content}
+        lang={lang}
+      />
     </div>
   );
 };

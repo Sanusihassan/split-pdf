@@ -43,7 +43,7 @@ const initialState: ToolState = {
   fixedRanges: [],
   rangeType: "custom",
   pageCount: 0,
-  merge: false
+  merge: false,
 };
 
 const toolSlice = createSlice({
@@ -100,15 +100,21 @@ const toolSlice = createSlice({
       state.layout = action.payload;
     },
     setSelectedPages(state: ToolState, action: PayloadAction<string>) {
-      state.selectedPages = action.payload === "undefined" ? "" : action.payload;
+      if (action.payload === "undefined") {
+        state.selectedPages = "";
+      } else {
+        state.selectedPages = action.payload
+          .replace(/0-/g, "")
+          .replace(/0,/g, "");
+      }
     },
     setRanges(
       state: ToolState,
       action: PayloadAction<
         | { from: number; to: number }[]
         | ((
-          prevRanges: { from: number; to: number }[]
-        ) => { from: number; to: number }[])
+            prevRanges: { from: number; to: number }[]
+          ) => { from: number; to: number }[])
       >
     ) {
       if (typeof action.payload === "function") {
@@ -122,8 +128,8 @@ const toolSlice = createSlice({
       action: PayloadAction<
         | { from: number; to: number }[]
         | ((
-          prevRanges: { from: number; to: number }[]
-        ) => { from: number; to: number }[])
+            prevRanges: { from: number; to: number }[]
+          ) => { from: number; to: number }[])
       >
     ) {
       if (typeof action.payload === "function") {
@@ -138,10 +144,13 @@ const toolSlice = createSlice({
     setPageCount(state: ToolState, action: PayloadAction<number>) {
       state.pageCount = action.payload;
     },
-    setMerge: (state, action: PayloadAction<boolean | ((prev: boolean) => boolean)>) => {
-      if (typeof action.payload === 'boolean') {
+    setMerge: (
+      state,
+      action: PayloadAction<boolean | ((prev: boolean) => boolean)>
+    ) => {
+      if (typeof action.payload === "boolean") {
         state.merge = action.payload;
-      } else if (typeof action.payload === 'function') {
+      } else if (typeof action.payload === "function") {
         state.merge = action.payload(state.merge);
       }
     },
@@ -169,7 +178,7 @@ export const {
   setFixedRanges,
   setRangeType,
   setPageCount,
-  setMerge
+  setMerge,
 } = toolSlice.actions;
 
 export default toolSlice.reducer;
