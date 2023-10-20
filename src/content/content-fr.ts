@@ -1,5 +1,4 @@
 import type {
-  nav_content as nav_content_type,
   tool as _tool,
   web2pdftool as _web2pdftool,
   tools as _tools,
@@ -10,7 +9,7 @@ import type {
   landing_page as _landing_page,
 } from "../../content";
 
-export const nav_content: nav_content_type = {
+export const nav_content = {
   brand: "Equips",
   merge_pdf: "Fusionner des PDF",
   split_pdf: "Diviser des PDF",
@@ -73,13 +72,16 @@ export const tools: _tools = {
 
 export const downloadFile: _downloadFile = {
   titles: {
-    "split-pdf": ["Fichier PDF divisé avec succès !", "Les fichiers PDF ont été divisés !"],
+    "split-pdf": [
+      "Fichier PDF divisé avec succès !",
+      "Les fichiers PDF ont été divisés !",
+    ],
   },
   btnText: {
     "split-pdf": [
       "Télécharger les fichiers PDF divisés",
       "Télécharger le fichier PDF divisé",
-    ]
+    ],
   },
   backto: {
     "split-pdf": "Retour à Diviser PDF",
@@ -104,29 +106,30 @@ export const edit_page: _edit_page = {
         from: "De",
         to: "À",
         add_range: "Ajouter une plage",
-        merge: "Fusionner toutes les plages en un fichier PDF."
+        merge: "Fusionner toutes les plages en un fichier PDF.",
       },
       fixed_range_options: {
         split_into: "divisé en une plage de pages de :",
         alert_info: "Ce PDF sera divisé en fichiers de",
         pages: "pages",
         will_be_created: "sera créé(s).",
-      }
+      },
     },
     extract_pages_options: {
       extract_mode: "Mode d'extraction :",
       extract_all: "Extraire toutes les pages",
       select_pages: "Sélectionner les pages",
       selection_alert_content: {
-        selection_alert: "Chaque page sélectionnée de ce fichier PDF sera convertie en un fichier PDF.",
-        will_be_created: "sera créé."
+        selection_alert:
+          "Chaque page sélectionnée de ce fichier PDF sera convertie en un fichier PDF.",
+        will_be_created: "sera créé.",
       },
       select_pages_content: {
         pages_to_extract: "Pages à extraire :",
         merge: "Fusionner les PDF extraits en un seul fichier PDF.",
-        page_selection_example: "exemple : 2,8-32"
-      }
-    }
+        page_selection_example: "exemple : 2,8-32",
+      },
+    },
   },
   action_buttons: {
     split_pdf: "Diviser PDF",
@@ -177,5 +180,5 @@ export const errors: _errors = {
     message:
       "Une erreur de réseau s'est produite. Veuillez vérifier votre connexion Internet et réessayer.",
     code: "ERR_NETWORK",
-  }
+  },
 };

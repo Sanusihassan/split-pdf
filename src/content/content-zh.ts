@@ -1,5 +1,4 @@
 import type {
-  nav_content as _nav_content,
   tool as _tool,
   web2pdftool as _web2pdftool,
   tools as _tools,
@@ -9,30 +8,6 @@ import type {
   downloadFile as _downloadFile,
   landing_page as _landing_page,
 } from "../../content";
-export const nav_content: _nav_content = {
-  brand: "Equips",
-  merge_pdf: "合并PDF",
-  split_pdf: "拆分PDF",
-  compress_pdf: "压缩PDF",
-  convert_pdf: "转换PDF",
-  convert_to_pdf: "转换为PDF",
-  jpg_to_pdf: "JPG转PDF",
-  word_to_pdf: "Word转PDF",
-  markdown_to_pdf: "降价到 PDF",
-  powerpoint_to_pdf: "PowerPoint转PDF",
-  excel_to_pdf: "Excel转PDF",
-  html_to_pdf: "HTML转PDF",
-  web_to_pdf: "网页转 PDF",
-  convert_from_pdf: "从PDF转换",
-  pdf_to_jpg: "PDF转JPG",
-  pdf_to_word: "PDF转Word",
-  pdf_to_powerpoint: "PDF转PowerPoint",
-  pdf_to_excel: "PDF转Excel",
-  pdf_to_pdf_a: "PDF转PDF/A",
-  pdf_to_text: "PDF 转文本",
-  pdf_to_html: "PDF 到 HTML",
-  pdf_to_markdown: "PDF 到 Markdown",
-};
 
 export const landing_page: _landing_page = {
   hero: {
@@ -94,14 +69,14 @@ export const edit_page: _edit_page = {
         from: "从",
         to: "到",
         add_range: "添加范围",
-        merge: "将所有范围合并为一个PDF文件。"
+        merge: "将所有范围合并为一个PDF文件。",
       },
       fixed_range_options: {
         split_into: "分割成页面范围：",
         alert_info: "此PDF将分割为文件",
         pages: "页",
-        will_be_created: "将被创建。"
-      }
+        will_be_created: "将被创建。",
+      },
     },
     extract_pages_options: {
       extract_mode: "提取模式：",
@@ -109,14 +84,14 @@ export const edit_page: _edit_page = {
       select_pages: "选择页面",
       selection_alert_content: {
         selection_alert: "此PDF文件的每个选择的页面将被转换为一个PDF文件。",
-        will_be_created: "将被创建。"
+        will_be_created: "将被创建。",
       },
       select_pages_content: {
         pages_to_extract: "要提取的页面：",
         merge: "合并提取的PDF为一个PDF文件。",
-        page_selection_example: "示例：2，8-32"
-      }
-    }
+        page_selection_example: "示例：2，8-32",
+      },
+    },
   },
   action_buttons: {
     split_pdf: "拆分PDF",
@@ -169,5 +144,5 @@ export const errors: _errors = {
   ERR_NETWORK: {
     message: "网络错误，请检查您的互联网连接并重试。",
     code: "ERR_NETWORK",
-  }
+  },
 };

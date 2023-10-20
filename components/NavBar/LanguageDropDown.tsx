@@ -1,17 +1,27 @@
 // import Link from "next/link";
 import { Dropdown } from "react-bootstrap";
-import LanguageIcon from "../icons/LanguageIcon";
+import LanguageIcon from "./icons/LanguageIcon";
 import { useSelector } from "react-redux";
 import { ToolState } from "../../src/store";
 import Cookies from "js-cookie";
 import { setLanguage } from "../../src/language";
 
 function LanguageDropdown() {
-  const state: ToolState = useSelector(
-    (state: { tool: ToolState }) => state.tool
+  const statePath = useSelector(
+    (state: { tool: ToolState }) => state.tool.path
   );
+  // const dispatch = useDispatch();
+  // as you can see from this function it's setting a cookie using this function:
+  /**
+   * export const setLanguage = (language: string) => {
+      Cookies.set("languageToken", language, { expires: 365 });
+    };
+   */
+  // i want to get the token in nginx to serve the HTML file for the requested language code according to the languageToken
+  // note that english is the default language and it's value is empty string
   const setLangToken = (
     language: string,
+    // @ts-ignore
     e: React.MouseEvent<HTMLAnchorElement>
   ) => {
     setLanguage(language);
@@ -30,9 +40,9 @@ function LanguageDropdown() {
           <LanguageIcon />
         </Dropdown.Toggle>
         <Dropdown.Menu>
-          {/* <Link href={`/${state.path}`} passHref> */}
+          {/* <Link href={`/${statePath}`} passHref> */}
           <a
-            href={`/${state.path}`}
+            href={`/${statePath}`}
             onClick={(e) => clearLangToken(e)}
             className="dropdown-item"
             rel="noopener"
@@ -41,9 +51,9 @@ function LanguageDropdown() {
             English
           </a>
           {/* </Link> */}
-          {/* <Link href={`/ar/${state.path}`} passHref> */}
+          {/* <Link href={`/ar/${statePath}`} passHref> */}
           <a
-            href={`/ar/${state.path}`}
+            href={`/ar/${statePath}`}
             onClick={(e) => setLangToken("ar", e)}
             className="dropdown-item"
             rel="noopener"
@@ -52,9 +62,9 @@ function LanguageDropdown() {
             العربية
           </a>
           {/* </Link> */}
-          {/* <Link href={`/fr/${state.path}`} passHref> */}
+          {/* <Link href={`/fr/${statePath}`} passHref> */}
           <a
-            href={`/fr/${state.path}`}
+            href={`/fr/${statePath}`}
             onClick={(e) => setLangToken("fr", e)}
             className="dropdown-item"
             rel="noopener"
@@ -63,9 +73,9 @@ function LanguageDropdown() {
             française
           </a>
           {/* </Link> */}
-          {/* <Link href={`/zh/${state.path}`} passHref> */}
+          {/* <Link href={`/zh/${statePath}`} passHref> */}
           <a
-            href={`/zh/${state.path}`}
+            href={`/zh/${statePath}`}
             onClick={(e) => setLangToken("zh", e)}
             className="dropdown-item"
             rel="noopener"
@@ -74,9 +84,9 @@ function LanguageDropdown() {
             普通话
           </a>
           {/* </Link> */}
-          {/* <Link href={`/hi/${state.path}`} passHref> */}
+          {/* <Link href={`/hi/${statePath}`} passHref> */}
           <a
-            href={`/hi/${state.path}`}
+            href={`/hi/${statePath}`}
             onClick={(e) => setLangToken("hi", e)}
             className="dropdown-item"
             rel="noopener"
@@ -85,9 +95,9 @@ function LanguageDropdown() {
             हिन्दी
           </a>
           {/* </Link> */}
-          {/* <Link href={`/es/${state.path}`} passHref> */}
+          {/* <Link href={`/es/${statePath}`} passHref> */}
           <a
-            href={`/es/${state.path}`}
+            href={`/es/${statePath}`}
             onClick={(e) => setLangToken("es", e)}
             className="dropdown-item"
             rel="noopener"

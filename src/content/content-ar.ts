@@ -1,5 +1,4 @@
 import type {
-  nav_content as nav_content_type,
   tool as _tool,
   web2pdftool as _web2pdftool,
   tools as _tools,
@@ -9,31 +8,6 @@ import type {
   downloadFile as _downloadFile,
   landing_page as _landing_page,
 } from "../../content";
-
-export const nav_content: nav_content_type = {
-  brand: "Equips",
-  merge_pdf: "دمج PDF",
-  split_pdf: "تقسيم PDF",
-  compress_pdf: "ضغط PDF",
-  convert_pdf: "تحويل PDF",
-  convert_to_pdf: "تحويل إلى PDF",
-  jpg_to_pdf: "JPG إلى PDF",
-  word_to_pdf: "Word إلى PDF",
-  powerpoint_to_pdf: "PowerPoint إلى PDF",
-  excel_to_pdf: "Excel إلى PDF",
-  html_to_pdf: "HTML إلى PDF",
-  markdown_to_pdf: "Markdown إلى PDF",
-  convert_from_pdf: "تحويل من PDF",
-  web_to_pdf: "من الويب إلى PDF",
-  pdf_to_jpg: "PDF إلى JPG",
-  pdf_to_word: "PDF إلى Word",
-  pdf_to_powerpoint: "PDF إلى PowerPoint",
-  pdf_to_excel: "PDF إلى Excel",
-  pdf_to_pdf_a: "PDF إلى PDF/A",
-  pdf_to_text: "PDF إلى نص",
-  pdf_to_html: "PDF إلى HTML",
-  pdf_to_markdown: "PDF إلى Markdown",
-};
 
 export const landing_page: _landing_page = {
   hero: {
@@ -65,9 +39,8 @@ export const tool: _tool = {
     color: "var(--orange)",
     type: ".pdf",
     to: "/split-pdf",
-  }
+  },
 };
-
 
 export const tools: _tools = {
   select: "اختر",
@@ -104,29 +77,30 @@ export const edit_page: _edit_page = {
         from: "من",
         to: "إلى",
         add_range: "إضافة نطاق",
-        merge: "دمج جميع النطاقات في ملف PDF واحد."
+        merge: "دمج جميع النطاقات في ملف PDF واحد.",
       },
       fixed_range_options: {
         split_into: "تقسيم في نطاق صفحات:",
         alert_info: "سيتم تقسيم هذا الملف PDF إلى ملفات من",
         pages: "صفحات",
         will_be_created: "سيتم إنشاء",
-      }
+      },
     },
     extract_pages_options: {
       extract_mode: "وضع الاستخراج:",
       extract_all: "استخراج كافة الصفحات",
       select_pages: "حدد الصفحات",
       selection_alert_content: {
-        selection_alert: "كل صفحة محددة من ملف PDF هذا سيتم تحويلها إلى ملف PDF واحد.",
-        will_be_created: "سيتم إنشاؤه."
+        selection_alert:
+          "كل صفحة محددة من ملف PDF هذا سيتم تحويلها إلى ملف PDF واحد.",
+        will_be_created: "سيتم إنشاؤه.",
       },
       select_pages_content: {
         pages_to_extract: "الصفحات المراد استخراجها:",
         merge: "دمج ملف pdf المستخرج في ملف pdf واحد.",
-        page_selection_example: "مثال: 2,8-32"
-      }
-    }
+        page_selection_example: "مثال: 2,8-32",
+      },
+    },
   },
   loader_text: "يرجى الانتظار...",
   add_more_button: "إضافة المزيد من الملفات",
@@ -137,7 +111,6 @@ export const edit_page: _edit_page = {
   pages: "صفحة",
   page: "صفحة واحدة",
 };
-
 
 export const errors: _errors = {
   EMPTY_FILE: {

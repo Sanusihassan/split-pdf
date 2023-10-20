@@ -1,5 +1,4 @@
 import type {
-  nav_content as nav_content_type,
   tool as _tool,
   web2pdftool as _web2pdftool,
   tools as _tools,
@@ -10,7 +9,7 @@ import type {
   landing_page as _landing_page,
 } from "../../content";
 
-export const nav_content: nav_content_type = {
+export const nav_content = {
   brand: "Equips",
   merge_pdf: "Combinar PDF",
   split_pdf: "Dividir PDF",
@@ -83,29 +82,30 @@ export const edit_page: _edit_page = {
         from: "De",
         to: "Para",
         add_range: "Agregar rango",
-        merge: "Fusionar todos los rangos en un archivo PDF."
+        merge: "Fusionar todos los rangos en un archivo PDF.",
       },
       fixed_range_options: {
         split_into: "dividir en el rango de páginas de:",
         alert_info: "Este PDF se dividirá en archivos de",
         pages: "páginas",
         will_be_created: "será creado.",
-      }
+      },
     },
     extract_pages_options: {
       extract_mode: "Modo de extracción:",
       extract_all: "Extraer todas las páginas",
       select_pages: "Seleccionar páginas",
       selection_alert_content: {
-        selection_alert: "Cada página seleccionada de este archivo PDF se convertirá en un archivo PDF.",
-        will_be_created: "será creado."
+        selection_alert:
+          "Cada página seleccionada de este archivo PDF se convertirá en un archivo PDF.",
+        will_be_created: "será creado.",
       },
       select_pages_content: {
         pages_to_extract: "Páginas a extraer:",
         merge: "Combinar pdf extraído en un archivo pdf.",
-        page_selection_example: "ejemplo: 2,8-32"
-      }
-    }
+        page_selection_example: "ejemplo: 2,8-32",
+      },
+    },
   },
   action_buttons: {
     split_pdf: "Dividir PDF",
@@ -124,13 +124,16 @@ export const tools: _tools = {
 
 export const downloadFile: _downloadFile = {
   titles: {
-    "split-pdf": ["¡División de archivo PDF exitosa!", "¡Los archivos PDF se han dividido!"],
+    "split-pdf": [
+      "¡División de archivo PDF exitosa!",
+      "¡Los archivos PDF se han dividido!",
+    ],
   },
   btnText: {
     "split-pdf": [
       "Descargar archivos PDF divididos",
       "Descargar archivo PDF dividido",
-    ]
+    ],
   },
   backto: {
     "split-pdf": "Volver a dividir PDF",
@@ -178,5 +181,5 @@ export const errors: _errors = {
     message:
       "Ha ocurrido un error en la red. Por favor, comprueba tu conexión a internet e inténtalo de nuevo.",
     code: "ERR_NETWORK",
-  }
+  },
 };
