@@ -28,7 +28,6 @@ import {
 const ConvertPDFDropdown = ({
   langPath,
   handleClick,
-  nav_content,
 }: {
   langPath: string;
   handleClick: () => void;
