@@ -17,8 +17,6 @@ import {
 } from "../../src/store";
 import { getNavContent } from "./getNavContent";
 
-
-
 const NavBar = ({ lang }: { lang: string }) => {
   const navContent = getNavContent(lang);
   const dispatch = useDispatch();
@@ -54,7 +52,7 @@ const NavBar = ({ lang }: { lang: string }) => {
       expand="lg"
       className={`${path !== "markdown-to-pdf" ? "shadow" : ""}`}
     >
-      <Link href={`/${lang}`}>
+      <Link href={`/${lang}`} legacyBehavior>
         <a
           onClick={(e) => {
             handleClick();
@@ -137,7 +135,7 @@ const NavBar = ({ lang }: { lang: string }) => {
           <ConvertPDFDropdown
             handleClick={handleClick}
             langPath={langPath}
-            nav_content={navContent}
+            lang={lang}
           />
           <LanguageDropdown />
         </Nav>
