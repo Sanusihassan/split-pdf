@@ -47,21 +47,15 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
   const rangeType = useSelector(
     (state: { tool: ToolState }) => state.tool.rangeType
   );
-  const layout = useSelector(
-    (state: { tool: ToolState }) => state.tool.layout
-  );
+  const layout = useSelector((state: { tool: ToolState }) => state.tool.layout);
   const fixedRanges = useSelector(
     (state: { tool: ToolState }) => state.tool.fixedRanges
   );
-  const ranges = useSelector(
-    (state: { tool: ToolState }) => state.tool.ranges
-  );
+  const ranges = useSelector((state: { tool: ToolState }) => state.tool.ranges);
   const selectedPages = useSelector(
     (state: { tool: ToolState }) => state.tool.selectedPages
   );
-  const merge = useSelector(
-    (state: { tool: ToolState }) => state.tool.merge
-  );
+  const merge = useSelector((state: { tool: ToolState }) => state.tool.merge);
   const dispatch = useDispatch();
   // file store
   const {
@@ -72,7 +66,7 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
     setSubmitBtn,
     filesLengthOnSubmit,
     setFilesLengthOnSubmit,
-  } = useFileStore.getState();
+  } = useFileStore();
   // refs
   const fileInput = useRef<HTMLInputElement>(null);
   const submitBtn = useRef<HTMLButtonElement>(null);
@@ -112,11 +106,11 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
           files,
           errors,
           filesLengthOnSubmit,
-          (rangeType == "custom" ? ranges : fixedRanges),
+          rangeType == "custom" ? ranges : fixedRanges,
           selectedPages,
           setFilesLengthOnSubmit,
           merge,
-          layout,
+          layout
         )
       }
       method="POST"

@@ -59,7 +59,7 @@ const EditPage = ({
   );
   const dispatch = useDispatch();
   // actual files;
-  const { files, fileInput } = useFileStore.getState();
+  const { files, fileInput } = useFileStore();
   useEffect(() => {
     if (errorCode == "ERR_NO_FILES_SELECTED" && files.length > 0) {
       dispatch(resetErrorMessage());
@@ -73,8 +73,9 @@ const EditPage = ({
   let k = router.asPath.replace(/^\/[a-z]{2}\//, "").replace(/^\//, "");
   const gearRef = useRef(null);
   return (
-    <aside className={`edit-page ${showTool || showDownloadBtn ? "d-none" : ""
-      }`}>
+    <aside
+      className={`edit-page ${showTool || showDownloadBtn ? "d-none" : ""}`}
+    >
       <section className="edit-area position-relative">
         <DisplayFile
           extension={extension}
@@ -106,12 +107,12 @@ const EditPage = ({
           style={
             showOptions
               ? {
-                top:
-                  navHeight +
-                  (gearRef.current
-                    ? (gearRef.current as HTMLElement).clientHeight
-                    : 0),
-              }
+                  top:
+                    navHeight +
+                    (gearRef.current
+                      ? (gearRef.current as HTMLElement).clientHeight
+                      : 0),
+                }
               : {}
           }
         >
@@ -123,8 +124,8 @@ const EditPage = ({
         style={
           showOptions
             ? {
-              top: navHeight,
-            }
+                top: navHeight,
+              }
             : {}
         }
       >
@@ -132,7 +133,7 @@ const EditPage = ({
           <bdi>
             {
               edit_page.edit_page_titles[
-              k.replace(/-/g, "_") as keyof typeof edit_page.edit_page_titles
+                k.replace(/-/g, "_") as keyof typeof edit_page.edit_page_titles
               ]
             }
           </bdi>

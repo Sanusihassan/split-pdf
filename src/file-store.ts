@@ -4,7 +4,7 @@
   ]);
  */
 import { Dispatch, RefObject, SetStateAction } from "react";
-import { createStore } from "zustand";
+import { create } from "zustand";
 
 export interface FileStore {
   files: File[];
@@ -32,7 +32,7 @@ export interface FileStore {
   setFilesLengthOnSubmit(value: number): void;
 }
 
-export const useFileStore = createStore<FileStore>((set) => ({
+export const useFileStore = create<FileStore>((set) => ({
   files: [],
   fileInput: null,
   downloadBtn: null,

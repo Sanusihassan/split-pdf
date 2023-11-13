@@ -23,8 +23,12 @@ const customStyles: StylesConfig<{ value: string; label: string }, false> = {
     cursor: "pointer",
   }),
 };
-export const SelectedFiles = ({ select_files_placeholder }: { select_files_placeholder: string }) => {
-  const { files } = useFileStore.getState();
+export const SelectedFiles = ({
+  select_files_placeholder,
+}: {
+  select_files_placeholder: string;
+}) => {
+  const { files } = useFileStore();
   const [selecteFiles, setSelectedFiles] = useState<
     {
       label: string;

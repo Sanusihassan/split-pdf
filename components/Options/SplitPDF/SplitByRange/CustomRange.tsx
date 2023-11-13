@@ -31,8 +31,11 @@ const reorder = (
 
 // the issue still occurs, i think because when updating any of them i'm updating them all at once
 // and this is the code that does crud on the ranges:
-export const CustomRange = ({ display, content }: TypeWithdisplayProp & {
-  content: edit_page["options"]["split_by_range_options"]["custom_range_options"]
+export const CustomRange = ({
+  display,
+  content,
+}: TypeWithdisplayProp & {
+  content: edit_page["options"]["split_by_range_options"]["custom_range_options"];
 }) => {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
@@ -40,7 +43,7 @@ export const CustomRange = ({ display, content }: TypeWithdisplayProp & {
   const handleCheckChange = useCallback(() => {
     setChecked((prev) => !prev);
   }, []);
-  const { files } = useFileStore.getState();
+  const { files } = useFileStore();
 
   const selectedFile = useSelector(
     (state: { tool: ToolState }) => state.tool.selectedFile
@@ -177,12 +180,12 @@ export const CustomRange = ({ display, content }: TypeWithdisplayProp & {
                                           prevRanges.map((r, index) =>
                                             index === i
                                               ? {
-                                                ...r,
-                                                from: parseInt(
-                                                  e.target.value,
-                                                  10
-                                                ),
-                                              }
+                                                  ...r,
+                                                  from: parseInt(
+                                                    e.target.value,
+                                                    10
+                                                  ),
+                                                }
                                               : r
                                           )
                                         )
@@ -227,12 +230,12 @@ export const CustomRange = ({ display, content }: TypeWithdisplayProp & {
                                           prevRanges.map((r, index) =>
                                             index === i
                                               ? {
-                                                ...r,
-                                                to: parseInt(
-                                                  e.target.value,
-                                                  10
-                                                ),
-                                              }
+                                                  ...r,
+                                                  to: parseInt(
+                                                    e.target.value,
+                                                    10
+                                                  ),
+                                                }
                                               : r
                                           )
                                         )

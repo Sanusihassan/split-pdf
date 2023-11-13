@@ -20,7 +20,7 @@ export function SubmitBtn({
     (state: { tool: ToolState }) => state.tool.isSubmitted
   );
   const dispatch = useDispatch();
-  const { submitBtn } = useFileStore.getState();
+  const { submitBtn } = useFileStore();
   return (
     <button
       className={`submit-btn btn btn-lg text-white position-relative overflow-hidden ${k} grid-footer`}

@@ -13,7 +13,7 @@ export const FileViewer = ({
   loader_text,
   fileDetailProps,
   extension,
-  select_files_placeholder
+  select_files_placeholder,
 }: {
   errors: errors;
   loader_text: string;
@@ -21,7 +21,7 @@ export const FileViewer = ({
   extension: string;
   select_files_placeholder: string;
 }) => {
-  const { files } = useFileStore.getState();
+  const { files } = useFileStore();
   const selectedFile = useSelector(
     (state: { tool: ToolState }) => state.tool.selectedFile
   );

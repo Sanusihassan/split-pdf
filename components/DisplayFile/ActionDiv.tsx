@@ -13,7 +13,7 @@ export const ActionDiv = ({
 }: ActionProps) => {
   const state = useSelector((state: { tool: ToolState }) => state.tool);
   // the files:
-  const { files, setFiles } = useFileStore.getState();
+  const { files, setFiles } = useFileStore();
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     //  const newFiles = store.files.filter((file) => file.name !== item.file.name);
     const newFiles = files.filter((file) => file.name !== fileName);
@@ -33,13 +33,11 @@ export const ActionDiv = ({
 
   return (
     <div
-      className={`action-div d-flex ${extension == ".html" ? "justify-content-end" : "justify-content-between"
-        }`}
+      className={`action-div d-flex ${
+        extension == ".html" ? "justify-content-end" : "justify-content-between"
+      }`}
     >
-      <button
-        className="btn btn-light"
-        onClick={(e) => handleClick(e)}
-      >
+      <button className="btn btn-light" onClick={(e) => handleClick(e)}>
         <TrashIcon className="icon hero-icon" />
       </button>
 

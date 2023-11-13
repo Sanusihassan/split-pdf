@@ -30,7 +30,7 @@ const DisplayFile = ({
   edit_page,
 }: propTypes) => {
   // actual files
-  const { files } = useFileStore.getState();
+  const { files } = useFileStore();
   const statePath = useSelector(
     (state: { tool: ToolState }) => state.tool.path
   );

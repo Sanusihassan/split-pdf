@@ -8,12 +8,16 @@ import { useState, useEffect } from "react";
 import { Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
-export const FixedRange = ({ display, content, lang }: TypeWithdisplayProp & {
+export const FixedRange = ({
+  display,
+  content,
+  lang,
+}: TypeWithdisplayProp & {
   content: edit_page["options"]["split_by_range_options"]["fixed_range_options"];
   lang: string;
 }) => {
   const [pages, setPages] = useState(1);
-  const { files } = useFileStore.getState();
+  const { files } = useFileStore();
   const dispatch = useDispatch();
   const selectedFile = useSelector(
     (state: { tool: ToolState }) => state.tool.selectedFile
@@ -39,7 +43,6 @@ export const FixedRange = ({ display, content, lang }: TypeWithdisplayProp & {
     }
   }, [selectedFile, pageCount, pages, rangeType]);
 
-
   return (
     <>
       <Row className={`${display ? "" : "d-none "}fixed-range`}>
@@ -55,13 +58,11 @@ export const FixedRange = ({ display, content, lang }: TypeWithdisplayProp & {
         </div>
         <div className="alert alert-info">
           <InformationCircleIcon className="w-5 h-5" />
-          {"ar" !== lang ?
-            content.alert_info
-            :
-            pages == 1 ?
-              "سيتم تقسيم هذا الملف إلى ملفات مكونة من صفحة واحدة،" :
-              "سيتم تقسيم هذا الملف إلى ملفات مكونة من،"
-          } {" "}
+          {"ar" !== lang
+            ? content.alert_info
+            : pages == 1
+            ? "سيتم تقسيم هذا الملف إلى ملفات مكونة من صفحة واحدة،"
+            : "سيتم تقسيم هذا الملف إلى ملفات مكونة من،"}{" "}
           <span
             style={
               pages > pageCount || pages <= 0 ? { color: "#fc271c" } : undefined
@@ -69,19 +70,16 @@ export const FixedRange = ({ display, content, lang }: TypeWithdisplayProp & {
           >
             {pages == 1 ? "" : isNaN(pages) ? "" : pages}
           </span>{" "}
-          {"ar" === lang && Math.round(
-            pages
-          ) == 1 ? "" : content.pages}{" "}
-          {"ar" === lang ? content.will_be_created : ""}{"  "}
+          {"ar" === lang && Math.round(pages) == 1 ? "" : content.pages}{" "}
+          {"ar" === lang ? content.will_be_created : ""}
+          {"  "}
           <strong>
             {pages > 0
-              ? Math.round(
-                (pageCount as number) / pages
-              )
+              ? Math.round((pageCount as number) / pages)
               : `${parseInt(pageCount.toString())}`}{" "}
-            {"ar" === lang ? "ملفات PDF" : "PDF"}{lang == "en" && (pageCount as number) / pages > 1 ? "s" : ""}
-          </strong>
-          {" "}
+            {"ar" === lang ? "ملفات PDF" : "PDF"}
+            {lang == "en" && (pageCount as number) / pages > 1 ? "s" : ""}
+          </strong>{" "}
           {"ar" === lang ? "" : content.will_be_created}
         </div>
       </Row>
