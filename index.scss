@@ -1,49 +1,13 @@
-@import "~cssmolecule";
-@import "~custom-bs";
+@import "pdfequips-navbar/scss/navbar";
 @import "~pretty-checkbox/src/scss/_variables.scss";
 @import "~pretty-checkbox/src/scss/_core.scss";
 @import "~pretty-checkbox/src/pretty-checkbox.scss";
-// @import "./scss/pretty-animations";
-// @include type;
-@include images;
-@include containers;
-@include grid;
-@include tables;
-@include forms;
-@include buttons;
-@include transitions;
-@include dropdown;
-@include button-group;
-@include nav;
-@include navbar;
-@include card;
-@include accordion;
-@include breadcrumb;
-@include pagination;
-@include badge;
-@include alert;
-@include progress;
-@include list-group;
-@include close;
-@include toasts;
-@include modal;
-@include tooltip;
-@include popover;
-@include carousel;
-@include spinners;
-@include offcanvas;
-@include placeholders;
-
-// Helpers
-@include helpers;
 
 %debug {
   outline: 1px solid;
 }
 
 @import "./scss/minxins";
-@include list-group;
-@include api;
 
 $pdf-color: #fc271c;
 $color-map: (
@@ -79,6 +43,7 @@ body {
   @include ar-wrapper {
     text-align: right !important;
   }
+  font-family: "Raleway", sans-serif;
 }
 
 .tools-page {
@@ -281,7 +246,6 @@ a.dropdown-item {
 @import "./scss/toolspage";
 @import "./scss/editpage";
 @import "./scss/display-file";
-@import "/components/NavBar/scss/navbar";
 
 footer {
   .copyright-row {
