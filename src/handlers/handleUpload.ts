@@ -12,6 +12,8 @@ import {
   setShowDownloadBtn,
 } from "../store";
 
+let prevState = "";
+
 export const handleUpload = async (
   e: React.FormEvent<HTMLFormElement>,
   downloadBtn: RefObject<HTMLAnchorElement>,
@@ -20,10 +22,10 @@ export const handleUpload = async (
   errorMessage: string,
   files: File[],
   errors: _,
-  filesLengthOnSubmit: number,
+  filesOnSubmit: string[],
   ranges: { from: number; to: number }[],
   selectedPages: string,
-  setFilesLengthOnSubmit: (value: number) => void,
+  setFilesOnSubmit: (value: string[]) => void,
   merge: boolean,
   layout: "extract" | "range"
 ) => {
@@ -31,8 +33,21 @@ export const handleUpload = async (
   dispatch(setIsSubmitted(true));
 
   if (!files) return;
-  // subscribe to the files state and get the previous files
-  if (filesLengthOnSubmit == files.length) {
+  // Extract file names from the File[] array
+  const fileNames = files.map((file) => file.name);
+
+  // Check if every file name in files is present in filesOnSubmit
+  const allFilesPresent = fileNames.every((fileName) =>
+    filesOnSubmit.includes(fileName)
+  );
+
+  if (allFilesPresent && files.length === filesOnSubmit.length && (
+    prevState === JSON.stringify({
+      selectedPages,
+      merge,
+      ranges
+    })
+  )) {
     dispatch(setShowDownloadBtn(true));
     dispatch(resetErrorMessage());
     return;
@@ -95,7 +110,12 @@ export const handleUpload = async (
       outputFileName,
       downloadBtn
     );
-    setFilesLengthOnSubmit(files.length);
+    setFilesOnSubmit(files.map(f => f.name));
+    prevState = JSON.stringify({
+      selectedPages,
+      merge,
+      ranges
+    })
 
     if (response.status !== 200) {
       throw new Error(`HTTP error! status: ${response.status}`);

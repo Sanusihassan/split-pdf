@@ -2,13 +2,17 @@ import { NextRouter } from "next/router";
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 import { AnyAction } from "@reduxjs/toolkit";
 import type { errors as _ } from "../content";
-import { setErrorCode, setErrorMessage, setPageCount, ToolState } from "./store";
+import {
+  setErrorCode,
+  setErrorMessage,
+  setPageCount,
+  ToolState,
+} from "./store";
 import { getDocument } from "pdfjs-dist";
 import { PDFDocumentProxy, PageViewport, RenderTask } from "pdfjs-dist";
-const pdfjsWorker = await import('pdfjs-dist/build/pdf.worker.entry');
+const pdfjsWorker = await import("pdfjs-dist/build/pdf.worker.entry");
 import { GlobalWorkerOptions } from "pdfjs-dist";
 GlobalWorkerOptions.workerSrc = pdfjsWorker;
-
 
 export function useLoadedImage(src: string): HTMLImageElement | null {
   const [loadedImage, setLoadedImage] = useState<HTMLImageElement | null>(null);
@@ -89,8 +93,9 @@ export const getFileDetailsTooltipContent = async (
         const pdf = await getDocument(url).promise;
 
         const pageCount = pdf.numPages || 0;
-        tooltipContent += ` - ${lang === "ar" && pageCount === 1 ? "" : pageCount + " "
-          }${pageCount > 1 ? pages : page}`;
+        tooltipContent += ` - ${
+          lang === "ar" && pageCount === 1 ? "" : pageCount + " "
+        }${pageCount > 1 ? pages : page}`;
         URL.revokeObjectURL(url);
         if (!file.size) {
           emptyPDFHandler(dispatch, errors);
@@ -142,12 +147,11 @@ export async function getNthPageAsImage(
       return canvas.toDataURL();
     } catch (error) {
       dispatch(setErrorMessage(errors.FILE_CORRUPT.message));
-      console.log(error);
+
       return DEFAULT_PDF_IMAGE; // Return the placeholder image URL when an error occurs
     }
   }
 }
-
 
 export const getPlaceHoderImageUrl = (extension: string) => {
   switch (extension) {
@@ -234,7 +238,7 @@ export const validateFiles = (
     ) {
       const errorMessage =
         errors.NOT_SUPPORTED_TYPE.types[
-        extension as keyof typeof errors.NOT_SUPPORTED_TYPE.types
+          extension as keyof typeof errors.NOT_SUPPORTED_TYPE.types
         ] || errors.NOT_SUPPORTED_TYPE.message;
       dispatch(setErrorMessage(errorMessage));
       return false;
@@ -244,7 +248,7 @@ export const validateFiles = (
       return false;
     } else if (!file.size) {
       // handle EMPTY_FILE error
-      console.log("file.size", file.size);
+
       dispatch(setErrorMessage(errors.EMPTY_FILE.message));
       dispatch(setErrorCode("ERR_EMPTY_FILE"));
       return false;
@@ -278,10 +282,15 @@ export async function calculatePages(file: PDFFile): Promise<number> {
   }
 }
 
-
-export const getPageCount = async (files: File[], stateSelectedFile: string, dispatch: Dispatch<AnyAction>) => {
+export const getPageCount = async (
+  files: File[],
+  stateSelectedFile: string,
+  dispatch: Dispatch<AnyAction>
+) => {
   if (files.length > 0) {
-    const selectedFile = files.filter(file => file.name === stateSelectedFile);
-    dispatch(setPageCount(await calculatePages(selectedFile[0] || files[0])))
+    const selectedFile = files.filter(
+      (file) => file.name === stateSelectedFile
+    );
+    dispatch(setPageCount(await calculatePages(selectedFile[0] || files[0])));
   }
 };

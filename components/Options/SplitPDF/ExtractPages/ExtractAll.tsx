@@ -28,7 +28,6 @@ export const ExtractAll = ({
     if (!pageCount) {
       getPageCount(files, selectedFile, dispatch);
     }
-    console.log(pageCount);
   }, [pageCount]);
   return (
     <div className={`${showExtractAll ? "" : "d-none"}`}>
