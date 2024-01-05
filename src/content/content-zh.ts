@@ -9,30 +9,11 @@ import type {
   landing_page as _landing_page,
 } from "../../content";
 
-export const landing_page: _landing_page = {
-  hero: {
-    title: "利用我们全面的 PDF 解决方案提高您的工作效率",
-    description:
-      "将您的 PDF 工作流程提升到新的水平 - 使用我们的综合工具包解锁新的可能性。",
-  },
-  features: {
-    title: "PDFEquips 如何简化您的 PDF 任务",
-    description:
-      "PDFEquips 为您提供了一系列功能，让您轻松处理 PDF 文件。无论您想要合并、分割、压缩、转换、编辑或保护您的 PDF，您都可以用几下点击完成。PDFEquips 快速、可靠、安全。",
-  },
-  why_us: {
-    title: "您可以信赖的 PDF 解决方案",
-    description:
-      "PDFEquips 是您管理 PDF 的终极网络应用程序。享受所有\
-    您需要高效处理数字文档的功能\
-    同时保证您的数据安全和隐私。",
-  },
-};
-
 export const tool: _tool = {
   Split_PDF: {
-    title: "拆分PDF",
-    description: "将一个PDF文件分割成多个文档",
+    title: "分割 PDF",
+    seoTitle: "在线分割 PDF - 将 PDF 分割成多个文档 | PDFEquips",
+    description: "将一个 PDF 文件分割成多个文档",
     color: "var(--orange)",
     type: ".pdf",
     to: "/split-pdf",

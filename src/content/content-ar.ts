@@ -9,32 +9,11 @@ import type {
   landing_page as _landing_page,
 } from "../../content";
 
-export const landing_page: _landing_page = {
-  hero: {
-    title: "عزز إنتاجيتك من خلال حل ال PDF الشامل الخاص بنا",
-    description: `ارتقِ بسير عمل PDF إلى المستوى التالي - أطلق العنان لإمكانيات جديدة باستخدام مجموعة الأدوات الشاملة الخاصة بنا.`,
-  },
-  features: {
-    title: "كيف يمكن لـ PDFEquips تبسيط مهام PDF الخاصة بك",
-    description:
-      "يوفر لك PDFEquips مجموعة من الميزات للتعامل مع ملفات PDF الخاصة بك بسهولة. سواء أكنت تريد دمج أو تقسيم أو ضغط أو تحويل أو تحرير أو حماية ملفات PDF الخاصة بك ، يمكنك القيام بكل ذلك ببضع نقرات فقط. PDFEquips سريع وموثوق وآمن.",
-  },
-  why_us: {
-    title: "الحل الأمثل لملفات PDF",
-    description:
-      "PDFEquips هو تطبيق الويب الأمثل لإدارة ملفات PDF بسهولة. استمتع بجميع\
-    الميزات التي تحتاجها للعمل بفعالية مع مستنداتك الرقمية\
-    مع الحفاظ على أمان وخصوصية بياناتك.",
-  },
-  // alert: {
-  //   title: "ما رأيك في مشاهدة PDFEquips باللغة الإنجليزية؟",
-  //   dontShowAgain: "لا تظهر هذا مرة أخرى",
-  // },
-};
-
 export const tool: _tool = {
   Split_PDF: {
     title: "تقسيم PDF",
+    seoTitle:
+      "تقسيم ملف PDF عبر الإنترنت - تقسيم PDF إلى عدة مستندات | PDFEquips",
     description: "تقسيم ملف PDF إلى عدة مستندات",
     color: "var(--orange)",
     type: ".pdf",

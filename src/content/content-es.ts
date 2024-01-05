@@ -9,55 +9,12 @@ import type {
   landing_page as _landing_page,
 } from "../../content";
 
-export const nav_content = {
-  brand: "Equips",
-  merge_pdf: "Combinar PDF",
-  split_pdf: "Dividir PDF",
-  compress_pdf: "Comprimir PDF",
-  convert_pdf: "Convertir PDF",
-  convert_to_pdf: "Convertir a PDF",
-  jpg_to_pdf: "JPG a PDF",
-  word_to_pdf: "Word a PDF",
-  powerpoint_to_pdf: "Powerpoint a PDF",
-  web_to_pdf: "Web a PDF",
-  markdown_to_pdf: "Markdown a PDF",
-  excel_to_pdf: "Excel a PDF",
-  html_to_pdf: "HTML a PDF",
-  convert_from_pdf: "Convertir desde PDF",
-  pdf_to_jpg: "PDF a JPG",
-  pdf_to_word: "PDF a Word",
-  pdf_to_powerpoint: "PDF a Powerpoint",
-  pdf_to_excel: "PDF a Excel",
-  pdf_to_pdf_a: "PDF a PDF/A",
-  pdf_to_text: "PDF a texto",
-  pdf_to_html: "PDF a HTML",
-  pdf_to_markdown: "PDF a Markdown",
-};
-
-export const landing_page: _landing_page = {
-  hero: {
-    title: "Mejore su productividad con nuestra solución integral de PDF",
-    description:
-      "Lleve sus flujos de trabajo PDF al siguiente nivel: desbloquee nuevas posibilidades con nuestro completo kit de herramientas.",
-  },
-  features: {
-    title: "Cómo PDFEquips puede simplificar tus tareas PDF",
-    description:
-      "PDFEquips te ofrece una variedad de funciones para manejar tus archivos PDF con facilidad. Ya sea que quieras fusionar, dividir, comprimir, convertir, editar o proteger tus PDF, puedes hacerlo todo con solo unos pocos clics. PDFEquips es rápido, confiable y seguro.",
-  },
-  why_us: {
-    title: "La solución PDF en la que puedes confiar",
-    description:
-      "PDFEquips es tu aplicación web definitiva para gestionar PDF con facilidad. Disfruta de todas\
-    las funciones que necesitas para trabajar eficazmente con tus documentos digitales\
-    mientras mantienes tus datos seguros y protegidos.",
-  },
-};
-
 export const tool: _tool = {
   Split_PDF: {
     title: "Dividir PDF",
-    description: "Divide un archivo PDF en varios documentos",
+    seoTitle:
+      "Dividir PDF en línea - Dividir PDF en Múltiples Documentos | PDFEquips",
+    description: "Divide un archivo PDF en múltiples documentos",
     color: "var(--orange)",
     type: ".pdf",
     to: "/split-pdf",

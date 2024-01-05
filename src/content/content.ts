@@ -1,29 +1,8 @@
-export const landing_page = {
-  hero: {
-    title: "Enhance Your Productivity with our Comprehensive PDF Solution",
-    // translate this to Spanish but ignore the PDFequips part
-    description: `Take Your PDF Workflows to the Next Level - Unlock New Possibilities with Our Comprehensive Toolkit.`,
-  },
-  features: {
-    title: "How PDFEquips Can Simplify Your PDF Tasks",
-    description:
-      "PDFEquips offers you a range of features to handle your PDF files with\
-    ease. Whether you want to merge, split, compress, convert, edit, or\
-    protect your PDFs, you can do it all with just a few clicks. PDFEquips\
-    is fast, reliable, and secure.",
-  },
-  why_us: {
-    title: "The PDF solution you can rely on",
-    description:
-      "PDFEquips is your ultimate web app for managing PDF with ease. Enjoy all\
-    the features you need to work effectively with your digital documents\
-    while keeping your data safe and secure.",
-  },
-};
-
 export const tool = {
   Split_PDF: {
     title: "Split PDF",
+    seoTitle:
+      "Split PDF Online - Divide PDF into Multiple Documents | PDFEquips",
     description: "Divide one PDF file into multiple documents",
     color: "var(--orange)",
     type: ".pdf",
