@@ -8,7 +8,7 @@ module.exports = withTM({
     includePaths: [path.join(__dirname, "node_modules")],
   },
   assetPrefix: isProd ? "/split-pdf" : "",
-  output: "standalone",
+  output: "export",
   reactStrictMode: false,
   webpack: (config, { isServer }) => {
     // Only run this configuration on the client side
