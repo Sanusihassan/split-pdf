@@ -1,7 +1,7 @@
 import type { errors } from "@/content";
 import { useFileStore } from "@/src/file-store";
 import { SelectedFiles } from "./SelectedFiles";
-import { ToolState, setSelectedFile } from "@/src/store";
+import { ToolState, setField } from "@/src/store";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -31,7 +31,7 @@ export const FileViewer = ({
   const dispatch = useDispatch();
   useEffect(() => {
     if (selectedFile == "" && files.length) {
-      dispatch(setSelectedFile(files[0]!.name));
+      dispatch(setField({ selectedFile: files[0]!.name }));
     }
   }, [selectedFile, files, stateLayout]);
   return (

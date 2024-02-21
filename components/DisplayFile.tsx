@@ -7,8 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   ToolState,
   resetErrorMessage,
-  setErrorMessage,
-  setPath,
+  setField
 } from "../src/store";
 import { useFileStore } from "../src/file-store";
 import { FileViewer } from "./DisplayFile/FileViwer";
@@ -29,37 +28,7 @@ const DisplayFile = ({
   errors,
   edit_page,
 }: propTypes) => {
-  // actual files
-  const { files } = useFileStore();
-  const statePath = useSelector(
-    (state: { tool: ToolState }) => state.tool.path
-  );
-  const stateFocus = useSelector(
-    (state: { tool: ToolState }) => state.tool.focus
-  );
-  const stateClick = useSelector(
-    (state: { tool: ToolState }) => state.tool.click
-  );
-  const dispatch = useDispatch();
-  // router
-  const router = useRouter();
-  let path = router.asPath.replace(/^\/[a-z]{2}\//, "").replace(/^\//, "");
   useEffect(() => {
-    if (statePath == "" || statePath !== path) {
-      dispatch(setPath(path));
-    }
-    const isValid = validateFiles(files, extension, errors, dispatch, {
-      path: statePath,
-      focus: stateFocus,
-      click: stateClick,
-    });
-    if (isValid) {
-      dispatch(resetErrorMessage());
-    }
-    const max_files = 5;
-    if (statePath && files.length > max_files) {
-      dispatch(setErrorMessage(errors.MAX_FILES_EXCEEDED.message));
-    }
     let isSubscribed = true;
     return () => {
       isSubscribed = false;

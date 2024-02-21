@@ -7,7 +7,7 @@ import Select, {
   StylesConfig,
 } from "react-select";
 import { useDispatch, useSelector } from "react-redux";
-import { ToolState, setSelectedFile } from "@/src/store";
+import { ToolState, setField } from "@/src/store";
 const THEME_COLOR = "#fd7e14";
 const customStyles: StylesConfig<{ value: string; label: string }, false> = {
   option: (
@@ -46,7 +46,7 @@ export const SelectedFiles = ({
       value: file.name,
     }));
     if (selectedFile == "" && selecteFiles.length > 0) {
-      dispatch(setSelectedFile(selecteFiles[0].value));
+      dispatch(setField({ selectedFile: selecteFiles[0].value }));
     }
 
     setSelectedFiles(newSelectedFiles);
@@ -61,7 +61,7 @@ export const SelectedFiles = ({
           styles={customStyles}
           onChange={(v) => {
             if (v) {
-              dispatch(setSelectedFile(v.value));
+              dispatch(setField({ selectedFile: v.value }));
             }
           }}
           placeholder={select_files_placeholder}

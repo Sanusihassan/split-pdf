@@ -52,8 +52,8 @@
     }
 
     .gear-button {
-      @include extend("position-absolute");
-      top: 10%;
+      @include extend("position-fixed");
+      top: 80px;
       left: 2.535px;
       z-index: 15;
       display: none;
@@ -136,7 +136,7 @@
       "body"
       "body"
       "body"
-      "footer"
+      "body"
       "footer";
     display: flex;
     min-height: 85vh;
@@ -154,10 +154,18 @@
     }
 
     .grid-footer {
-      grid-area: footer;
-      grid-column: 1 / -1;
-
       @include extend("d-flex justify-content-center align-items-center");
+    }
+
+    & + .show-onsmall {
+      @include extend("d-none");
+      width: 100%;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      @media (max-width: 600px) {
+        display: block !important;
+      }
     }
 
     :not([lang="ar"]) & {
@@ -176,6 +184,9 @@
     @media (max-width: 600px) {
       position: absolute;
       width: 100%;
+      .hide-onsmall {
+        display: none;
+      }
 
       [dir="rtl"] &,
       [lang="ar"] & {

@@ -3,7 +3,7 @@ import { useSelectedOption } from "../../../src/hooks/handleOptionClick";
 import { CustomRange } from "./SplitByRange/CustomRange";
 import { FixedRange } from "./SplitByRange/FixedRange";
 import { useDispatch } from "react-redux";
-import { setRangeType } from "@/src/store";
+import { setField } from "@/src/store";
 import { edit_page } from "@/content";
 
 export const SplitByRange = ({
@@ -30,7 +30,7 @@ export const SplitByRange = ({
             className={`btn ${index === 0 ? "active" : ""}`}
             onClick={() => {
               handleOptionClick(0);
-              dispatch(setRangeType("custom"));
+              dispatch(setField({ rangeType: "custom" }));
             }}
           >
             {content.custom_range}
@@ -39,7 +39,7 @@ export const SplitByRange = ({
             className={`btn ${index === 1 ? "active" : ""}`}
             onClick={() => {
               handleOptionClick(1);
-              dispatch(setRangeType("fixed"));
+              dispatch(setField({ rangeType: "fixed" }));
             }}
           >
             {content.fixed_range}

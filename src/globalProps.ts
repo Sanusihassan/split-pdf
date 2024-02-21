@@ -24,6 +24,7 @@ export type ToolData = {
     description: string;
     color: string;
     type: string;
+    to: string;
 };
 export interface FileCardProps {
     file: File;

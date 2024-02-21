@@ -6,7 +6,7 @@ import { ExtractPages } from "./SplitPDF/ExtractPages";
 import RangeIcon from "../icons/RangeIcon";
 import ExtractPagesIcon from "../icons/ExtractPagesIcon";
 import { useDispatch, useSelector } from "react-redux";
-import { ToolState, setLayout } from "@/src/store";
+import { ToolState, setField } from "@/src/store";
 import { CheckCircleIcon } from "@heroicons/react/solid";
 import type { edit_page } from "@/content";
 
@@ -30,7 +30,7 @@ function SplitPDF({ options, lang }: {
             className={`option ${selectedOption === 0 ? "active" : ""}`}
             onClick={() => {
               handleOptionClick(0);
-              dispatch(setLayout("range"));
+              dispatch(setField({ layout: "range" }));
             }}
           >
             <RangeIcon className="option-icon" />
@@ -43,7 +43,7 @@ function SplitPDF({ options, lang }: {
             className={`option ${selectedOption === 1 ? "active" : ""}`}
             onClick={() => {
               handleOptionClick(1);
-              dispatch(setLayout("extract"));
+              dispatch(setField({ layout: "extract" }));
             }}
           >
             <ExtractPagesIcon className="option-icon" />
