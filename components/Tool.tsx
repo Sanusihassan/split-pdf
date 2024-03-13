@@ -13,6 +13,7 @@ import { useFileStore } from "../src/file-store";
 import { FileInputForm } from "./Tool/FileInputForm";
 import DownloadFile from "./DownloadFile";
 import { ToolData } from "@/src/globalProps";
+import { validateFiles } from "@/src/utils";
 
 type ToolProps = {
   data: ToolData;
@@ -57,8 +58,11 @@ const Tool: React.FC<ToolProps> = ({
   // const [endpoint, setEndpoint] = useState("");
   // drag and drop input handling
   const onDrop = useCallback((acceptedFiles: File[]) => {
-    setFiles(acceptedFiles);
-    handleHideTool();
+    const isValid = validateFiles(acceptedFiles, data.type, errors, dispatch, { path: data.to });
+    if (isValid) {
+      setFiles(acceptedFiles);
+      handleHideTool();
+    }
   }, []);
   const { getRootProps, isDragActive } = useDropzone({ onDrop });
 
