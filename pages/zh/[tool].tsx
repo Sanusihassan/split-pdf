@@ -11,6 +11,7 @@ import {
 } from "../../src/content/content-zh";
 import { errors } from "../../src/content/content-zh";
 import { SplitPDFHOWTO_zh } from "@/src/how-to";
+import { OpenGraph } from "pdfequips-open-graph/OpenGraph";
 
 export async function getStaticPaths() {
   const paths = Object.keys(routes).map((key) => ({
@@ -59,7 +60,17 @@ export default ({ item, lang }: { item: _tool["Split_PDF"]; lang: string }) => {
           }}
         />
         <meta name="description" content={item.description} />
-        <link rel="icon" href="/logo.png" />
+        <link rel="icon" type="image/svg+xml" href="/images/icons/logo.svg" />
+        <OpenGraph
+          ogUrl={`https://www.pdfequips.com/zh${item.to}`}
+          ogDescription={item.description}
+          ogImageWidth="1200"
+          ogImageHeight="630"
+          ogLocale="zh_CN"
+          ogSiteName="PDFEquips"
+          ogTitle={item.seoTitle}
+          ogImage={`https://www.pdfequips.com/images/zh${item.to}.png`}
+        />
         <link
           rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
