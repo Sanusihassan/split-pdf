@@ -11,14 +11,30 @@ import type {
 
 export const tool: _tool = {
   Split_PDF: {
-    title: "分割 PDF",
-    seoTitle: "在线分割 PDF - 将 PDF 分割成多个文档 | PDFEquips",
-    description: "将一个 PDF 文件分割成多个文档",
+    title: "拆分PDF",
+    seoTitle: "在线拆分PDF - 安全地将PDF拆分为多个文档",
+    description: "将一个PDF文件拆分为多个文档",
     color: "var(--orange)",
     type: ".pdf",
     to: "/split-pdf",
-  },
+    keywords: "拆分PDF, 拆分PDF文件, PDF拆分器, 提取PDF页面, 在线PDF工具",
+    features: [
+      {
+        title: "精确的页面拆分",
+        description: "将您的PDF拆分为单个页面或页面范围，同时保持原始文档的完整性。"
+      },
+      {
+        title: "快速高效",
+        description: "体验快速处理时间，使您可以在几秒钟内拆分您的PDF文档。"
+      },
+      {
+        title: "安全和隐私",
+        description: "我们的工具确保您的文件得到安全处理，在拆分过程中保护您的数据。"
+      }
+    ]
+  }
 };
+
 
 export const downloadFile: _downloadFile = {
   titles: {
@@ -87,6 +103,13 @@ export const tools: _tools = {
   or_drop: "或将文件拖放到此处",
   files: "文件",
   drop_files: "在此处拖放文件",
+};
+
+export const footer: _footer = {
+  brand: "PDFEquips",
+  terms: "条款",
+  conditions: "条件",
+  privacy_policy: "隐私政策",
 };
 
 export const errors: _errors = {

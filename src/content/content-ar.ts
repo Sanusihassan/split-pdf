@@ -12,13 +12,27 @@ import type {
 export const tool: _tool = {
   Split_PDF: {
     title: "تقسيم PDF",
-    seoTitle:
-      "تقسيم ملف PDF عبر الإنترنت - تقسيم PDF إلى عدة مستندات | PDFEquips",
-    description: "تقسيم ملف PDF إلى عدة مستندات",
+    seoTitle: "تقسيم PDF عبر الإنترنت - تقسيم ملفات PDF إلى مستندات متعددة بأمان",
+    description: "تقسيم ملف PDF واحد إلى مستندات متعددة",
     color: "var(--orange)",
     type: ".pdf",
     to: "/split-pdf",
-  },
+    keywords: "تقسيم PDF، تقسيم ملف PDF، مقسم PDF، استخراج صفحات PDF، أداة PDF عبر الإنترنت",
+    features: [
+      {
+        title: "تقسيم الصفحات بدقة",
+        description: "تقسيم ملف PDF إلى صفحات فردية أو نطاق صفحات، مع الحفاظ على سلامة المستند الأصلي."
+      },
+      {
+        title: "سريع وفعال",
+        description: "استمتع بأوقات معالجة سريعة، مما يتيح لك تقسيم مستندات PDF في ثوانٍ فقط."
+      },
+      {
+        title: "آمن وخاص",
+        description: "تضمن أداتنا التعامل مع ملفاتك بأمان، وحماية بياناتك أثناء عملية التقسيم."
+      }
+    ]
+  }
 };
 
 export const tools: _tools = {
@@ -89,6 +103,14 @@ export const edit_page: _edit_page = {
   select_files_placeholder: "اختر الملفات",
   pages: "صفحة",
   page: "صفحة واحدة",
+};
+
+
+export const footer: _footer = {
+  brand: "PDFEquips",
+  terms: "الشروط",
+  conditions: "والأحكام",
+  privacy_policy: "سياسة الخصوصية",
 };
 
 export const errors: _errors = {

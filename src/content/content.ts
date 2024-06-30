@@ -1,14 +1,29 @@
 export const tool = {
   Split_PDF: {
     title: "Split PDF",
-    seoTitle:
-      "Split PDF Online - Divide PDF into Multiple Documents | PDFEquips",
+    seoTitle: "Split PDF Online - Divide PDF into Multiple Documents Securely",
     description: "Divide one PDF file into multiple documents",
     color: "var(--orange)",
     type: ".pdf",
     to: "/split-pdf",
-  },
+    keywords: "split PDF, divide PDF, PDF splitter, extract PDF pages, online PDF tool",
+    features: [
+      {
+        title: "Accurate Page Splitting",
+        description: "Easily split your PDF into individual pages or a range of pages, maintaining the integrity of your original document."
+      },
+      {
+        title: "Fast and Efficient",
+        description: "Experience quick processing times, allowing you to split your PDF documents in just seconds."
+      },
+      {
+        title: "Secure and Private",
+        description: "Our tool ensures your files are handled securely, protecting your data during the splitting process."
+      }
+    ]
+  }
 };
+
 
 export const edit_page = {
   edit_page_titles: {
@@ -81,6 +96,13 @@ export const downloadFile = {
     "split-pdf": "Back To Split PDF",
   },
 };
+
+export const footer = {
+  brand: "PDFEquips",
+  terms: "terms",
+  conditions: "conditions",
+  privacy_policy: "privacy policy",
+}
 
 export const errors = {
   EMPTY_FILE: {
