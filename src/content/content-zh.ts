@@ -11,29 +11,30 @@ import type {
 
 export const tool: _tool = {
   Split_PDF: {
-    title: "拆分PDF",
-    seoTitle: "在线拆分PDF - 安全地将PDF拆分为多个文档",
-    description: "将一个PDF文件拆分为多个文档",
+    title: "拆分 PDF",
+    seoTitle: "在线拆分 PDF 为多个文档，安全可靠",
+    description: "将一个 PDF 文件拆分为多个文档。",
     color: "var(--orange)",
     type: ".pdf",
     to: "/split-pdf",
-    keywords: "拆分PDF, 拆分PDF文件, PDF拆分器, 提取PDF页面, 在线PDF工具",
+    keywords: "拆分 PDF, 分割 PDF, PDF 拆分器, 提取 PDF 页面, 在线 PDF 工具",
     features: [
       {
         title: "精确的页面拆分",
-        description: "将您的PDF拆分为单个页面或页面范围，同时保持原始文档的完整性。"
+        description: "轻松将 PDF 拆分为单个页面或页面范围，同时保持原始文档的完整性。"
       },
       {
         title: "快速高效",
-        description: "体验快速处理时间，使您可以在几秒钟内拆分您的PDF文档。"
+        description: "体验快速处理时间，使您可以在几秒钟内拆分 PDF 文档。"
       },
       {
-        title: "安全和隐私",
-        description: "我们的工具确保您的文件得到安全处理，在拆分过程中保护您的数据。"
+        title: "安全私密",
+        description: "我们的工具确保在拆分过程中安全处理您的文件，保护您的数据。"
       }
     ]
   }
 };
+
 
 
 export const downloadFile: _downloadFile = {

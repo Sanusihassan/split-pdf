@@ -1,8 +1,8 @@
 export const tool = {
   Split_PDF: {
     title: "Split PDF",
-    seoTitle: "Split PDF Online - Divide PDF into Multiple Documents Securely",
-    description: "Divide one PDF file into multiple documents",
+    seoTitle: "Divide PDF into Multiple Documents Online Securely",
+    description: "Divide one PDF file into multiple documents.",
     color: "var(--orange)",
     type: ".pdf",
     to: "/split-pdf",
@@ -23,6 +23,7 @@ export const tool = {
     ]
   }
 };
+
 
 
 export const edit_page = {

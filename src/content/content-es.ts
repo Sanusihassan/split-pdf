@@ -12,28 +12,29 @@ import type {
 export const tool: _tool = {
   Split_PDF: {
     title: "Dividir PDF",
-    seoTitle: "Dividir PDF en línea - Divide PDF en múltiples documentos de manera segura",
-    description: "Divide un archivo PDF en múltiples documentos",
+    seoTitle: "Divide PDF en Múltiples Documentos en Línea de Forma Segura",
+    description: "Divide un archivo PDF en múltiples documentos.",
     color: "var(--orange)",
     type: ".pdf",
     to: "/split-pdf",
-    keywords: "dividir PDF, dividir archivo PDF, divisor de PDF, extraer páginas de PDF, herramienta PDF en línea",
+    keywords: "dividir PDF, dividir archivo PDF, separador de PDF, extraer páginas de PDF, herramienta de PDF en línea",
     features: [
       {
-        title: "División precisa de páginas",
-        description: "Divide tu PDF en páginas individuales o un rango de páginas, manteniendo la integridad de tu documento original."
+        title: "División Precisa de Páginas",
+        description: "Divide fácilmente tu PDF en páginas individuales o un rango de páginas, manteniendo la integridad del documento original."
       },
       {
-        title: "Rápido y eficiente",
-        description: "Experimenta tiempos de procesamiento rápidos, permitiéndote dividir tus documentos PDF en solo segundos."
+        title: "Rápido y Eficiente",
+        description: "Experimenta tiempos de procesamiento rápidos, lo que te permite dividir tus documentos PDF en solo segundos."
       },
       {
-        title: "Seguro y privado",
-        description: "Nuestra herramienta asegura que tus archivos se manejen de manera segura, protegiendo tus datos durante el proceso de división."
+        title: "Seguro y Privado",
+        description: "Nuestra herramienta garantiza que tus archivos se manejen de manera segura, protegiendo tus datos durante el proceso de división."
       }
     ]
   }
 };
+
 
 
 export const edit_page: _edit_page = {
