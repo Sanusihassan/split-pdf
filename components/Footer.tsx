@@ -60,6 +60,9 @@ export const Footer = ({ footer, title }: { footer: footer, title: string }) => 
                                 <a href="/privacy-policy" className="text-muted">
                                     {footer.privacy_policy}
                                 </a>
+                                <a href="/terms" className="text-muted">
+                                    {footer.terms}
+                                </a>
                             </li>
                         </ul>
                     </div>
