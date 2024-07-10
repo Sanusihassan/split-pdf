@@ -59,7 +59,7 @@ export const Footer = ({ footer, title }: { footer: footer, title: string }) => 
                             <li className="privacy-policy">
                                 <a href="/privacy-policy" className="text-muted">
                                     {footer.privacy_policy}
-                                </a>
+                                </a>{" "}
                                 <a href="/terms" className="text-muted">
                                     {footer.terms}
                                 </a>
