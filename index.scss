@@ -43,7 +43,9 @@ body {
   @include ar-wrapper {
     text-align: right !important;
   }
-  font-family: "Raleway", sans-serif;
+
+  font-family: "Raleway",
+  sans-serif;
 }
 
 .tools-page {
@@ -196,6 +198,7 @@ a.dropdown-item {
 }
 
 .column {
+
   &:first-child,
   &:nth-child(5) {
     margin-bottom: 15px;
@@ -215,6 +218,7 @@ a.dropdown-item {
 }
 
 .dropdown-item {
+
   &.active,
   &:active {
     background-color: initial !important;
@@ -229,6 +233,7 @@ a.dropdown-item {
 // error element styles
 .error-element {
   .hide-on-rtl {
+
     [dir="rtl"] &,
     [lang="ar"] & {
       display: none;
@@ -236,6 +241,7 @@ a.dropdown-item {
   }
 
   .hide-on-rtl {
+
     [dir="ltr"] &,
     :not([lang="ar"]) & {
       display: none;
@@ -282,7 +288,7 @@ footer {
 
 
     .copyright-row {
-      @include extend("col-8 d-flex p0 justify-content-between");
+      @include extend("col-12 col-md-8 d-flex p0 justify-content-between");
 
       >* {
         @include extend("m0 p0");
