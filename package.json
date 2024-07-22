@@ -18,7 +18,7 @@
     "lodash-move": "^1.1.1",
     "lodash.isequal": "^4.5.0",
     "next": "^13.5.3",
-    "pdfequips-navbar": "^3.0.47",
+    "pdfequips-navbar": "^3.0.49",
     "pdfequips-open-graph": "^1.0.0",
     "pdfjs-dist": "^3.11.174",
     "pretty-checkbox": "^3.0.3",
