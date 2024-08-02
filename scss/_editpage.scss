@@ -45,8 +45,7 @@
       @include extend("w-100 placeholder-glow h-100 position-absolute");
 
       .inner-loader {
-        @include extend(
-          "placeholder col-12 fh position-absolute w-100 d-flex justify-content-center align-items-center"
+        @include extend("placeholder col-12 fh position-absolute w-100 d-flex justify-content-center align-items-center"
         );
       }
     }
@@ -101,8 +100,7 @@
     .icon-container {
       font-size: 1.5em;
       display: flex;
-      @include extend(
-        "w-100 h-100 justify-content-center align-items-center position-absolute rounded-circle"
+      @include extend("w-100 h-100 justify-content-center align-items-center position-absolute rounded-circle"
       );
       top: 0;
       left: 0;
@@ -125,19 +123,18 @@
     }
 
     grid-template-columns: repeat(12, 1fr);
-    grid-template-areas:
-      "header"
-      "body"
-      "body"
-      "body"
-      "body"
-      "body"
-      "body"
-      "body"
-      "body"
-      "body"
-      "body"
-      "footer";
+    grid-template-areas: "header"
+    "body"
+    "body"
+    "body"
+    "body"
+    "body"
+    "body"
+    "body"
+    "body"
+    "body"
+    "body"
+    "footer";
     display: flex;
     min-height: 85vh;
     flex-direction: column;
@@ -157,12 +154,14 @@
       @include extend("d-flex justify-content-center align-items-center");
     }
 
-    & + .show-onsmall {
+    &+.show-onsmall {
       @include extend("d-none");
       width: 100%;
       position: fixed;
+      z-index: 1;
       bottom: 0;
       left: 0;
+
       @media (max-width: 600px) {
         display: block !important;
       }
@@ -184,6 +183,7 @@
     @media (max-width: 600px) {
       position: absolute;
       width: 100%;
+
       .hide-onsmall {
         display: none;
       }
@@ -246,7 +246,9 @@
       $r: red($color);
       $g: green($color);
       $b: blue($color);
-      --pulse-animation-color: #{$r}, #{$g}, #{$b};
+      --pulse-animation-color: #{$r},
+      #{$g},
+      #{$b};
       animation: pdfequips-pulse 2s infinite;
     }
   }
