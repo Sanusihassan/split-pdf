@@ -25,7 +25,7 @@ const MyDocument = ({ lang }: { lang: string }) => {
         />
         {/* <script
           async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7391414384206267"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7801483217621867"
           crossOrigin="anonymous"
         ></script> */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
