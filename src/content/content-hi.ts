@@ -161,4 +161,8 @@ export const errors: _errors = {
       "नेटवर्क में त्रुटि हो गई है। कृपया अपना इंटरनेट कनेक्शन जांचें और पुनः प्रयास करें।",
     code: "ERR_NETWORK",
   },
+  ERR_ONLY_ONE_PAGE: {
+    message: "आपकी PDF में केवल एक पृष्ठ है और इसे विभाजित नहीं किया जा सकता।",
+    code: "ERR_ONLY_ONE_PAGE",
+  },
 };

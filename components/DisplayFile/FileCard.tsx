@@ -61,7 +61,7 @@ const FileCard = React.memo(
           if (isSubscribed) {
             if (layout == "extract") {
               for (let i = 1; i <= pageCount; i += 1) {
-                let url = await getNthPageAsImage(file, dispatch, errors, i);
+                let url = await getNthPageAsImage(file, dispatch, errors, i, pageCount);
                 setImageUrls((prevUrls) => [...prevUrls, url]);
               }
             } else {
@@ -70,7 +70,8 @@ const FileCard = React.memo(
                   file,
                   dispatch,
                   errors,
-                  from
+                  from,
+                  pageCount
                 );
                 setImageUrls((prevUrls) => [...prevUrls, startUrl]);
               } else {
@@ -78,13 +79,15 @@ const FileCard = React.memo(
                   file,
                   dispatch,
                   errors,
-                  from ? from : 1
+                  from ? from : 1,
+                  pageCount
                 );
                 let endUrl = await getNthPageAsImage(
                   file,
                   dispatch,
                   errors,
-                  to ? to : pageCount > 0 ? pageCount : 2
+                  to ? to : pageCount > 0 ? pageCount : 2,
+                  pageCount
                 );
                 setImageUrls((prevUrls) => [...prevUrls, startUrl]);
                 setImageUrls((prevUrls) => [...prevUrls, endUrl]);

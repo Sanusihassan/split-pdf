@@ -67,7 +67,7 @@ export const handleUpload = async (
   let url;
   // @ts-ignore
   if (process.env.NODE_ENV === "development") {
-    url = `http://149.100.159.150:5000/api/${path}`;
+    url = `https://www.pdfequips.com/api/${path}`;
   } else {
     url = `/api/${path}`;
   }

@@ -153,4 +153,8 @@ export const errors: _errors = {
       "حدث خطأ في الشبكة. يرجى التحقق من اتصالك بالإنترنت وحاول مرة أخرى.",
     code: "ERR_NETWORK",
   },
+  ERR_ONLY_ONE_PAGE: {
+    message: "ملف PDF يحتوي على صفحة واحدة فقط ولا يمكن تقسيمه.",
+    code: "ERR_ONLY_ONE_PAGE",
+  },
 };

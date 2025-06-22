@@ -110,7 +110,8 @@ export async function getNthPageAsImage(
   file: File,
   dispatch: Dispatch<AnyAction>,
   errors: _,
-  pageNumber: number
+  pageNumber: number,
+  pageCount: number
 ): Promise<string> {
   const fileUrl = URL.createObjectURL(file);
   if (!file.size) {
@@ -141,8 +142,12 @@ export async function getNthPageAsImage(
 
       return canvas.toDataURL();
     } catch (error) {
+      console.log(pageCount);
+      if (pageCount === 1 || pageCount === 0) {
+        dispatch(setField({ errorMessage: errors.ERR_ONLY_ONE_PAGE.message }));
+        return DEFAULT_PDF_IMAGE; // Return the placeholder image URL when an error occurs
+      }
       dispatch(setField({ errorMessage: errors.FILE_CORRUPT.message }));
-
       return DEFAULT_PDF_IMAGE; // Return the placeholder image URL when an error occurs
     }
   }

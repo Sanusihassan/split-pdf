@@ -150,4 +150,8 @@ export const errors: _errors = {
     message: "网络错误，请检查您的互联网连接并重试。",
     code: "ERR_NETWORK",
   },
+  ERR_ONLY_ONE_PAGE: {
+    message: "您的 PDF 仅有一页，无法进行拆分。",
+    code: "ERR_ONLY_ONE_PAGE",
+  },
 };

@@ -162,4 +162,8 @@ export const errors: _errors = {
       "Ha ocurrido un error en la red. Por favor, comprueba tu conexión a internet e inténtalo de nuevo.",
     code: "ERR_NETWORK",
   },
+  ERR_ONLY_ONE_PAGE: {
+    message: "Tu PDF tiene solo una página y no se puede dividir.",
+    code: "ERR_ONLY_ONE_PAGE",
+  },
 };

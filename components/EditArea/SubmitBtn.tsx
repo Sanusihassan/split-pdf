@@ -27,20 +27,11 @@ export function SubmitBtn({
   return (
     <button
       className={`submit-btn btn btn-lg text-white position-relative overflow-hidden ${k} grid-footer`}
-      onClick={async () => {
+      onClick={() => {
         dispatch(setField({ isSubmitted: true }));
-        dispatch(setField({ showOptions: false }));
-        const status = await fetchSubscriptionStatus();
-        if (!status && !canUseSiteToday(10)) {
-          if (!canUseSiteToday(1)) {
-            if (typeof window !== "undefined") {
-              window.open(`${(lang === "" ? "" : "/") + lang}/pricing`, "_blank");
-            }
-          } else {
-            if (submitBtn) {
-              submitBtn?.current?.click();
-            }
-          }
+        dispatch(setField({ showDownloadBtn: false }));
+        if (submitBtn) {
+          submitBtn?.current?.click();
         }
       }}
       disabled={errorMessage.length > 0 || selectedPages.length === 0}
