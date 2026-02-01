@@ -1,49 +1,27 @@
 import type { adBlockerContentType } from "./content";
 import type { edit_page as _edit_page, tool as _tool, tools as _tools, downloadFile as _downloadFile, errors as _ } from "../content";
+
 export const tool: _tool = {
-    Lock_PDF: {
-        title: "Verrouiller PDF",
-        seoTitle: "Protéger PDF avec Mot de Passe - Sécuriser votre Fichier PDF en Ligne",
-        description: "Sécurisez votre fichier PDF avec un mot de passe pour empêcher tout accès non autorisé.",
-        keywords: "protéger PDF avec mot de passe, sécuriser fichier PDF, verrouiller PDF en ligne, crypter PDF, protéger document PDF, outil de sécurité PDF",
-        color: "#2980b9",
+    Split_PDF: {
+        title: "Diviser PDF",
+        seoTitle: "Divisez PDF en Plusieurs Documents en Ligne en Toute Sécurité",
+        description: "Divisez un fichier PDF en plusieurs documents.",
+        color: "var(--orange)",
         type: ".pdf",
-        to: "/lock-pdf",
+        to: "/split-pdf",
+        keywords: "diviser PDF, diviser fichier PDF, séparateur de PDF, extraire des pages PDF, outil PDF en ligne",
         features: [
             {
-                title: "Facile à Utiliser",
-                description: "Verrouillez rapidement vos fichiers PDF avec une interface simple."
+                title: "Division Précise des Pages",
+                description: "Divisez facilement votre PDF en pages individuelles ou une plage de pages, tout en maintenant l'intégrité de votre document original."
             },
             {
-                title: "Cryptage Fort",
-                description: "Appliquez un cryptage fort avec un mot de passe pour protéger vos documents."
+                title: "Rapide et Efficace",
+                description: "Profitez de temps de traitement rapides, vous permettant de diviser vos documents PDF en quelques secondes."
             },
             {
-                title: "Confidentialité Assurée",
-                description: "Vos fichiers sont cryptés et supprimés de nos serveurs après traitement."
-            }
-        ]
-    },
-    Unlock_PDF: {
-        title: "Déverrouiller PDF",
-        seoTitle: "Supprimer le Mot de Passe PDF - Déverrouiller votre Fichier PDF en Ligne",
-        description: "Supprimez facilement la protection par mot de passe de votre fichier PDF avec notre outil convivial.",
-        keywords: "supprimer le mot de passe PDF, déverrouiller PDF en ligne, décrypter PDF, accéder à PDF sécurisé, outil de suppression de mot de passe PDF, déverrouiller document PDF",
-        color: "#3498db",
-        type: ".pdf",
-        to: "/unlock-pdf",
-        features: [
-            {
-                title: "Facile à Utiliser",
-                description: "Déverrouillez les fichiers PDF facilement avec un processus simple."
-            },
-            {
-                title: "Décryptage Rapide",
-                description: "Supprimez les mots de passe PDF rapidement et efficacement."
-            },
-            {
-                title: "Traitement Sécurisé",
-                description: "Vos fichiers sont traités en toute sécurité et supprimés de nos serveurs après déverrouillage."
+                title: "Sécurisé et Privé",
+                description: "Notre outil garantit que vos fichiers sont traités en toute sécurité, protégeant vos données pendant le processus de division."
             }
         ]
     }
@@ -51,29 +29,52 @@ export const tool: _tool = {
 
 export const edit_page: _edit_page = {
     edit_page_titles: {
-        lock_pdf: "Verrouiller PDF et protéger PDF",
-        unlock_pdf: "Déverrouiller le PDF"
+        split_pdf: "Options de séparation de PDF"
     },
     loader_text: "Veuillez patienter...",
     add_more_button: "Ajouter plus de fichiers",
-    action_buttons: {
-        lock_pdf: "Verrouiller PDF",
-        unlock_pdf: "Déverrouiller le PDF"
+    options: {
+        split_by_range: "Diviser par plage",
+        extract_pages: "Extraire les pages",
+        split_by_range_options: {
+            range_mode: "Mode de plage :",
+            custom_range: "plage personnalisée",
+            fixed_range: "plage fixe",
+            custom_range_options: {
+                range: "Plage",
+                from: "De",
+                to: "À",
+                add_range: "Ajouter une plage",
+                merge: "Fusionner toutes les plages en un fichier PDF."
+            },
+            fixed_range_options: {
+                split_into: "divisé en une plage de pages de :",
+                alert_info: "Ce PDF sera divisé en fichiers de",
+                pages: "pages",
+                will_be_created: "sera créé(s)."
+            }
+        },
+        extract_pages_options: {
+            extract_mode: "Mode d'extraction :",
+            extract_all: "Extraire toutes les pages",
+            select_pages: "Sélectionner les pages",
+            selection_alert_content: {
+                selection_alert: "Chaque page sélectionnée de ce fichier PDF sera convertie en un fichier PDF.",
+                will_be_created: "sera créé."
+            },
+            select_pages_content: {
+                pages_to_extract: "Pages à extraire :",
+                merge: "Fusionner les PDF extraits en un seul fichier PDF.",
+                page_selection_example: "exemple : 2,8-32"
+            }
+        }
     },
-    lock_button_title: "Veuillez confirmer le mot de passe en le saisissant deux fois.",
-    unlock_button_title: "Saisissez le mot de passe pour chaque fichier protégé",
+    action_buttons: {
+        split_pdf: "Diviser PDF"
+    },
+    select_files_placeholder: "Sélectionner des fichiers",
     pages: "pages",
     page: "page",
-    lock_pdf: {
-        title: "Définissez un mot de passe pour verrouiller votre fichier PDF",
-        password: "Mot de passe",
-        repeatPassword: "Répéter le mot de passe",
-        no_match: "Les mots de passe ne correspondent pas."
-    },
-    unlock_pdf: {
-        title: "Entrez le mot de passe pour les fichiers qui le nécessitent",
-        password_for: "mot de passe pour"
-    },
     filenameOptions: {
         label: "Nom du fichier de sortie (facultatif)",
         placeholder: "Entrez le nom du fichier",
@@ -84,37 +85,29 @@ export const edit_page: _edit_page = {
             cta: "Mettre à niveau maintenant",
         },
     },
-    languageSelectContent: {
-        placeholder: "Choisir les langues (maximum 3)",
-        warning: "Ce document est numérisé. Veuillez sélectionner sa langue pour garantir des résultats précis.",
-        ocr_warning: "Document numérisé détecté. Pour de meilleurs résultats, utilisez notre outil OCR PDF avec détection avancée de langue et précision supérieure. Vous pouvez également définir la langue ici pour un traitement de base.",
+    fileCard: {
+        page: "page",
+        pages: "pages",
+        remove_file: "Supprimer le fichier",
+        loading: "Chargement...",
     },
 };
 
 export const downloadFile: _downloadFile = {
     titles: {
-        "lock-pdf": [
-            "Les fichiers PDF ont été verrouillés!",
-            "Le fichier PDF a été verrouillé!"
-        ],
-        "unlock-pdf": [
-            "Les fichiers PDF ont été débloqués !",
-            "Le fichier PDF a été débloqué !"
+        "split-pdf": [
+            "Fichier PDF divisé avec succès !",
+            "Les fichiers PDF ont été divisés !"
         ]
     },
     btnText: {
-        "lock-pdf": [
-            "Télécharger des fichiers PDF verrouillés",
-            "Télécharger un fichier PDF verrouillé"
-        ],
-        "unlock-pdf": [
-            "Télécharger des fichiers PDF déverrouillés",
-            "Télécharger le fichier PDF débloqué"
+        "split-pdf": [
+            "Télécharger les fichiers PDF divisés",
+            "Télécharger le fichier PDF divisé"
         ]
     },
     backto: {
-        "lock-pdf": "Retour à la verrouillage PDF",
-        "unlock-pdf": "Retour à Déverrouiller le PDF"
+        "split-pdf": "Retour à Diviser PDF"
     }
 };
 
@@ -215,6 +208,19 @@ export const errors: _ = {
         userNotFound: "Compte introuvable. Veuillez vous reconnecter.",
         authError: "Erreur d'authentification. Veuillez réessayer.",
         serverError: "Erreur du serveur. Veuillez réessayer plus tard.",
+        invalidSplitMode: "Mode de fractionnement sélectionné invalide.",
+        invalidRangeMode: "Mode de plage sélectionné invalide.",
+        invalidExtractMode: "Mode d'extraction sélectionné invalide.",
+        noRangesProvided: "Veuillez fournir au moins une plage de pages.",
+        noFixedRangeValue: "Veuillez spécifier le nombre de pages par fractionnement.",
+        invalidFixedRangeValue: "Nombre de pages invalide. Veuillez entrer un nombre positif.",
+        noPagesSelected: "Veuillez sélectionner au moins une page à extraire.",
+        invalidPageRange: "Plage de pages invalide. Veuillez vérifier vos numéros de page.",
+        invalidPageSelection: "Sélection de pages invalide. Utilisez un format comme '1-3,5,7-10'.",
+        rangeOutOfBounds: "La plage de pages dépasse le nombre de pages dans le PDF.",
+        pdfTooManyPages: "Le PDF a trop de pages. Veuillez utiliser un document plus petit.",
+        splitFailed: "Échec du fractionnement du PDF. Veuillez réessayer.",
+
     },
 };
 

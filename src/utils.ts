@@ -407,8 +407,7 @@ export function sanitizeKey(input: string | number | null | undefined): string {
 // Add this outside the component (after imports)
 export const PATH_ACCEPTED_FILES: Record<string, Record<string, string[]>> = {
   // PDF to other formats - accept PDF only
-  "lock-pdf": { "application/pdf": [".pdf"] },
-  "unlock-pdf": { "application/pdf": [".pdf"] },
+  "split-pdf": { "application/pdf": [".pdf"] },
 };
 
 // Helper to get the primary MIME type for validation

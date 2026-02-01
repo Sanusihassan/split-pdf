@@ -1,8 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // store
-import type { ToolState } from "../../src/store";
-import { handleUpload } from "../../src/handlers/handleUpload";
+import { selectToolState, type ToolState } from "../../src/store";
+import {
+  handleUpload,
+  type SplitPDFUploadState,
+} from "../../src/handlers/handleUpload";
 import { handleChange } from "../../src/handlers/handleChange";
 import { useFileStore } from "../../src/file-store";
 // types
@@ -36,15 +39,8 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
   const fileName = useSelector(
     (state: { tool: ToolState }) => state.tool.fileName,
   );
-  const rotations = useSelector(
-    (state: { tool: ToolState }) => state.tool.rotations,
-  );
-  const passwords = useSelector(
-    (state: { tool: ToolState }) => state.tool.passwords,
-  );
-  const password = useSelector(
-    (state: { tool: ToolState }) => state.tool.password,
-  );
+  const toolState = useSelector(selectToolState);
+
   const dispatch = useDispatch();
   // file store
   const { files, setFiles, setFileInput, setDownloadBtn, setSubmitBtn } =
@@ -69,23 +65,40 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
       onClick={(e) => {
         e.stopPropagation();
       }}
-      onSubmit={(e) =>
-        handleUpload(
-          e,
-          downloadBtn,
-          dispatch,
-          {
-            path,
-            errorMessage,
-            fileName,
-            rotations,
-            passwords,
-            password,
-          },
-          files,
-          errors,
-        )
-      }
+      onSubmit={(e) => {
+        const uploadState: SplitPDFUploadState = {
+          path: "split-pdf", // Your API endpoint
+          errorMessage: toolState.errorMessage,
+          fileName: toolState.fileName || files[0]?.name || "",
+
+          // Split PDF specific state from Redux
+          splitMode: toolState.splitMode,
+          pageCount: toolState.pageCount,
+        };
+        // Add mode-specific parameters
+        if (toolState.splitMode === "split_by_range") {
+          uploadState.rangeMode = toolState.rangeMode;
+
+          if (toolState.rangeMode === "custom_range") {
+            // Convert customRanges to format without id
+            uploadState.customRanges = toolState.customRanges.map((range) => ({
+              from: range.from,
+              to: range.to,
+            }));
+            uploadState.mergeRanges = toolState.mergeRanges;
+          } else if (toolState.rangeMode === "fixed_range") {
+            uploadState.fixedRangeValue = toolState.fixedRangeValue;
+          }
+        } else if (toolState.splitMode === "extract_pages") {
+          uploadState.extractMode = toolState.extractMode;
+          uploadState.selectedPages = toolState.selectedPages;
+
+          if (toolState.extractMode === "select_pages") {
+            uploadState.mergeExtracted = toolState.mergeExtracted;
+          }
+        }
+        handleUpload(e, downloadBtn, dispatch, uploadState, files, errors);
+      }}
       method="POST"
       encType="multipart/form-data"
     >

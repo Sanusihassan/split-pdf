@@ -162,6 +162,7 @@ const Tool: React.FC<ToolProps> = ({
         {...(stateShowTool && { ...getRootProps(), onPaste: handlePaste })}
         onClick={(e) => {
           e.preventDefault();
+          e.stopPropagation();
         }}
       >
         {isDragActive && (

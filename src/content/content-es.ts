@@ -2,49 +2,26 @@ import type { edit_page as _edit_page, tool as _tool, tools as _tools, downloadF
 import type { adBlockerContentType } from "./content";
 
 export const tool: _tool = {
-  Lock_PDF: {
-    title: "Bloquear PDF",
-    seoTitle: "Proteger PDF con Contraseña - Asegura tu Archivo PDF en Línea",
-    description: "Protege tu archivo PDF con una contraseña para prevenir el acceso no autorizado.",
-    keywords: "proteger PDF con contraseña, asegurar archivo PDF, bloquear PDF en línea, cifrar PDF, proteger documento PDF, herramienta de seguridad PDF",
-    color: "#2980b9",
+  Split_PDF: {
+    title: "Dividir PDF",
+    seoTitle: "Divide PDF en Múltiples Documentos en Línea de Forma Segura",
+    description: "Divide un archivo PDF en múltiples documentos.",
+    color: "var(--orange)",
     type: ".pdf",
-    to: "/lock-pdf",
+    to: "/split-pdf",
+    keywords: "dividir PDF, dividir archivo PDF, separador de PDF, extraer páginas de PDF, herramienta de PDF en línea",
     features: [
       {
-        title: "Fácil de Usar",
-        description: "Bloquea rápidamente tus archivos PDF con una interfaz simple."
+        title: "División Precisa de Páginas",
+        description: "Divide fácilmente tu PDF en páginas individuales o un rango de páginas, manteniendo la integridad del documento original."
       },
       {
-        title: "Cifrado Fuerte",
-        description: "Aplica un cifrado fuerte con contraseña para proteger tus documentos."
+        title: "Rápido y Eficiente",
+        description: "Experimenta tiempos de procesamiento rápidos, lo que te permite dividir tus documentos PDF en solo segundos."
       },
       {
-        title: "Privacidad Garantizada",
-        description: "Tus archivos son cifrados y eliminados de nuestros servidores después del procesamiento."
-      }
-    ]
-  },
-  Unlock_PDF: {
-    title: "Desbloquear PDF",
-    seoTitle: "Quitar Contraseña de PDF - Desbloquea tu Archivo PDF en Línea",
-    description: "Elimina fácilmente la protección con contraseña de tu archivo PDF con nuestra herramienta fácil de usar.",
-    keywords: "quitar contraseña de PDF, desbloquear PDF en línea, descifrar PDF, acceder a PDF asegurado, herramienta de eliminación de contraseña de PDF, desbloquear documento PDF",
-    color: "#3498db",
-    type: ".pdf",
-    to: "/unlock-pdf",
-    features: [
-      {
-        title: "Fácil de Usar",
-        description: "Desbloquea archivos PDF fácilmente con un proceso sencillo."
-      },
-      {
-        title: "Desencriptado Rápido",
-        description: "Elimina contraseñas de PDF rápidamente y de manera eficiente."
-      },
-      {
-        title: "Procesamiento Seguro",
-        description: "Tus archivos son manejados de forma segura y eliminados de nuestros servidores después de desbloquearlos."
+        title: "Seguro y Privado",
+        description: "Nuestra herramienta garantiza que tus archivos se manejen de manera segura, protegiendo tus datos durante el proceso de división."
       }
     ]
   }
@@ -52,29 +29,52 @@ export const tool: _tool = {
 
 export const edit_page: _edit_page = {
   edit_page_titles: {
-    lock_pdf: "Bloquear PDF y proteger PDF",
-    unlock_pdf: "Desbloquear PDF"
+    split_pdf: "Opciones para dividir PDF"
   },
-  loader_text: "por favor espera...",
-  add_more_button: "Agregar más archivos",
+  loader_text: "Por favor espera...",
+  add_more_button: "Agrega más archivos",
+  options: {
+    split_by_range: "Dividir por rango",
+    extract_pages: "Extraer páginas",
+    split_by_range_options: {
+      range_mode: "Modo de rango:",
+      custom_range: "rango personalizado",
+      fixed_range: "rango fijo",
+      custom_range_options: {
+        range: "Rango",
+        from: "De",
+        to: "Para",
+        add_range: "Agregar rango",
+        merge: "Fusionar todos los rangos en un archivo PDF."
+      },
+      fixed_range_options: {
+        split_into: "dividir en el rango de páginas de:",
+        alert_info: "Este PDF se dividirá en archivos de",
+        pages: "páginas",
+        will_be_created: "será creado."
+      }
+    },
+    extract_pages_options: {
+      extract_mode: "Modo de extracción:",
+      extract_all: "Extraer todas las páginas",
+      select_pages: "Seleccionar páginas",
+      selection_alert_content: {
+        selection_alert: "Cada página seleccionada de este archivo PDF se convertirá en un archivo PDF.",
+        will_be_created: "será creado."
+      },
+      select_pages_content: {
+        pages_to_extract: "Páginas a extraer:",
+        merge: "Combinar pdf extraído en un archivo pdf.",
+        page_selection_example: "ejemplo: 2,8-32"
+      }
+    }
+  },
   action_buttons: {
-    lock_pdf: "Bloquear PDF",
-    unlock_pdf: "Desbloquear PDF"
+    split_pdf: "Dividir PDF"
   },
-  lock_button_title: "Confirme la contraseña ingresándola dos veces.",
-  unlock_button_title: "Introduzca la contraseña para cada archivo protegido",
-  pages: "páginas",
+  select_files_placeholder: "Seleccionar archivos",
+  pages: "paginas",
   page: "página",
-  lock_pdf: {
-    title: "Establezca una contraseña para bloquear su archivo PDF",
-    password: "Contraseña",
-    repeatPassword: "Repetir contraseña",
-    no_match: "Las contraseñas no coinciden."
-  },
-  unlock_pdf: {
-    title: "Ingrese la contraseña para los archivos que la requieran",
-    password_for: "contraseña para"
-  },
   filenameOptions: {
     label: "Nombre del archivo de salida (opcional)",
     placeholder: "Ingrese el nombre del archivo",
@@ -85,38 +85,30 @@ export const edit_page: _edit_page = {
       cta: "Actualizar ahora",
     },
   },
-  languageSelectContent: {
-    placeholder: "Elegir idiomas (máximo 3)",
-    warning: "Este documento está escaneado. Por favor seleccione su idioma para garantizar resultados precisos.",
-    ocr_warning: "Documento escaneado detectado. Para obtener los mejores resultados, utilice nuestra herramienta OCR PDF con detección avanzada de idioma y mayor precisión. También puede configurar el idioma aquí para procesamiento básico.",
+  fileCard: {
+    page: "página",
+    pages: "páginas",
+    remove_file: "Eliminar archivo",
+    loading: "Cargando...",
   },
 };
 
 export const downloadFile: _downloadFile = {
   titles: {
-    "lock-pdf": [
-      "¡Los archivos PDF han sido bloqueados!",
-      "¡El archivo PDF ha sido bloqueado!"
-    ],
-    "unlock-pdf": [
-      "¡Los archivos PDF han sido desbloqueados!",
-      "¡El archivo PDF ha sido desbloqueado!"
+    "split-pdf": [
+      "¡División de archivo PDF exitosa!",
+      "¡Los archivos PDF se han dividido!"
     ]
   },
   btnText: {
-    "lock-pdf": [
-      "Descargar archivos PDF bloqueados",
-      "Descargar archivo PDF bloqueado"
-    ],
-    "unlock-pdf": [
-      "Descargar archivos PDF desbloqueados",
-      "Descargar archivos PDF desbloqueados"
+    "split-pdf": [
+      "Descargar archivos PDF divididos",
+      "Descargar archivo PDF dividido"
     ]
   },
   backto: {
-    "lock-pdf": "Volver a bloquear PDF",
-    "unlock-pdf": "Volver a desbloquear PDF"
-  },
+    "split-pdf": "Volver a dividir PDF"
+  }
 };
 
 export const tools: _tools = {
@@ -218,6 +210,18 @@ export const errors: _errors = {
     userNotFound: "Cuenta no encontrada. Por favor inicia sesión nuevamente.",
     authError: "Error de autenticación. Por favor intenta de nuevo.",
     serverError: "Error del servidor. Por favor intenta más tarde.",
+    invalidSplitMode: "Modo de división seleccionado inválido.",
+    invalidRangeMode: "Modo de rango seleccionado inválido.",
+    invalidExtractMode: "Modo de extracción seleccionado inválido.",
+    noRangesProvided: "Por favor, proporcione al menos un rango de páginas.",
+    noFixedRangeValue: "Por favor, especifique el número de páginas por división.",
+    invalidFixedRangeValue: "Número de páginas inválido. Por favor, ingrese un número positivo.",
+    noPagesSelected: "Por favor, seleccione al menos una página para extraer.",
+    invalidPageRange: "Rango de páginas inválido. Por favor, verifique sus números de página.",
+    invalidPageSelection: "Selección de páginas inválida. Use formato como '1-3,5,7-10'.",
+    rangeOutOfBounds: "El rango de páginas excede el número de páginas en el PDF.",
+    pdfTooManyPages: "El PDF tiene demasiadas páginas. Por favor, use un documento más pequeño.",
+    splitFailed: "Falló la división del PDF. Por favor, intente nuevamente.",
   },
 };
 

@@ -2,49 +2,26 @@ import type { adBlockerContentType } from "./content";
 import type { edit_page as _edit_page, tool as _tool, tools as _tools, downloadFile as _downloadFile, errors as _ } from "../content";
 
 export const tool: _tool = {
-    Lock_PDF: {
-        title: "PDF लॉक करें",
-        seoTitle: "PDF को पासवर्ड से सुरक्षित करें - ऑनलाइन अपने PDF फ़ाइल को सुरक्षित करें",
-        description: "अनधिकृत पहुंच को रोकने के लिए अपनी PDF फ़ाइल को पासवर्ड से सुरक्षित करें।",
-        keywords: "PDF पासवर्ड से सुरक्षित करें, PDF फ़ाइल सुरक्षित करें, ऑनलाइन PDF लॉक करें, PDF एन्क्रिप्ट करें, PDF दस्तावेज़ सुरक्षित करें, PDF सुरक्षा उपकरण",
-        color: "#2980b9",
+    Split_PDF: {
+        title: "PDF विभाजित करें",
+        seoTitle: "PDF को कई दस्तावेजों में ऑनलाइन सुरक्षित रूप से विभाजित करें",
+        description: "एक PDF फ़ाइल को कई दस्तावेज़ों में विभाजित करें।",
+        color: "var(--orange)",
         type: ".pdf",
-        to: "/lock-pdf",
+        to: "/split-pdf",
+        keywords: "PDF विभाजित करें, PDF विभाजन, PDF विभाजक, PDF पृष्ठ निकालें, ऑनलाइन PDF टूल",
         features: [
             {
-                title: "आसान उपयोग",
-                description: "एक सरल इंटरफ़ेस के साथ अपनी PDF फ़ाइलों को जल्दी से लॉक करें।"
+                title: "सटीक पृष्ठ विभाजन",
+                description: "अपने PDF को व्यक्तिगत पृष्ठों या पृष्ठों की एक श्रेणी में आसानी से विभाजित करें, मूल दस्तावेज़ की अखंडता को बनाए रखते हुए।"
             },
             {
-                title: "मजबूत एन्क्रिप्शन",
-                description: "अपने दस्तावेज़ों की सुरक्षा के लिए मजबूत पासवर्ड एन्क्रिप्शन लागू करें।"
+                title: "तेज़ और कुशल",
+                description: "तेजी से प्रसंस्करण समय का अनुभव करें, जिससे आप अपने PDF दस्तावेज़ों को कुछ ही सेकंड में विभाजित कर सकें।"
             },
             {
-                title: "गोपनीयता सुनिश्चित",
-                description: "आपकी फ़ाइलें एन्क्रिप्टेड हैं और प्रोसेसिंग के बाद हमारे सर्वरों से हटा दी जाती हैं।"
-            }
-        ]
-    },
-    Unlock_PDF: {
-        title: "PDF अनलॉक करें",
-        seoTitle: "PDF पासवर्ड हटाएं - ऑनलाइन अपनी PDF फ़ाइल को अनलॉक करें",
-        description: "हमारे उपयोगकर्ता-मित्रवत उपकरण के साथ आसानी से अपनी PDF फ़ाइल से पासवर्ड सुरक्षा हटाएं।",
-        keywords: "PDF पासवर्ड हटाएं, ऑनलाइन PDF अनलॉक करें, PDF डिक्रिप्ट करें, सुरक्षित PDF एक्सेस करें, PDF पासवर्ड रिमूवर, PDF दस्तावेज़ अनलॉक करें",
-        color: "#3498db",
-        type: ".pdf",
-        to: "/unlock-pdf",
-        features: [
-            {
-                title: "उपयोग में आसान",
-                description: "एक सीधे प्रोसेस के साथ PDF फ़ाइलों को आसानी से अनलॉक करें।"
-            },
-            {
-                title: "त्वरित डिक्रिप्शन",
-                description: "PDF पासवर्ड को जल्दी और प्रभावी रूप से हटा दें।"
-            },
-            {
-                title: "सुरक्षित प्रोसेसिंग",
-                description: "आपकी फ़ाइलों को सुरक्षित रूप से संभाला जाता है और अनलॉक करने के बाद हमारे सर्वरों से हटा दिया जाता है।"
+                title: "सुरक्षित और निजी",
+                description: "हमारा टूल यह सुनिश्चित करता है कि विभाजन प्रक्रिया के दौरान आपकी फ़ाइलों को सुरक्षित रूप से संभाला जाए।"
             }
         ]
     }
@@ -52,29 +29,52 @@ export const tool: _tool = {
 
 export const edit_page: _edit_page = {
     edit_page_titles: {
-        lock_pdf: "PDF लॉक करें और PDF सुरक्षित करें",
-        unlock_pdf: "पीडीएफ अनलॉक करें"
+        split_pdf: "PDF विभाजन विकल्प"
     },
     loader_text: "कृपया प्रतीक्षा करें...",
-    add_more_button: "और अधिक फ़ाइलें जोड़ें",
+    add_more_button: "अधिक फ़ाइलें जोड़ें",
+    options: {
+        split_by_range: "रेंज से विभाजित करें",
+        extract_pages: "पृष्ठ निकालें",
+        split_by_range_options: {
+            range_mode: "रेंज मोड:",
+            custom_range: "कस्टम रेंज",
+            fixed_range: "निश्चित रेंज",
+            custom_range_options: {
+                range: "रेंज",
+                from: "से",
+                to: "तक",
+                add_range: "रेंज जोड़ें",
+                merge: "सभी रेंजों को एक PDF फ़ाइल में मर्ज करें।"
+            },
+            fixed_range_options: {
+                split_into: "पृष्ठ रेंज में विभाजित करें:",
+                alert_info: "इस PDF को फाइलों में विभाजित किया जाएगा",
+                pages: "पृष्ठ",
+                will_be_created: "बनाई जाएगी।"
+            }
+        },
+        extract_pages_options: {
+            extract_mode: "निकालने का मोड:",
+            extract_all: "सभी पृष्ठ निकालें",
+            select_pages: "पृष्ठ चुनें",
+            selection_alert_content: {
+                selection_alert: "इस PDF फ़ाइल के हर चयनित पृष्ठ को एक PDF फ़ाइल में कन्वर्ट किया जाएगा।",
+                will_be_created: "बनाई जाएगी।"
+            },
+            select_pages_content: {
+                pages_to_extract: "निकालने के लिए पृष्ठ:",
+                merge: "निकाले गए PDF को एक PDF फ़ाइल में मर्ज करें।",
+                page_selection_example: "उदाहरण: 2,8-32"
+            }
+        }
+    },
     action_buttons: {
-        lock_pdf: "PDF लॉक करें",
-        unlock_pdf: "पीडीएफ अनलॉक करें"
+        split_pdf: "पीडीएफ विभाजित करें"
     },
-    lock_button_title: "कृपया पासवर्ड को दो बार दर्ज करके पुष्टि करें।",
-    unlock_button_title: "प्रत्येक सुरक्षित फ़ाइल के लिए पासवर्ड दर्ज करें",
-    pages: "पृष्ठ",
+    select_files_placeholder: "फ़ाइलें चुनें",
+    pages: "पृष्ठों",
     page: "पृष्ठ",
-    lock_pdf: {
-        title: "अपनी PDF फ़ाइल को लॉक करने के लिए एक पासवर्ड सेट करें",
-        password: "पासवर्ड",
-        repeatPassword: "पासवर्ड दोहराएं",
-        no_match: "पासवर्ड मेल नहीं खाते हैं।"
-    },
-    unlock_pdf: {
-        title: "उन फ़ाइलों के लिए पासवर्ड दर्ज करें जिनके लिए इसकी आवश्यकता है",
-        password_for: "के लिए पासवर्ड"
-    },
     filenameOptions: {
         label: "आउटपुट फ़ाइल का नाम (वैकल्पिक)",
         placeholder: "फ़ाइल का नाम दर्ज करें",
@@ -85,37 +85,29 @@ export const edit_page: _edit_page = {
             cta: "अभी अपग्रेड करें",
         },
     },
-    languageSelectContent: {
-        placeholder: "भाषाएं चुनें (अधिकतम 3)",
-        warning: "यह दस्तावेज़ स्कैन किया गया है। सटीक परिणामों के लिए कृपया इसकी भाषा चुनें।",
-        ocr_warning: "स्कैन किया गया दस्तावेज़ पाया गया। सर्वोत्तम परिणामों के लिए, उन्नत भाषा पहचान और उच्च सटीकता के साथ हमारे OCR PDF टूल का उपयोग करें। आप बुनियादी प्रोसेसिंग के लिए यहां भाषा भी सेट कर सकते हैं।",
+    fileCard: {
+        page: "पेज",
+        pages: "पेज",
+        remove_file: "फाइल हटाएं",
+        loading: "लोड हो रहा है...",
     },
 };
 
 export const downloadFile: _downloadFile = {
     titles: {
-        "lock-pdf": [
-            "PDF फ़ाइलें लॉक कर दी गई हैं!",
-            "PDF फ़ाइल लॉक कर दी गई है!"
-        ],
-        "unlock-pdf": [
-            "पीडीएफ फाइलें अनलॉक कर दी गई हैं!",
-            "पीडीएफ फाइल अनलॉक हो गई है!"
+        "split-pdf": [
+            "PDF फ़ाइल को विभाजित किया गया है!",
+            "पीडीएफ फाइलें विभाजित हो गई हैं!"
         ]
     },
     btnText: {
-        "lock-pdf": [
-            "लॉक किए गए PDF फ़ाइलें डाउनलोड करें",
-            "लॉक किए गए PDF फ़ाइल डाउनलोड करें"
-        ],
-        "unlock-pdf": [
-            "अनलॉक पीडीएफ फाइलें डाउनलोड करें",
-            "अनलॉक पीडीएफ फाइल डाउनलोड करें"
+        "split-pdf": [
+            "विभाजित की गई PDF फ़ाइलें डाउनलोड करें",
+            "विभाजित की गई PDF फ़ाइल डाउनलोड करें"
         ]
     },
     backto: {
-        "lock-pdf": "लॉक पीडीएफ पर वापस",
-        "unlock-pdf": "पीडीएफ को अनलॉक करने के लिए वापस"
+        "split-pdf": "विभाजित की गई PDF को वापस जाएं"
     }
 };
 
@@ -217,6 +209,18 @@ export const errors: _ = {
         userNotFound: "खाता नहीं मिला। कृपया फिर से लॉग इन करें।",
         authError: "प्रमाणीकरण त्रुटि। कृपया पुनः प्रयास करें।",
         serverError: "सर्वर त्रुटि। कृपया बाद में पुनः प्रयास करें।",
+        invalidSplitMode: "अमान्य विभाजन मोड चुना गया।",
+        invalidRangeMode: "अमान्य रेंज मोड चुना गया।",
+        invalidExtractMode: "अमान्य निकालने का मोड चुना गया।",
+        noRangesProvided: "कृपया कम से कम एक पेज रेंज प्रदान करें।",
+        noFixedRangeValue: "कृपया प्रति विभाजन पेजों की संख्या निर्दिष्ट करें।",
+        invalidFixedRangeValue: "अमान्य पेजों की संख्या। कृपया एक सकारात्मक संख्या दर्ज करें।",
+        noPagesSelected: "कृपया निकालने के लिए कम से कम एक पेज चुनें।",
+        invalidPageRange: "अमान्य पेज रेंज। कृपया अपने पेज नंबरों की जाँच करें।",
+        invalidPageSelection: "अमान्य पेज चयन। '1-3,5,7-10' जैसे फॉर्मेट का उपयोग करें।",
+        rangeOutOfBounds: "पेज रेंज PDF में पेजों की संख्या से अधिक है।",
+        pdfTooManyPages: "PDF में बहुत अधिक पेज हैं। कृपया एक छोटा दस्तावेज़ उपयोग करें।",
+        splitFailed: "PDF विभाजित करने में विफल। कृपया पुनः प्रयास करें।",
     },
 };
 

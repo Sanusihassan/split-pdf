@@ -30,9 +30,7 @@ export function SubmitBtn({
   const subscriptionStatus = useSelector(
     (state: { tool: ToolState }) => state.tool.subscriptionStatus,
   );
-  const filesNotPasswordProtected = useSelector(
-    (state: { tool: ToolState }) => state.tool.filesNotPasswordProtected,
-  );
+
   // ✅ Always call the hook, then use the condition
   const isAdBlockedState = useSelector(
     (state: { tool: ToolState }) => state.tool.isAdBlocked,
@@ -41,7 +39,6 @@ export function SubmitBtn({
     process.env.NODE_ENV === "development" ? false : isAdBlockedState;
   useEffect(() => {
     console.log("errorMessage", errorMessage);
-    console.log("filesNotPasswordProtected", filesNotPasswordProtected);
   }, []);
   return (
     <button
@@ -70,10 +67,7 @@ export function SubmitBtn({
         }
       }}
       disabled={
-        errorMessage.length > 0 ||
-        limitationMsg.length > 0 ||
-        isAdBlocked ||
-        filesNotPasswordProtected
+        errorMessage.length > 0 || limitationMsg.length > 0 || isAdBlocked
       }
     >
       <bdi>

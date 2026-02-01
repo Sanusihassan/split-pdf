@@ -1,90 +1,85 @@
 export const tool = {
-  Lock_PDF: {
-    title: "Lock PDF",
-    seoTitle: "Password Protect PDF - Secure Your PDF File Online",
-    description: "Secure your PDF file with a password to prevent unauthorized access.",
-    keywords: "password protect PDF, secure PDF file, lock PDF online, encrypt PDF, protect PDF document, PDF security tool",
-    color: "#2980b9",
+  Split_PDF: {
+    title: "Split PDF",
+    seoTitle: "Divide PDF into Multiple Documents Online Securely",
+    description: "Divide one PDF file into multiple documents.",
+    color: "var(--orange)",
     type: ".pdf",
-    to: "/lock-pdf",
+    to: "/split-pdf",
+    keywords: "split PDF, divide PDF, PDF splitter, extract PDF pages, online PDF tool",
     features: [
       {
-        title: "Easy to Use",
-        description: "Quickly lock your PDF files with a simple interface."
+        title: "Accurate Page Splitting",
+        description: "Easily split your PDF into individual pages or a range of pages, maintaining the integrity of your original document."
       },
       {
-        title: "Strong Encryption",
-        description: "Apply strong password encryption to safeguard your documents."
+        title: "Fast and Efficient",
+        description: "Experience quick processing times, allowing you to split your PDF documents in just seconds."
       },
       {
-        title: "Privacy Ensured",
-        description: "Your files are encrypted and deleted from our servers after processing."
-      }
-    ]
-  },
-  Unlock_PDF: {
-    title: "Unlock PDF",
-    seoTitle: "Remove PDF Password - Unlock Your PDF File Online",
-    description: "Easily remove password protection from your PDF file with our user-friendly tool.",
-    keywords: "remove PDF password, unlock PDF online, decrypt PDF, access secured PDF, PDF password remover, unlock PDF document",
-    color: "#3498db",
-    type: ".pdf",
-    to: "/unlock-pdf",
-    features: [
-      {
-        title: "User-Friendly",
-        description: "Easily unlock PDF files with a straightforward process."
-      },
-      {
-        title: "Quick Decryption",
-        description: "Remove PDF passwords quickly and efficiently."
-      },
-      {
-        title: "Secure Processing",
-        description: "Your files are handled securely and removed from our servers after unlocking."
+        title: "Secure and Private",
+        description: "Our tool ensures your files are handled securely, protecting your data during the splitting process."
       }
     ]
   }
 };
-export type ToolType = {
-  title: string;
-  seoTitle: string;
-  description: string;
-  keywords: string;
-  color: string;
-  type: string;
-  to: string;
-  features: {
-    title: string;
-    description: string;
-  }[];
-}
-export type Paths = "lock-pdf" | "unlock-pdf";
+export type Paths = "split-pdf";
+
 export const edit_page = {
   edit_page_titles: {
-    lock_pdf: "Lock PDF & Protect PDF",
-    unlock_pdf: "Unlock PDF"
+    split_pdf: "Split PDF options"
   },
   loader_text: "please wait...",
   add_more_button: "Add more files",
-  action_buttons: {
-    lock_pdf: "Lock PDF",
-    unlock_pdf: "Unlock PDF"
+  fileCard: {
+    page: "page",
+    pages: "pages",
+    remove_file: "Remove file",
+    loading: "Loading...",
   },
-  lock_button_title: "Please confirm the password by entering it twice.",
-  unlock_button_title: "Enter the password for each protected file",
+  options: {
+    split_by_range: "Split by range",
+    extract_pages: "Extract Pages",
+    split_by_range_options: {
+      range_mode: "RANGE MODE:",
+      custom_range: "custom range",
+      fixed_range: "fixed range",
+      custom_range_options: {
+        range: "Range",
+        from: "From",
+        to: "To",
+        add_range: "Add Range",
+        merge: "Merge all ranges in one PDF file.",
+      },
+      fixed_range_options: {
+        split_into: "split in page range of:",
+        alert_info: "This PDF will be split in files of",
+        pages: "pages",
+        will_be_created: "PDF will be created.",
+      },
+    },
+    extract_pages_options: {
+      extract_mode: "EXTRACT MODE:",
+      extract_all: "Extract all pages",
+      select_pages: "Select pages",
+      selection_alert_content: {
+        selection_alert:
+          "Every selected page of this PDF file will be converted in one PDF file.",
+        will_be_created: "PDF will be created.",
+      },
+      select_pages_content: {
+        pages_to_extract: "Pages to Extract:",
+        merge: "Merge extracted pdf in one pdf file.",
+        page_selection_example: "example: 2,8-32",
+      },
+    },
+  },
+  action_buttons: {
+    split_pdf: "Split PDF"
+  },
+  select_files_placeholder: "Select Files",
   pages: "pages",
   page: "page",
-  lock_pdf: {
-    title: "Set a password to lock your PDF file",
-    password: "Password",
-    repeatPassword: "Repeat password",
-    no_match: "The passwords do not match."
-  },
-  unlock_pdf: {
-    title: "Enter the password for files that require it",
-    password_for: "Password for"
-  },
   filenameOptions: {
     label: "Output File Name (Optional)",
     placeholder: "Enter file name",
@@ -95,37 +90,23 @@ export const edit_page = {
       cta: "Upgrade now",
     },
   },
-  languageSelectContent: {
-    placeholder: "Choose languages (maximum 3)",
-    warning: "This document is scanned. Please select its language to ensure accurate results.",
-    ocr_warning: "Scanned document detected. For best results, use our OCR PDF tool with advanced language detection and higher accuracy. You can also set the language here for basic processing.",
-  },
 };
 
 export const downloadFile = {
   titles: {
-    "lock-pdf": [
-      "PDF files have been locked!",
-      "PDF file has been locked!"
-    ],
-    "unlock-pdf": [
-      "PDF files have been unlocked!",
-      "PDF file has been unlocked!"
+    "split-pdf": [
+      "PDF file has been split!",
+      "PDF files have been split!"
     ]
   },
   btnText: {
-    "lock-pdf": [
-      "Download Locked PDF files",
-      "Download Locked PDF file"
-    ],
-    "unlock-pdf": [
-      "Download unlocked PDF files",
-      "Download unlocked PDF file"
+    "split-pdf": [
+      "Download Split PDF files",
+      "Download Split PDF file"
     ]
   },
   backto: {
-    "lock-pdf": "Back To Lock PDF",
-    "unlock-pdf": "Back To Unlock PDF"
+    "split-pdf": "Back To Split PDF"
   }
 };
 
@@ -225,7 +206,19 @@ export const errors = {
     invalidToken: "Authentication failed. Please log in again.",
     userNotFound: "Account not found. Please log in again.",
     authError: "Authentication error. Please try again.",
-    notPasswordProtected: "One or more files are not password protected"
+    notPasswordProtected: "One or more files are not password protected",
+    invalidSplitMode: "Invalid split mode selected.",
+    invalidRangeMode: "Invalid range mode selected.",
+    invalidExtractMode: "Invalid extract mode selected.",
+    noRangesProvided: "Please provide at least one page range.",
+    noFixedRangeValue: "Please specify the number of pages per split.",
+    invalidFixedRangeValue: "Invalid number of pages. Please enter a positive number.",
+    noPagesSelected: "Please select at least one page to extract.",
+    invalidPageRange: "Invalid page range. Please check your page numbers.",
+    invalidPageSelection: "Invalid page selection. Use format like '1-3,5,7-10'.",
+    rangeOutOfBounds: "Page range exceeds the number of pages in the PDF.",
+    pdfTooManyPages: "PDF has too many pages. Please use a smaller document.",
+    splitFailed: "Failed to split PDF. Please try again.",
   },
 };
 

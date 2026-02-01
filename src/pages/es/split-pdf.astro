@@ -1,0 +1,92 @@
+---
+import {
+  tool,
+  tools,
+  errors,
+  edit_page,
+  downloadFile,
+  adBlockerContent,
+} from "../../content/content-es";
+import { howToSchema_es } from "../../how-to";
+import BaseLayout from "../../partials/BaseLayout.astro";
+import { ToolWrapper } from "../../../components/ToolWrapper";
+
+const item = tool["Split_PDF"];
+const currentRoute = `/${Astro.params.tool}`;
+const lang = "es";
+
+// Rest of your code...
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: `PDFEquips ${item.title}`,
+  description: item.description,
+  url: `https://www.pdfequips.com${currentRoute}`,
+};
+
+const seoConfig = {
+  title: item.seoTitle,
+  description: item.description,
+  to: item.to,
+  openGraph: {
+    url: item.to,
+    title: item.seoTitle,
+    description: item.description,
+    images: [
+      {
+        url: `https://www.pdfequips.com/images${item.to}.png`,
+        width: 1200,
+        height: 630,
+        alt: item.title,
+        type: "image/png",
+      },
+    ],
+    site_name: item.title,
+    locale: "es_ES",
+    type: "website",
+  },
+  twitter: {
+    handle: "@pdfequips",
+    site: "@pdfequips",
+    cardType: "summary_large_image",
+  },
+};
+---
+
+<BaseLayout
+  title={item.title}
+  description={item.description}
+  seoTitle={item.seoTitle}
+  to={item.to}
+  seoConfig={seoConfig}
+>
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(websiteSchema)}
+    />
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(howToSchema_es)}
+    />
+  </Fragment>
+
+  <ToolWrapper
+    client:load
+    tools={tools}
+    data={item}
+    lang={lang}
+    errors={errors}
+    edit_page={edit_page}
+    pages={edit_page.pages}
+    page={edit_page.page}
+    downloadFile={downloadFile}
+    features={item.features}
+    howTo={howToSchema_es}
+    seoTitle={item.title}
+    to={currentRoute}
+    adBlockerContent={adBlockerContent}
+  />
+</BaseLayout>

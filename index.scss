@@ -11,10 +11,8 @@ svg {
   display: initial !important;
 }
 
-$pdf-color: #fc271c;
 $color-map: (
-  "lock-pdf": #2980b9,
-  "unlock-pdf": #3498db,
+  "split-pdf": #fd7e14,
 );
 
 :root {
@@ -191,4 +189,7 @@ a.no-underline {
 
 .spinner-grow {
   @include extend("spinner-grow");
+}
+.flex-important {
+  display: flex !important;
 }

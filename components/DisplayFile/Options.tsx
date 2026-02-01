@@ -1,5 +1,5 @@
 import type { edit_page as _ } from "../../src/content";
-import { LockPDFOptions } from "./Options/LockPDFOptions";
+import SplitPDFOptions from "./Options/SplitPDFOptions";
 export interface OptionsProps {
   layout: "lock-pdf" | "unlock-pdf";
   edit_page: _;
@@ -8,12 +8,7 @@ export interface OptionsProps {
 const Options = ({ layout, edit_page }: OptionsProps) => {
   return (
     <>
-      {layout === "lock-pdf" ? (
-        <>
-          <div className="space"></div>
-          <LockPDFOptions lock_pdf={edit_page.lock_pdf} />
-        </>
-      ) : null}
+      <SplitPDFOptions content={edit_page.options} themeColor="#fd7e14" />
     </>
   );
 };

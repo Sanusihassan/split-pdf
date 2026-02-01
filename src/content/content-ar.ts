@@ -2,49 +2,26 @@ import type { tool as _tool, tools as _tools, edit_page as _edit_page, downloadF
 import type { adBlockerContentType } from "./content";
 
 export const tool: _tool = {
-    Lock_PDF: {
-        title: "قفل PDF",
-        seoTitle: "حماية PDF بكلمة مرور - تأمين ملف PDF الخاص بك عبر الإنترنت",
-        description: "قم بتأمين ملف PDF الخاص بك بكلمة مرور لمنع الوصول غير المصرح به.",
-        keywords: "حماية PDF بكلمة مرور, تأمين ملف PDF, قفل PDF عبر الإنترنت, تشفير PDF, حماية مستند PDF, أداة أمان PDF",
-        color: "#2980b9",
+    Split_PDF: {
+        title: "تقسيم PDF",
+        seoTitle: "تقسيم ملف PDF إلى عدة مستندات عبر الإنترنت بأمان",
+        description: "قسّم ملف PDF واحد إلى عدة مستندات.",
+        color: "var(--orange)",
         type: ".pdf",
-        to: "/lock-pdf",
+        to: "/split-pdf",
+        keywords: "تقسيم PDF, تقسيم ملف PDF, أداة تقسيم PDF, استخراج صفحات PDF, أداة PDF عبر الإنترنت",
         features: [
             {
-                title: "سهل الاستخدام",
-                description: "قم بقفل ملفات PDF الخاصة بك بسرعة بواجهة بسيطة."
+                title: "تقسيم الصفحات بدقة",
+                description: "قسّم ملف PDF بسهولة إلى صفحات فردية أو مجموعة من الصفحات مع الحفاظ على سلامة المستند الأصلي."
             },
             {
-                title: "تشفير قوي",
-                description: "تطبيق تشفير قوي بكلمة مرور لحماية مستنداتك."
+                title: "سريع وفعال",
+                description: "استمتع بأوقات معالجة سريعة، مما يتيح لك تقسيم مستندات PDF الخاصة بك في ثوانٍ فقط."
             },
             {
-                title: "ضمان الخصوصية",
-                description: "يتم تشفير ملفاتك وحذفها من خوادمنا بعد المعالجة."
-            }
-        ]
-    },
-    Unlock_PDF: {
-        title: "فتح PDF",
-        seoTitle: "إزالة كلمة مرور PDF - فتح ملف PDF الخاص بك عبر الإنترنت",
-        description: "قم بإزالة حماية كلمة المرور من ملف PDF الخاص بك بسهولة باستخدام أداتنا سهلة الاستخدام.",
-        keywords: "إزالة كلمة مرور PDF, فتح PDF عبر الإنترنت, فك تشفير PDF, الوصول إلى PDF المؤمّن, أداة إزالة كلمة مرور PDF, فتح مستند PDF",
-        color: "#3498db",
-        type: ".pdf",
-        to: "/unlock-pdf",
-        features: [
-            {
-                title: "سهل الاستخدام",
-                description: "افتح ملفات PDF بسهولة بعملية مباشرة."
-            },
-            {
-                title: "فك تشفير سريع",
-                description: "إزالة كلمات مرور PDF بسرعة وكفاءة."
-            },
-            {
-                title: "معالجة آمنة",
-                description: "يتم التعامل مع ملفاتك بأمان وإزالتها من خوادمنا بعد الفتح."
+                title: "آمن وخاص",
+                description: "تضمن أداتنا التعامل مع ملفاتك بشكل آمن، مما يحمي بياناتك أثناء عملية التقسيم."
             }
         ]
     }
@@ -52,29 +29,52 @@ export const tool: _tool = {
 
 export const edit_page: _edit_page = {
     edit_page_titles: {
-        lock_pdf: "قفل PDF وحماية PDF",
-        unlock_pdf: "إلغاء قفل PDF"
+        split_pdf: "خيارات تقسيم ملف PDF"
     },
-    loader_text: "الرجاء الانتظار...",
-    add_more_button: "أضف المزيد من الملفات",
+    options: {
+        split_by_range: "تقسيم حسب النطاق",
+        extract_pages: "استخراج الصفحات",
+        split_by_range_options: {
+            range_mode: "وضع النطاق:",
+            custom_range: "نطاق مخصص",
+            fixed_range: "نطاق ثابت",
+            custom_range_options: {
+                range: "النطاق",
+                from: "من",
+                to: "إلى",
+                add_range: "إضافة نطاق",
+                merge: "دمج جميع النطاقات في ملف PDF واحد."
+            },
+            fixed_range_options: {
+                split_into: "تقسيم في نطاق صفحات:",
+                alert_info: "سيتم تقسيم هذا الملف PDF إلى ملفات من",
+                pages: "صفحات",
+                will_be_created: "سيتم إنشاء"
+            }
+        },
+        extract_pages_options: {
+            extract_mode: "وضع الاستخراج:",
+            extract_all: "استخراج كافة الصفحات",
+            select_pages: "حدد الصفحات",
+            selection_alert_content: {
+                selection_alert: "كل صفحة محددة من ملف PDF هذا سيتم تحويلها إلى ملف PDF واحد.",
+                will_be_created: "سيتم إنشاؤه."
+            },
+            select_pages_content: {
+                pages_to_extract: "الصفحات المراد استخراجها:",
+                merge: "دمج ملف pdf المستخرج في ملف pdf واحد.",
+                page_selection_example: "مثال: 2,8-32"
+            }
+        }
+    },
+    loader_text: "يرجى الانتظار...",
+    add_more_button: "إضافة المزيد من الملفات",
     action_buttons: {
-        lock_pdf: "قفل PDF",
-        unlock_pdf: "إلغاء قفل PDF"
+        split_pdf: "تقسيم PDF"
     },
-    lock_button_title: "الرجاء تأكيد كلمة المرور عن طريق إدخالها مرتين.",
-    unlock_button_title: "أدخل كلمة المرور لكل ملف محمي",
-    pages: "صفحات",
+    select_files_placeholder: "اختر الملفات",
+    pages: "صفحة",
     page: "صفحة واحدة",
-    lock_pdf: {
-        title: "قم بتعيين كلمة مرور لقفل ملف PDF الخاص بك",
-        password: "كلمه السر",
-        repeatPassword: "اعد كلمة السر",
-        no_match: "كلمات المرور غير متطابقة."
-    },
-    unlock_pdf: {
-        title: "أدخل كلمة المرور للملفات التي تتطلب ذلك",
-        password_for: "كلمة السر ل"
-    },
     filenameOptions: {
         label: "اسم الملف الناتج (اختياري)",
         placeholder: "أدخل اسم الملف",
@@ -85,39 +85,32 @@ export const edit_page: _edit_page = {
             cta: "الترقية الآن",
         },
     },
-    languageSelectContent: {
-        placeholder: "اختر اللغات (حد أقصى 3)",
-        warning: "هذا المستند ممسوح ضوئيًا. يرجى اختيار لغته لضمان نتائج دقيقة.",
-        ocr_warning: "تم اكتشاف مستند ممسوح ضوئيًا. للحصول على أفضل النتائج، استخدم أداة OCR PDF الخاصة بنا مع اكتشاف متقدم للغة ودقة أعلى. يمكنك أيضًا تعيين اللغة هنا للمعالجة الأساسية.",
+    fileCard: {
+        page: "صفحة",
+        pages: "صفحات",
+        remove_file: "إزالة الملف",
+        loading: "جاري التحميل...",
     },
 };
 
 export const downloadFile: _downloadFile = {
     titles: {
-        "lock-pdf": [
-            "تم قفل ملفات ال PDF!",
-            "تم قفل ملف ال PDF!"
-        ],
-        "unlock-pdf": [
-            "تم إلغاء قفل ملفال ال PDF!",
-            "تم إلغاء قفل ملف ال PDF!"
+        "split-pdf": [
+            "تم تقسيم ملف ال PDF!",
+            "تم تقسيم ملفات PDF!"
         ]
     },
     btnText: {
-        "lock-pdf": [
-            "تنزيل ملفات PDF المقفلة",
-            "تنزيل ملف PDF المقفل"
-        ],
-        "unlock-pdf": [
-            "تحميل الملفات الغير مغلقة",
-            "تحميل الملف الغير مغلق"
+        "split-pdf": [
+            "تحميل ملفات PDF المقسمة",
+            "تحميل ملف PDF مقسم"
         ]
     },
     backto: {
-        "lock-pdf": "العودة إلى قفل PDF",
-        "unlock-pdf": "العودة إلى إلغاء قفل ملفات ال PDF"
+        "split-pdf": "العودة إلى تقسيم ملفات PDF"
     }
 };
+
 
 export const tools: _tools = {
     select: "اختر",
@@ -215,6 +208,18 @@ export const errors: _errors = {
         userNotFound: "الحساب غير موجود. يرجى تسجيل الدخول مرة أخرى.",
         authError: "خطأ في المصادقة. يرجى المحاولة مرة أخرى.",
         serverError: "خطأ في الخادم. يرجى المحاولة لاحقًا.",
+        invalidSplitMode: "تم اختيار وضع تقسيم غير صالح.",
+        invalidRangeMode: "تم اختيار وضع نطاق غير صالح.",
+        invalidExtractMode: "تم اختيار وضع استخراج غير صالح.",
+        noRangesProvided: "يرجى تقديم نطاق صفحات واحد على الأقل.",
+        noFixedRangeValue: "يرجى تحديد عدد الصفحات لكل تقسيم.",
+        invalidFixedRangeValue: "عدد صفحات غير صالح. يرجى إدخال رقم إيجابي.",
+        noPagesSelected: "يرجى تحديد صفحة واحدة على الأقل للاستخراج.",
+        invalidPageRange: "نطاق صفحات غير صالح. يرجى التحقق من أرقام الصفحات الخاصة بك.",
+        invalidPageSelection: "تحديد صفحات غير صالح. استخدم تنسيق مثل '1-3,5,7-10'.",
+        rangeOutOfBounds: "نطاق الصفحات يتجاوز عدد الصفحات في ملف PDF.",
+        pdfTooManyPages: "ملف PDF يحتوي على صفحات كثيرة جدًا. يرجى استخدام وثيقة أصغر.",
+        splitFailed: "فشل في تقسيم ملف PDF. يرجى المحاولة مرة أخرى.",
     },
 };
 
