@@ -1,37 +1,19 @@
 ---
-const { pathname } = Astro.url;
-const { seoConfig } = Astro.props;
-let lang = "en";
+const { seoConfig, lang } = Astro.props;
 let dir = "ltr";
-
-switch (lang) {
-  case "ar":
-    break;
-  case "es":
-    break;
-  case "fr":
-    break;
-  case "hi":
-    break;
-  case "zh":
-    break;
-  default:
-    break;
-}
-
 // Determine language and direction based on URL path
-if (pathname.startsWith("/ar")) {
-  lang = "ar";
+if (lang === "ar") {
   dir = "rtl";
-} else if (pathname.startsWith("/es")) {
-  lang = "es";
-} else if (pathname.startsWith("/fr")) {
-  lang = "fr";
-} else if (pathname.startsWith("/hi")) {
-  lang = "hi";
-} else if (pathname.startsWith("/zh")) {
-  lang = "zh";
 }
+export const localeMap: Record<string, string> = {
+  en: "en_US",
+  fr: "fr_FR",
+  es: "es_ES",
+  ar: "ar_AR",
+  hi: "hi_IN",
+  zh: "zh_CN",
+};
+const locale = localeMap[lang || "en"] || "en_US";
 import "../styles/global.css";
 import "../../index.scss";
 import Navbar from "pdfequips-navbar/NavBar";
@@ -42,7 +24,13 @@ import AstroSeo from "./AstroSeo.astro";
 <!doctype html>
 <html lang={lang} dir={dir}>
   <head>
-    <AstroSeo {...seoConfig} />
+    <AstroSeo
+      {...seoConfig}
+      openGraph={{
+        ...seoConfig.openGraph,
+        locale: locale,
+      }}
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

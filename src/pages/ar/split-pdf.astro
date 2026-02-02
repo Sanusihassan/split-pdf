@@ -41,7 +41,7 @@ const seoConfig = {
       },
     ],
     site_name: item.title,
-    locale: "en_US",
+
     type: "website",
   },
   twitter: {
@@ -58,6 +58,7 @@ const seoConfig = {
   seoTitle={item.seoTitle}
   to={item.to}
   seoConfig={seoConfig}
+  lang={lang}
 >
   <Fragment slot="head">
     <script
