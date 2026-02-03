@@ -16,8 +16,6 @@ import type { Paths } from "../src/content/content";
 type editPageProps = {
   extension: string;
   edit_page: edit_page;
-  pages: string;
-  page: string;
   lang: string;
   errors: _;
   path: Paths;
@@ -27,8 +25,6 @@ type editPageProps = {
 const EditPage = ({
   extension,
   edit_page,
-  pages,
-  page,
   lang,
   errors,
   path,
@@ -62,13 +58,10 @@ const EditPage = ({
       <section className="edit-area position-relative">
         <DisplayFile
           extension={extension}
-          pages={pages}
-          page={page}
-          lang={lang}
           errors={errors}
-          edit_page={edit_page}
           drop_files={drop_files}
           path={path}
+          fileCard={edit_page.fileCard}
         />
         <ErrorElement cta={edit_page.filenameOptions.cta} lang={lang} />
         {/* <WarningAlert /> */}

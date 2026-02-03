@@ -6,7 +6,6 @@ import { useFileStore } from "../../src/file-store";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSubscriptionStatus } from "fetch-subscription-status";
 import { setField, type ToolState } from "../../src/store";
-import * as pdfjsLib from "pdfjs-dist";
 import {
   ACCEPTED,
   calculatePages,
@@ -16,15 +15,15 @@ import {
   validateFiles,
 } from "../../src/utils";
 import type { Paths } from "../../src/content/content";
-import { toast } from "react-toastify";
 
 type FileProps = {
   errors: _;
   drop_files: string;
   path: Paths;
+  fileCard: edit_page["fileCard"];
 };
 
-const Files = ({ errors, drop_files, path }: FileProps) => {
+const Files = ({ errors, drop_files, path, fileCard }: FileProps) => {
   const { files, setFiles } = useFileStore();
   const dispatch = useDispatch();
   const subscriptionStatus = useSelector(
@@ -115,12 +114,7 @@ const Files = ({ errors, drop_files, path }: FileProps) => {
 
       {files.map((file, index) => (
         <SplitPDFFileCard
-          content={{
-            page: "page",
-            pages: "pages",
-            remove_file: "Remove file",
-            loading: "Loading PDF…",
-          }}
+          content={fileCard}
           errors={errors}
           file={file}
           key={index}

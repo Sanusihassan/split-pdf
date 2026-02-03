@@ -5,26 +5,20 @@ import Files from "./DisplayFile/Files";
 import type { Paths } from "../src/content/content";
 type propTypes = {
   extension: string;
-  pages: string;
-  page: string;
-  lang: string;
   errors: _;
-  edit_page: edit_page;
   drop_files: string;
   path: Paths;
+  fileCard: edit_page["fileCard"];
 };
 
 const DisplayFile = ({
   extension,
-  pages,
-  page,
-  lang,
   errors,
-  edit_page,
   drop_files,
   path,
+  fileCard,
 }: propTypes) => {
-  const [toolTipSizes, setToolTipSizes] = useState<string[]>([]);
+  // const [toolTipSizes, setToolTipSizes] = useState<string[]>([]);
 
   useEffect(() => {
     // const isValid = validateFiles(files, extension, errors, dispatch, {
@@ -37,7 +31,12 @@ const DisplayFile = ({
 
   return (
     <>
-      <Files errors={errors} drop_files={drop_files} path={path} />
+      <Files
+        errors={errors}
+        drop_files={drop_files}
+        path={path}
+        fileCard={fileCard}
+      />
     </>
   );
 };
