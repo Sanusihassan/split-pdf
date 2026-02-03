@@ -188,8 +188,6 @@ const Tool: React.FC<ToolProps> = ({
         <EditPage
           extension={data.type}
           edit_page={edit_page}
-          pages={pages}
-          page={page}
           lang={lang}
           errors={errors}
           path={path}
