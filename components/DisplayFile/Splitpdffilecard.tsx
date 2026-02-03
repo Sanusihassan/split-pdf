@@ -17,6 +17,7 @@ export interface SplitPDFFileCardProps {
     pages: string;
     remove_file: string;
     loading: string;
+    warning: string;
   };
   themeColor?: string;
 }
@@ -420,9 +421,7 @@ export const SplitPDFFileCard = ({
         {(isExtractMode || isExtractAll) &&
           selectedPageNumbers.length === 0 && (
             <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg">
-              <p className="text-sm text-amber-700">
-                ⚠️ No pages selected. Click on pages to select them.
-              </p>
+              <p className="text-sm text-amber-700">{content.warning}</p>
             </div>
           )}
       </div>

@@ -90,6 +90,7 @@ export const edit_page: _edit_page = {
     pages: "páginas",
     remove_file: "Eliminar archivo",
     loading: "Cargando...",
+    warning: "⚠️ No se seleccionaron páginas. Haz clic en las páginas para seleccionarlas."
   },
 };
 

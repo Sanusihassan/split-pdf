@@ -90,6 +90,7 @@ export const edit_page: _edit_page = {
         pages: "صفحات",
         remove_file: "إزالة الملف",
         loading: "جاري التحميل...",
+        warning: "⚠️ لم يتم تحديد أي صفحات. انقر على الصفحات لتحديدها."
     },
 };
 

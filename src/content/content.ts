@@ -36,6 +36,7 @@ export const edit_page = {
     pages: "pages",
     remove_file: "Remove file",
     loading: "Loading...",
+    warning: "⚠️ No pages selected. Click on pages to select them."
   },
   options: {
     split_by_range: "Split by range",

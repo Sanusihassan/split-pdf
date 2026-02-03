@@ -90,6 +90,7 @@ export const edit_page: _edit_page = {
         pages: "पेज",
         remove_file: "फाइल हटाएं",
         loading: "लोड हो रहा है...",
+        warning: "⚠️ कोई पेज नहीं चुना गया। उन्हें चुनने के लिए पेजों पर क्लिक करें."
     },
 };
 

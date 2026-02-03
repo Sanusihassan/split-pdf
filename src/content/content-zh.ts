@@ -90,6 +90,7 @@ export const edit_page: _edit_page = {
         pages: "页",
         remove_file: "移除文件",
         loading: "正在加载...",
+        warning: "⚠️ 未选择任何页面。点击页面以选择它们。"
     },
 };
 
