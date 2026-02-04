@@ -13,7 +13,7 @@ const HowTo = ({
   imgSrc: string;
 }) => {
   const stateShowTool = useSelector(
-    (state: { tool: ToolState }) => state.tool.showTool
+    (state: { tool: ToolState }) => state.tool.showTool,
   );
   useEffect(() => {}, [stateShowTool]);
   return (
@@ -35,7 +35,7 @@ const HowTo = ({
             />
             <img
               src={`/pdfequips.png`}
-              className="img-fluid"
+              className="img-fluid m-auto"
               alt={alt}
               title={alt}
             />
