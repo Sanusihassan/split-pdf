@@ -9,7 +9,7 @@ import {
   type PageViewport,
   type RenderTask,
 } from "pdfjs-dist";
-import { toast } from "react-toastify";
+import { toast, type Id } from "react-toastify";
 import type { Paths } from "./content/content";
 import { renderQueue } from "./RenderQueue";
 
@@ -139,9 +139,9 @@ export async function getFirstPageAsImage(
         password: password || undefined,
       });
 
-      let tid;
+      let tid: Id;
 
-      loadingTask.onPassword = (updatePassword, reason) => {
+      loadingTask.onPassword = (updatePassword: (arg0: string) => void, reason: number) => {
         if (reason === pdfjs.PasswordResponses.NEED_PASSWORD) {
           if (password) {
             updatePassword(password);
@@ -165,7 +165,7 @@ export async function getFirstPageAsImage(
       const pdf: PDFDocumentProxy = await loadingTask.promise;
       const page = await pdf.getPage(1);
 
-      const scale = 1.5;
+      const scale = .95;
       const viewport: PageViewport = page.getViewport({ scale });
 
       // Try OffscreenCanvas for better performance (if available)
@@ -581,16 +581,6 @@ export const validateFiles = (
 };
 // Create worker instance (singleton)
 let analysisWorker: Worker | null = null;
-
-function getAnalysisWorker(): Worker {
-  if (!analysisWorker) {
-    analysisWorker = new Worker(
-      new URL('./pdfAnalysisWorker.ts', import.meta.url),
-      { type: 'module' }
-    );
-  }
-  return analysisWorker;
-}
 
 // Optional: Clean up worker when done
 export function terminateAnalysisWorker() {
