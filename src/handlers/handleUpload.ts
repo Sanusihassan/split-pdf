@@ -1,15 +1,17 @@
-// handleUpload.ts - Updated for Split PDF
+// ============================================================================
+// REFACTORED handleUpload.ts (split-pdf) - Using Blob Pattern
+// ============================================================================
+
 import axios from "axios";
-import { downloadConvertedFile } from "../downloadFile";
 import type { errors as _ } from "../content";
-import { type RefObject } from "react";
 import { resetErrorMessage, setField, type ToolState } from "../store";
 import type { Action, Dispatch } from "@reduxjs/toolkit/react";
 import { parseErrorResponse } from "../utils";
 
-// ============================================
+// ============================================================================
 // STATE INTERFACE FOR SPLIT PDF
-// ============================================
+// ============================================================================
+
 export interface SplitPDFUploadState {
   path: string;
   errorMessage: string;
@@ -37,21 +39,93 @@ export interface SplitPDFUploadState {
   pageCount?: number;
 }
 
+// ============================================================================
+// FIX: Properly typed module variables (fixes TS7034)
+// ============================================================================
+
 let filesOnSubmit: string[] = [];
 let prevState: string | null = null;
 
+// ============================================================================
+// HELPERS
+// ============================================================================
+
+interface UploadResponse {
+  blob: Blob;
+  mimeType: string;
+}
+
+async function sendRequest(
+  url: string,
+  formData: FormData
+): Promise<UploadResponse> {
+  try {
+    const response = await axios.post(url, formData, {
+      responseType: "blob",
+      withCredentials: true,
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+
+    const blob = new Blob([response.data], {
+      type: response.headers["content-type"] || "application/octet-stream",
+    });
+
+    return {
+      blob,
+      mimeType: response.headers["content-type"] || "application/octet-stream",
+    };
+  } catch (err: any) {
+    // Error response might also be a Blob
+    if (err.response?.data instanceof Blob) {
+      try {
+        const text = await err.response.data.text();
+        err.response.data = JSON.parse(text);
+      } catch (parseError) {
+        console.error("Failed to parse error response:", parseError);
+        err.response.data = { code: "SERVER_ERROR" };
+      }
+    }
+    throw err;
+  }
+}
+
+// ============================================================================
+// MIME TYPE LOOKUP TABLE
+// ============================================================================
+
+const mimeTypeLookupTable: {
+  [key: string]: { outputFileMimeType: string; outputFileName: string };
+} = {
+  "application/zip": {
+    outputFileMimeType: "application/zip",
+    outputFileName: "split.zip",
+  },
+  "application/pdf": {
+    outputFileMimeType: "application/pdf",
+    outputFileName: "split.pdf",
+  },
+};
+
+// ============================================================================
+// MAIN HANDLER (Refactored)
+// ============================================================================
+
 export const handleUpload = async (
   e: React.SubmitEvent<HTMLFormElement>,
-  downloadBtn: RefObject<HTMLAnchorElement>,
+  // NOTE: downloadBtn parameter REMOVED
   dispatch: Dispatch<Action>,
   state: SplitPDFUploadState,
   files: File[],
-  errors: _
+  errors: _,
+  setDownloadBlob: (blob: Blob, filename: string) => void
 ) => {
   e.preventDefault();
   dispatch(setField({ isSubmitted: true }));
 
-  if (!files) return;
+  if (!files) {
+    dispatch(setField({ isSubmitted: false }));
+    return;
+  }
 
   // Extract file names from the File[] array
   const fileNames = files.map((file) => file.name);
@@ -60,6 +134,7 @@ export const handleUpload = async (
   const allFilesPresent = fileNames.every((fileName) =>
     filesOnSubmit.includes(fileName)
   );
+
   const strState = JSON.stringify(state);
 
   if (
@@ -74,9 +149,10 @@ export const handleUpload = async (
 
   prevState = strState;
 
-  // ============================================
+  // ────────────────────────────────────────────────────────────────────────
   // PREPARE FORM DATA
-  // ============================================
+  // ────────────────────────────────────────────────────────────────────────
+
   const formData = new FormData();
 
   // Add files
@@ -84,9 +160,9 @@ export const handleUpload = async (
     formData.append("files", files[i]);
   }
 
-  // ============================================
+  // ────────────────────────────────────────────────────────────────────────
   // ADD SPLIT PDF PARAMETERS
-  // ============================================
+  // ────────────────────────────────────────────────────────────────────────
 
   // Add split mode
   formData.append("splitMode", state.splitMode);
@@ -100,7 +176,6 @@ export const handleUpload = async (
     if (state.rangeMode === "custom_range") {
       // Add custom ranges
       if (state.customRanges && state.customRanges.length > 0) {
-        // Send ranges as JSON string or individual fields
         formData.append("ranges", JSON.stringify(state.customRanges));
       }
 
@@ -121,7 +196,7 @@ export const handleUpload = async (
     }
 
     if (state.extractMode === "extract_all") {
-      // For extract all, send "all" or page count
+      // For extract all, send "all"
       formData.append("selectedPages", "all");
     } else if (state.extractMode === "select_pages") {
       // Add selected pages
@@ -141,9 +216,10 @@ export const handleUpload = async (
     formData.append("pageCount", String(state.pageCount));
   }
 
-  // ============================================
+  // ────────────────────────────────────────────────────────────────────────
   // PREPARE URL
-  // ============================================
+  // ────────────────────────────────────────────────────────────────────────
+
   let url: string = "";
   const endpoint = "/api/";
 
@@ -154,77 +230,69 @@ export const handleUpload = async (
     url = `${endpoint}${state.path}`;
   }
 
+  // Early exit if there's already an error
   if (state.errorMessage) {
+    dispatch(setField({ isSubmitted: false }));
     return;
   }
 
+  // Get original filename for download
   const originalFileName =
     state.fileName || files[0]?.name?.split(".").slice(0, -1).join(".");
 
-  // ============================================
-  // MIME TYPE LOOKUP TABLE
-  // ============================================
-  const mimeTypeLookupTable: {
-    [key: string]: { outputFileMimeType: string; outputFileName: string };
-  } = {
-    "application/zip": {
-      outputFileMimeType: "application/zip",
-      outputFileName: `${originalFileName || "PDFEquips"}-split.zip`,
-    },
-    "application/pdf": {
-      outputFileMimeType: "application/pdf",
-      outputFileName: `${originalFileName}-split.pdf`,
-    },
-  };
+  // ────────────────────────────────────────────────────────────────────────
+  // API Call & Blob Handling
+  // ────────────────────────────────────────────────────────────────────────
 
-  // ============================================
-  // SEND REQUEST
-  // ============================================
   try {
-    const response = await axios.post(url, formData, {
-      responseType: "arraybuffer",
-      withCredentials: true,
-    });
+    // NEW: Use sendRequest helper
+    const { blob, mimeType } = await sendRequest(url, formData);
 
-    const mimeType = response.data.type || response.headers["content-type"];
+    // Look up expected output format
     const mimeTypeData = mimeTypeLookupTable[mimeType] || {
       outputFileMimeType: mimeType,
       outputFileName: "",
     };
+
     const { outputFileMimeType, outputFileName } = mimeTypeData;
-    const compressedFileSize = response.data.byteLength;
 
-    // Dispatch the compressed file size to Redux store
-    dispatch(
-      setField({
-        compressedFileSize: compressedFileSize,
-      })
+    // Ensure blob has correct MIME type
+    const typedBlob = new Blob([blob], {
+      type: outputFileMimeType || "application/octet-stream",
+    });
+
+    // ───────────────────────────────────────────────────────────────────────
+    // NEW: Deferred download via setDownloadBlob
+    // ───────────────────────────────────────────────────────────────────────
+    setDownloadBlob(
+      typedBlob,
+      outputFileName && originalFileName
+        ? `${originalFileName}-split${outputFileName.substring(outputFileName.lastIndexOf("."))}`
+        : outputFileName || state.fileName
     );
 
+    // Update UI state
     dispatch(setField({ showDownloadBtn: true }));
-    downloadConvertedFile(
-      response,
-      outputFileMimeType,
-      outputFileName || state.fileName,
-      downloadBtn
-    );
-    filesOnSubmit = files.map((f) => f.name);
+    dispatch(resetErrorMessage());
+    dispatch(setField({ isSubmitted: false }));
 
-    if (response.status !== 200) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    } else {
-      dispatch(resetErrorMessage());
-      dispatch(setField({ isSubmitted: false }));
-    }
+    // Update tracking
+    filesOnSubmit = files.map((f) => f.name);
   } catch (error) {
+    // ───────────────────────────────────────────────────────────────────────
+    // Error Handling
+    // ───────────────────────────────────────────────────────────────────────
+
     if ((error as { code: string }).code === "ERR_NETWORK") {
       dispatch(setField({ errorMessage: errors.ERR_NETWORK.message }));
+      dispatch(setField({ isSubmitted: false }));
       return;
     }
 
     // Handle server validation/auth errors
     if (axios.isAxiosError(error) && error.response) {
       try {
+        // FIX: Properly type errorCode (fixes TS2538)
         const errorCodeMap: Record<string, string> = {
           // File validation errors
           FILE_NOT_UPLOADED: errors.alerts.fileNotUploaded,
@@ -241,21 +309,25 @@ export const handleUpload = async (
           AUTH_USER_NOT_FOUND: errors.alerts.userNotFound,
           AUTH_SERVER_ERROR: errors.alerts.authError,
           SERVER_CONFIG_ERROR: errors.alerts.serverError,
-          MAX_PAGES_EXCEEDED: errors.MAX_PAGES_EXCEEDED.message,
+          MAX_PAGES_EXCEEDED: errors.MAX_PAGES_EXCEEDED?.message || "Max pages exceeded",
 
           // Split PDF specific errors
-          INVALID_PAGE_RANGE: errors.alerts?.invalidPageRange,
-          INVALID_PAGE_SELECTION: errors.alerts?.invalidPageSelection,
-          NO_PAGES_SELECTED: errors.alerts?.noPagesSelected,
-          RANGE_OUT_OF_BOUNDS: errors.alerts?.rangeOutOfBounds,
+          INVALID_PAGE_RANGE: errors.alerts?.invalidPageRange || "Invalid page range",
+          INVALID_PAGE_SELECTION:
+            errors.alerts?.invalidPageSelection || "Invalid page selection",
+          NO_PAGES_SELECTED: errors.alerts?.noPagesSelected || "No pages selected",
+          RANGE_OUT_OF_BOUNDS:
+            errors.alerts?.rangeOutOfBounds || "Range out of bounds",
         };
 
         const { errorCode } = parseErrorResponse(error);
-        const message = errorCodeMap[errorCode];
 
-        if (message) {
+        // FIX: Check if errorCode exists before indexing (fixes TS2538)
+        if (errorCode && errorCode in errorCodeMap) {
+          const message = errorCodeMap[errorCode];
           dispatch(setField({ limitationMsg: message }));
           dispatch(setField({ errorCode }));
+          dispatch(setField({ isSubmitted: false }));
           return;
         }
       } catch {
@@ -263,8 +335,6 @@ export const handleUpload = async (
       }
     }
 
-    dispatch(setField({ isSubmitted: false }));
-  } finally {
     dispatch(setField({ isSubmitted: false }));
   }
 };

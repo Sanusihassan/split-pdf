@@ -21,8 +21,8 @@ export type adBlockerContentType = {
 
 const checkAdBlocker = async (
   subscriptionStatus: boolean,
-  setIsAdBlocked: Dispatch<SetStateAction<boolean>>,
-  dispatch: Dispatch<UnknownAction>
+  setIsAdBlocked: Dispatch<SetStateAction<boolean | null>>,
+  dispatch: Dispatch<UnknownAction>,
 ) => {
   if (subscriptionStatus) {
     return;
@@ -38,7 +38,7 @@ const checkAdBlocker = async (
   try {
     await fetch(
       "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
-      { method: "HEAD", mode: "no-cors", cache: "no-store" }
+      { method: "HEAD", mode: "no-cors", cache: "no-store" },
     );
   } catch (error) {
     fetchBlocked = true;
@@ -85,7 +85,7 @@ export default function AdBlockDetector({
   const [isAdBlocked, setIsAdBlocked] = useState<boolean | null>(null);
   const dispatch = useDispatch();
   const subscriptionStatus = useSelector(
-    (state: { tool: ToolState }) => state.tool.subscriptionStatus
+    (state: { tool: ToolState }) => state.tool.subscriptionStatus,
   );
   useEffect(() => {
     // Don't run until subscription status is actually loaded

@@ -43,23 +43,36 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
 
   const dispatch = useDispatch();
   // file store
-  const { files, setFiles, setFileInput, setDownloadBtn, setSubmitBtn } =
+  const { files, setFiles, setFileInput, setSubmitBtn, setDownloadBlob } =
     useFileStore();
 
   // refs
-  const fileInput = useRef<HTMLInputElement>(null);
-  const submitBtn = useRef<HTMLButtonElement>(null);
-  const downloadBtn = useRef<HTMLAnchorElement>(null);
+  const fileInput = useRef<HTMLInputElement | null>(null);
+  const submitBtn = useRef<HTMLButtonElement | null>(null);
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
+    const setupRefs = () => {
+      setLoaded(true);
+      setFileInput(fileInput);
+      setSubmitBtn(submitBtn);
+    };
+
+    if ("requestIdleCallback" in window) {
+      const id = requestIdleCallback(setupRefs, { timeout: 3000 });
+      return () => cancelIdleCallback(id);
+    } else {
+      // Fallback for older browsers
+      if (document.readyState === "complete") {
+        setupRefs();
+      } else {
+        document.addEventListener("DOMContentLoaded", setupRefs, {
+          once: true,
+        });
+        return () =>
+          document.removeEventListener("DOMContentLoaded", setupRefs);
+      }
     }
-    setLoaded(true);
-    setFileInput(fileInput);
-    setSubmitBtn(submitBtn);
-    setDownloadBtn(downloadBtn);
-  }, []);
+  }, [setFileInput, setSubmitBtn]);
   return (
     <form
       onClick={(e) => {
@@ -97,7 +110,7 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
             uploadState.mergeExtracted = toolState.mergeExtracted;
           }
         }
-        handleUpload(e, downloadBtn, dispatch, uploadState, files, errors);
+        handleUpload(e, dispatch, uploadState, files, errors, setDownloadBlob);
       }}
       method="POST"
       encType="multipart/form-data"
@@ -142,12 +155,6 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
           disabled={!loaded}
         />
       </div>
-      <a
-        href=""
-        className="d-none"
-        ref={downloadBtn}
-        download="__output.pdf"
-      ></a>
       {/* <div className="my-4">
           </div> */}
       <button type="submit" ref={submitBtn} className="d-none">

@@ -1,0 +1,161 @@
+---
+// src/pages/[lang]/split-pdf.astro
+import BaseLayout from "../../partials/BaseLayout.astro";
+import { ToolWrapper } from "../../../components/ToolWrapper";
+
+// Import all language content files
+import * as contentAr from "../../content/content-ar";
+import * as contentEs from "../../content/content-es";
+import * as contentFr from "../../content/content-fr";
+import * as contentHi from "../../content/content-hi";
+import * as contentZh from "../../content/content-zh";
+
+// Import localized how-to schemas directly from the centralized file
+import {
+  howToSchema_ar,
+  howToSchema_es,
+  howToSchema_fr,
+  howToSchema_hi,
+  howToSchema_zh,
+} from "../../how-to";
+
+export async function getStaticPaths() {
+  // Define language configuration matrix for static builds
+  const languages = [
+    {
+      lang: "ar",
+      content: contentAr,
+      howTo: howToSchema_ar,
+      ogLocale: "ar_AR",
+    },
+    {
+      lang: "es",
+      content: contentEs,
+      howTo: howToSchema_es,
+      ogLocale: "es_ES",
+    },
+    {
+      lang: "fr",
+      content: contentFr,
+      howTo: howToSchema_fr,
+      ogLocale: "fr_FR",
+    },
+    {
+      lang: "hi",
+      content: contentHi,
+      howTo: howToSchema_hi,
+      ogLocale: "hi_IN",
+    },
+    {
+      lang: "zh",
+      content: contentZh,
+      howTo: howToSchema_zh,
+      ogLocale: "zh_CN",
+    },
+  ];
+
+  return languages.map((langConfig) => ({
+    params: { lang: langConfig.lang },
+    props: {
+      lang: langConfig.lang,
+      content: langConfig.content,
+      // Cast to any here to prevent TS from bubbling up internal schema-dts signatures
+      howToSchema: langConfig.howTo as any,
+      ogLocale: langConfig.ogLocale,
+    },
+  }));
+}
+
+// Extract matrix props for the current language request context
+const { lang, content, howToSchema, ogLocale } = Astro.props;
+
+// Destructure localized content variables dynamically
+const { tool, tools, errors, edit_page, downloadFile, adBlockerContent } =
+  content;
+const item = tool["Split_PDF"];
+const currentRoute = "/split-pdf";
+
+// Build structural JSON-LD metadata markup objects
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: `PDFEquips ${item.title}`,
+  description: item.description,
+  url: `https://www.pdfequips.com${currentRoute}`,
+};
+
+const seoConfig = {
+  title: item.seoTitle,
+  description: item.description,
+  to: item.to,
+  openGraph: {
+    url: item.to,
+    title: item.seoTitle,
+    description: item.description,
+    images: [
+      {
+        url: `https://www.pdfequips.com/images${item.to}.png`,
+        width: 1200,
+        height: 630,
+        alt: item.title,
+        type: "image/png",
+      },
+    ],
+    site_name: item.title,
+    locale: ogLocale,
+    type: "website",
+  },
+  twitter: {
+    handle: "@pdfequips",
+    site: "@pdfequips",
+    cardType: "summary_large_image",
+  },
+};
+---
+
+<BaseLayout
+  title={item.title}
+  description={item.description}
+  seoTitle={item.seoTitle}
+  to={item.to}
+  seoConfig={seoConfig}
+  lang={lang}
+>
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(websiteSchema)}
+    />
+    {
+      howToSchema && (
+        <script
+          type="application/ld+json"
+          is:inline
+          set:html={JSON.stringify(howToSchema)}
+        />
+      )
+    }
+    <link
+      rel="canonical"
+      href={`https://www.pdfequips.com/${lang}${item.to}`}
+    />
+  </Fragment>
+
+  <ToolWrapper
+    client:load
+    tools={tools}
+    data={item}
+    lang={lang}
+    errors={errors}
+    edit_page={edit_page}
+    pages={edit_page.pages}
+    page={edit_page.page}
+    downloadFile={downloadFile}
+    features={item.features}
+    howTo={howToSchema}
+    seoTitle={item.title}
+    to={currentRoute}
+    adBlockerContent={adBlockerContent}
+  />
+</BaseLayout>
