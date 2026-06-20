@@ -609,7 +609,11 @@ export const SplitPDFOptions = ({
               </div>
 
               {/* Merge Checkbox */}
-              <label className="flex items-center gap-2 cursor-pointer">
+              <label
+                className="flex! items-center gap-2! cursor-pointer"
+                htmlFor="merge-extracted"
+                onClick={(e) => e.stopPropagation()}
+              >
                 <input
                   type="checkbox"
                   checked={mergeExtracted}
@@ -620,6 +624,7 @@ export const SplitPDFOptions = ({
                   style={{
                     accentColor: themeColor,
                   }}
+                  id="merge-extracted"
                 />
                 <span className="text-sm text-gray-700">
                   {content.extract_pages_options.select_pages_content.merge}
@@ -628,14 +633,14 @@ export const SplitPDFOptions = ({
 
               {/* Info Alert */}
               <div
-                className="flex items-start gap-2 p-3 rounded-lg"
+                className="flex! items-start gap-2! p-3 rounded-lg"
                 style={{
                   backgroundColor: `${themeColor}10`,
                   borderLeft: `3px solid ${themeColor}`,
                 }}
               >
                 <Info size={16} style={{ color: themeColor, marginTop: 2 }} />
-                <p className="text-sm text-gray-700">
+                <p className="text-sm text-gray-700 mb-0!">
                   {
                     content.extract_pages_options.selection_alert_content
                       .selection_alert
