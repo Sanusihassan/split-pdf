@@ -109,6 +109,32 @@ export const downloadFile: _downloadFile = {
     },
     backto: {
         "split-pdf": "विभाजित की गई PDF को वापस जाएं"
+    },
+    shareOverlayExtra: {
+        copiedText: "कॉपी किया गया",
+        copy_link: "लिंक कॉपी करें",
+    },
+    premiumToast: {
+        variants: [
+            {
+                message: "बेहतर परिणाम चाहते हैं? बेहतर फॉर्मेटिंग और सटीकता के लिए Premium आज़माएं!",
+                actionButton: "Premium आज़माएं",
+            },
+            {
+                message: "विज्ञापन-मुक्त अनुभव पसंद करते हैं? Premium विज्ञापनों को पूरी तरह से हटा देता है।",
+                actionButton: "Premium प्राप्त करें",
+            },
+        ],
+    },
+    shareOverlay: {
+        "split-pdf": {
+            modalTitles: ["अपने दोस्तों को बताएं!", "प्यार बांटें!", "आपकी आवाज मायने रखती है!"],
+            modalDescription:
+                "एक लंबे PDF को अलग-अलग फ़ाइलों में विभाजित करें जिन्हें भेजना, फ़ाइल करना या अलग से सौंपना आसान हो।",
+            shareText:
+                "पृष्ठ सीमा के अनुसार या चुने गए पृष्ठ अंतरालों पर एक PDF को कई अलग-अलग PDF फ़ाइलों में विभाजित करता है।",
+            url: "https://www.pdfequips.com/split-pdf",
+        },
     }
 };
 

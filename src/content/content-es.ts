@@ -109,6 +109,32 @@ export const downloadFile: _downloadFile = {
   },
   backto: {
     "split-pdf": "Volver a dividir PDF"
+  },
+  shareOverlayExtra: {
+    copiedText: "Copiado",
+    copy_link: "Copiar enlace",
+  },
+  premiumToast: {
+    variants: [
+      {
+        message: "¡¿Quieres mejores resultados?! Prueba Premium para obtener mayor formato y precisión.",
+        actionButton: "Probar Premium",
+      },
+      {
+        message: "¿Prefieres una experiencia sin anuncios? Premium elimina los anuncios por completo.",
+        actionButton: "Obtener Premium",
+      },
+    ],
+  },
+  shareOverlay: {
+    "split-pdf": {
+      modalTitles: ["¡Cuéntale a tus amigos!", "¡Comparte el amor!", "¡Tu voz cuenta!"],
+      modalDescription:
+        "Divide un PDF largo en archivos independientes más fáciles de enviar, archivar o entregar por separado.",
+      shareText:
+        "Divide un archivo PDF en varios archivos PDF independientes, por rango de páginas o en saltos de página seleccionados.",
+      url: "https://www.pdfequips.com/split-pdf",
+    },
   }
 };
 

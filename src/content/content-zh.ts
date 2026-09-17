@@ -109,6 +109,32 @@ export const downloadFile: _downloadFile = {
     },
     backto: {
         "split-pdf": "返回拆分PDF"
+    },
+    shareOverlayExtra: {
+        copiedText: "已复制",
+        copy_link: "复制链接",
+    },
+    premiumToast: {
+        variants: [
+            {
+                message: "想要更好的效果？试试 Premium 以获得更出色的排版和准确度！",
+                actionButton: "体验 Premium",
+            },
+            {
+                message: "想要无广告体验？Premium 可完全移除所有广告。",
+                actionButton: "升级 Premium",
+            },
+        ],
+    },
+    shareOverlay: {
+        "split-pdf": {
+            modalTitles: ["告诉你的朋友！", "分享这份喜爱！", "您的声音很重要！"],
+            modalDescription:
+                "将一份长 PDF 拆分为独立的多个文件，更便于单独发送、归档或交付。",
+            shareText:
+                "按页码范围或指定的分页符，将一个 PDF 拆分为多个独立的 PDF 文件。",
+            url: "https://www.pdfequips.com/split-pdf",
+        },
     }
 };
 

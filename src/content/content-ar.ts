@@ -109,6 +109,32 @@ export const downloadFile: _downloadFile = {
     },
     backto: {
         "split-pdf": "العودة إلى تقسيم ملفات PDF"
+    },
+    premiumToast: {
+        variants: [
+            {
+                message: "هل تريد نتائج أفضل؟ جرب Premium للحصول على دقة وتنسيق ممتازين!",
+                actionButton: "جرب Premium",
+            },
+            {
+                message: "هل تفضل تجربة خالية من الإعلانات؟ Premium يزيل الإعلانات تمامًا.",
+                actionButton: "احصل على Premium",
+            },
+        ],
+    },
+    shareOverlayExtra: {
+        copiedText: "تم النسخ",
+        copy_link: "نسخ الرابط",
+    },
+    shareOverlay: {
+        "split-pdf": {
+            modalTitles: ["أخبر أصدقاءك!", "شارك الحب!", "صوتك يحدث فرقًا!"],
+            modalDescription:
+                "تقسيم ملف PDF طويل إلى ملفات منفصلة يسهل إرسالها أو أرشفتها أو تسليمها بشكل فردي.",
+            shareText:
+                "يقسم ملف PDF إلى ملفات PDF متعددة منفصلة، إما حسب نطاق الصفحات أو عند فواصل صفحات محددة.",
+            url: "https://www.pdfequips.com/split-pdf",
+        },
     }
 };
 
