@@ -8,3 +8,5 @@ still.
 
 
 fix https for web-to-pdf & markdown-to-pdf (if any).
+
+add output-filename option.

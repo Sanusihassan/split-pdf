@@ -76,14 +76,12 @@ export const edit_page: _edit_page = {
     pages: "صفحة",
     page: "صفحة واحدة",
     filenameOptions: {
+        cta: "عرض الخطط",
+    },
+    fileNameInput: {
         label: "اسم الملف الناتج (اختياري)",
         placeholder: "أدخل اسم الملف",
-        helperText: "سيكون هذا هو اسم ملف PDF المضغوط عند تنزيله.",
-        cta: "عرض الخطط",
-        upgradeNotice: {
-            msg: "المستويات من 2.0 إلى 10.0 متاحة مع الخطة المميزة.",
-            cta: "الترقية الآن",
-        },
+        helperText: "سيكون هذا اسم المستند الذي يتم تنزيله.",
     },
     fileCard: {
         page: "صفحة",

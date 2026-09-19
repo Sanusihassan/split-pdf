@@ -81,15 +81,13 @@ export const edit_page = {
   select_files_placeholder: "Select Files",
   pages: "pages",
   page: "page",
-  filenameOptions: {
+  fileNameInput: {
     label: "Output File Name (Optional)",
     placeholder: "Enter file name",
-    helperText: "This will be the name of the compressed PDF when downloaded.",
+    helperText: "This will be the name of the document that gets downloaded.",
+  },
+  filenameOptions: {
     cta: "View Plans",
-    upgradeNotice: {
-      msg: "Levels from 2.0 to 10.0 are available with premium.",
-      cta: "Upgrade now",
-    },
   },
 };
 

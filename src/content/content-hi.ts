@@ -76,14 +76,12 @@ export const edit_page: _edit_page = {
     pages: "पृष्ठों",
     page: "पृष्ठ",
     filenameOptions: {
-        label: "आउटपुट फ़ाइल का नाम (वैकल्पिक)",
-        placeholder: "फ़ाइल का नाम दर्ज करें",
-        helperText: "डाउनलोड करते समय यह संकुचित PDF का नाम होगा।",
         cta: "योजनाएँ देखें",
-        upgradeNotice: {
-            msg: "2.0 से 10.0 तक के स्तर प्रीमियम में उपलब्ध हैं।",
-            cta: "अभी अपग्रेड करें",
-        },
+    },
+    fileNameInput: {
+        label: "आउटपुट फाइल नाम (वैकल्पिक)",
+        placeholder: "फाइल नाम दर्ज करें",
+        helperText: "यह डाउनलोड होने वाले दस्तावेज़ का नाम होगा।",
     },
     fileCard: {
         page: "पेज",
