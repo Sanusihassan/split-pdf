@@ -66,13 +66,14 @@ async function sendRequest(
       headers: { "Content-Type": "multipart/form-data" },
     });
 
-    const blob = new Blob([response.data], {
-      type: response.headers["content-type"] || "application/octet-stream",
-    });
+    const contentType = String(
+      response.headers["content-type"] || "application/octet-stream",
+    );
+    const blob = new Blob([response.data], { type: contentType });
 
     return {
       blob,
-      mimeType: response.headers["content-type"] || "application/octet-stream",
+      mimeType: contentType,
     };
   } catch (err: any) {
     // Error response might also be a Blob
