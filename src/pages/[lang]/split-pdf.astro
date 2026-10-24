@@ -2,6 +2,7 @@
 // src/pages/[lang]/split-pdf.astro
 import BaseLayout from "../../partials/BaseLayout.astro";
 import { ToolWrapper } from "../../../components/ToolWrapper";
+import ToolContent from "../../../components/ToolContent.astro";
 
 // Import all language content files
 import * as contentAr from "../../content/content-ar";
@@ -152,10 +153,12 @@ const seoConfig = {
     pages={edit_page.pages}
     page={edit_page.page}
     downloadFile={downloadFile}
-    features={item.features}
+    adBlockerContent={adBlockerContent}
+  />
+  <ToolContent
     howTo={howToSchema}
+    features={item.features}
     seoTitle={item.title}
     to={currentRoute}
-    adBlockerContent={adBlockerContent}
   />
 </BaseLayout>

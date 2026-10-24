@@ -12,6 +12,12 @@
   @include extend("d-none");
 }
 
+// Static (non-React) page content hidden while a file is being edited.
+// ToolWrapper sets data-show-tool on <html> from the Redux `showTool` state.
+html[data-show-tool="false"] .hide-when-editing {
+  display: none !important;
+}
+
 .flex-column {
   @include extend("flex-column");
 }

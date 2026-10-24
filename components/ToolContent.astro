@@ -1,0 +1,24 @@
+---
+// Static SEO content for a tool page. Rendered without a client:* directive,
+// so it ships as plain HTML with zero JS. Hidden while editing via the
+// `data-show-tool` attribute that ToolWrapper sets on <html>.
+import type { WithContext, HowTo as HowToType } from "schema-dts";
+import HowTo from "./HowTo";
+import { Features } from "./Features";
+
+type Props = {
+  howTo: WithContext<HowToType>;
+  features: { title: string; description: string }[];
+  seoTitle: string;
+  to: string;
+};
+
+const { howTo, features, seoTitle, to } = Astro.props;
+---
+
+<div class="container">
+  <HowTo howTo={howTo} alt={seoTitle} imgSrc={to.replace("/", "")} />
+</div>
+<div class="container">
+  <Features features={features} />
+</div>

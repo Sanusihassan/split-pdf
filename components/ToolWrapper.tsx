@@ -1,10 +1,8 @@
-import { Provider as ReduxProvider } from "react-redux";
+import { useEffect } from "react";
+import { Provider as ReduxProvider, useSelector } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
-import toolReducer from "../src/store";
+import toolReducer, { type ToolState } from "../src/store";
 import { Tool as ToolComponent, type ToolProps } from "./Tool";
-import { Features } from "./Features";
-import type { WithContext, HowTo as HowToType } from "schema-dts";
-import HowTo from "./HowTo";
 import AdBlockDetector from "./AdBlockDetector";
 import type { adBlockerContentType } from "../src/content/content";
 
@@ -22,46 +20,32 @@ function getStore() {
 }
 
 type ToolWrapperProps = ToolProps & {
-  features: {
-    title: string;
-    description: string;
-  }[];
-  howTo: WithContext<HowToType>;
-  seoTitle: string;
-  to: string;
   adBlockerContent: adBlockerContentType;
 };
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
+// Mirrors `showTool` onto <html data-show-tool="..."> so the static,
+// server-rendered content (HowTo, Features) can be hidden with CSS
+// without being part of this React island.
+function ShowToolSync() {
+  const showTool = useSelector(
+    (state: { tool: ToolState }) => state.tool.showTool,
+  );
+  useEffect(() => {
+    document.documentElement.dataset.showTool = String(showTool);
+  }, [showTool]);
+  return null;
+}
+
 export function ToolWrapper(props: ToolWrapperProps) {
-  const { features, seoTitle, to, howTo, adBlockerContent, lang } = props;
+  const { adBlockerContent, lang } = props;
   const reduxStore = getStore();
   return (
     <ReduxProvider store={reduxStore}>
+      <ShowToolSync />
       <ToolComponent {...props} />
-      <div className="container">
-        <HowTo howTo={howTo} alt={seoTitle} imgSrc={to.replace("/", "")} />
-      </div>
-      <div className="container">
-        <Features
-          features={features as { title: string; description: string }[]}
-          // @ts-ignore
-          tool={
-            to as
-              | "/pdf-to-powerpoint"
-              | "/word-to-pdf"
-              | "/powerpoint-to-pdf"
-              | "/excel-to-pdf"
-              | "/html-to-pdf"
-              | "/pdf-to-word"
-              | "/pdf-to-excel"
-              | "/pdf-to-pdf-a"
-              | "/pdf-to-text"
-          }
-        />
-      </div>
       <AdBlockDetector content={adBlockerContent} lang={lang} />
     </ReduxProvider>
   );

@@ -1,6 +1,3 @@
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { type ToolState } from "../src/store";
 import type { WithContext, HowTo as HowToType } from "schema-dts";
 
 const HowTo = ({
@@ -12,13 +9,9 @@ const HowTo = ({
   alt: string;
   imgSrc: string;
 }) => {
-  const stateShowTool = useSelector(
-    (state: { tool: ToolState }) => state.tool.showTool,
-  );
-  useEffect(() => {}, [stateShowTool]);
   return (
     <>
-      <div className={`how-to${stateShowTool ? "" : " d-none"}`}>
+      <div className="how-to hide-when-editing">
         <div className="image">
           <picture>
             <source
