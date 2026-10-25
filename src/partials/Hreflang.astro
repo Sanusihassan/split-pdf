@@ -1,0 +1,20 @@
+---
+// hreflang alternates for every language version of this tool page.
+// `to` is the language-neutral path (e.g. "/pdf-to-word"); English lives
+// at the root and doubles as x-default.
+interface Props {
+  to: string;
+}
+
+const { to } = Astro.props;
+const base = "https://www.pdfequips.com";
+const langs = ["ar", "es", "fr", "hi", "zh"];
+---
+
+<link rel="alternate" hreflang="en" href={`${base}${to}`} />
+{
+  langs.map((l) => (
+    <link rel="alternate" hreflang={l} href={`${base}/${l}${to}`} />
+  ))
+}
+<link rel="alternate" hreflang="x-default" href={`${base}${to}`} />
