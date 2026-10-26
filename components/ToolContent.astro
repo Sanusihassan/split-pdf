@@ -5,15 +5,20 @@
 import type { WithContext, HowTo as HowToType } from "schema-dts";
 import HowTo from "./HowTo";
 import { Features } from "./Features";
+import Faq from "./Faq.astro";
+import { faqs } from "../src/content/faq";
 
 type Props = {
   howTo: WithContext<HowToType>;
   features: { title: string; description: string }[];
   seoTitle: string;
   to: string;
+  lang?: string;
 };
 
-const { howTo, features, seoTitle, to } = Astro.props;
+const { howTo, features, seoTitle, to, lang } = Astro.props;
+const faq = lang ? faqs[lang] : undefined;
+const faqItems = faq?.items[to];
 ---
 
 <div class="container">
@@ -22,3 +27,4 @@ const { howTo, features, seoTitle, to } = Astro.props;
 <div class="container">
   <Features features={features} />
 </div>
+{faq && faqItems && <Faq title={faq.title} items={faqItems} />}

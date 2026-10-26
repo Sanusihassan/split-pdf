@@ -1,0 +1,54 @@
+---
+// Static FAQ section plus its FAQPage JSON-LD. Plain HTML, zero JS.
+import type { FaqEntry } from "../src/content/faq";
+
+type Props = {
+  title: string;
+  items: FaqEntry[];
+};
+
+const { title, items } = Astro.props;
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: items.map(({ question, answer }) => ({
+    "@type": "Question",
+    name: question,
+    acceptedAnswer: { "@type": "Answer", text: answer },
+  })),
+};
+---
+
+<section class="container tool-faq hide-when-editing">
+  <h2>{title}</h2>
+  {
+    items.map(({ question, answer }) => (
+      <div class="tool-faq-item">
+        <h3>{question}</h3>
+        <p>{answer}</p>
+      </div>
+    ))
+  }
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</section>
+
+<style>
+  .tool-faq {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  .tool-faq h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  .tool-faq-item {
+    margin-bottom: 1.25rem;
+  }
+  .tool-faq-item h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.4rem;
+  }
+  .tool-faq-item p {
+    margin: 0;
+  }
+</style>
