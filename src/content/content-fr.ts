@@ -4,8 +4,8 @@ import type { edit_page as _edit_page, tool as _tool, tools as _tools, downloadF
 export const tool: _tool = {
     Split_PDF: {
         title: "Diviser PDF",
-        seoTitle: "Divisez PDF en Plusieurs Documents en Ligne en Toute Sécurité",
-        description: "Divisez un fichier PDF en plusieurs documents.",
+        seoTitle: "Diviser PDF en ligne – Décomposer et séparer un PDF gratuitement",
+        description: "Divisez ou décomposez un PDF en plusieurs fichiers, gratuitement et en ligne. Séparez les pages dont vous avez besoin, sans inscription.",
         color: "var(--orange)",
         type: ".pdf",
         to: "/split-pdf",
