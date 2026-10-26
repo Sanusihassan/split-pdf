@@ -2,8 +2,9 @@
 // FAQ section.
 import { faq as fr } from "./faq-fr";
 import { faq as es } from "./faq-es";
+import { faq as ar } from "./faq-ar";
 
 export type FaqEntry = { question: string; answer: string };
 export type FaqContent = { title: string; items: Record<string, FaqEntry[]> };
 
-export const faqs: Record<string, FaqContent> = { fr, es };
+export const faqs: Record<string, FaqContent> = { fr, es, ar };
