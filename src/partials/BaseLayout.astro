@@ -53,7 +53,7 @@ import Hreflang from "./Hreflang.astro";
         path={seoConfig.to.replace("/", "")}
       />
       <slot />
-      <Footer client:load title={seoConfig.title} lang={lang} />
+      <Footer title={seoConfig.title} lang={lang} />
     </main>
   </body>
 </html>
