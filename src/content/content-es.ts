@@ -4,8 +4,8 @@ import type { adBlockerContentType } from "./content";
 export const tool: _tool = {
   Split_PDF: {
     title: "Dividir PDF",
-    seoTitle: "Divide PDF en Múltiples Documentos en Línea de Forma Segura",
-    description: "Divide un archivo PDF en múltiples documentos.",
+    seoTitle: "Dividir PDF en Línea Gratis - Separar Páginas de un PDF",
+    description: "Divide un PDF en varios archivos o separa las páginas que necesitas, gratis y en línea. Sin registro.",
     color: "var(--orange)",
     type: ".pdf",
     to: "/split-pdf",
