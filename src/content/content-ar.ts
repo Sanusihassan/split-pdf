@@ -4,8 +4,8 @@ import type { adBlockerContentType } from "./content";
 export const tool: _tool = {
     Split_PDF: {
         title: "تقسيم PDF",
-        seoTitle: "تقسيم ملف PDF إلى عدة مستندات عبر الإنترنت بأمان",
-        description: "قسّم ملف PDF واحد إلى عدة مستندات.",
+        seoTitle: "تقسيم ملف PDF مجانًا - فصل صفحات PDF إلى عدة ملفات",
+        description: "قسّم ملف PDF إلى عدة ملفات أو افصل الصفحات التي تحتاجها، مجانًا عبر الإنترنت وبدون تسجيل.",
         color: "var(--orange)",
         type: ".pdf",
         to: "/split-pdf",
