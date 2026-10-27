@@ -2,6 +2,7 @@
 export interface Props {
   title: string;
   description: string;
+  lang?: string;
   openGraph?: {
     url?: string;
     title?: string;
@@ -24,7 +25,16 @@ export interface Props {
   };
 }
 
-const { title, description, openGraph, twitter } = Astro.props;
+const { title, description, openGraph, twitter, lang } = Astro.props;
+
+// og:url must be absolute; localized pages get their language prefix.
+const site = "https://www.pdfequips.com";
+const prefix = lang && lang !== "en" ? `/${lang}` : "";
+const ogUrl = openGraph?.url
+  ? /^https?:\/\//.test(openGraph.url)
+    ? openGraph.url
+    : `${site}${openGraph.url.startsWith(`${prefix}/`) ? "" : prefix}${openGraph.url}`
+  : undefined;
 ---
 
 <title>{title}</title>
@@ -33,7 +43,7 @@ const { title, description, openGraph, twitter } = Astro.props;
   openGraph && (
     <>
       <meta property="og:type" content={openGraph.type || "website"} />
-      {openGraph.url && <meta property="og:url" content={openGraph.url} />}
+      {ogUrl && <meta property="og:url" content={ogUrl} />}
       <meta property="og:title" content={openGraph.title || title} />
       <meta
         property="og:description"
