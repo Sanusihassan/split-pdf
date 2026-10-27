@@ -19,7 +19,7 @@
     "fetch-subscription-status": "^3.0.4",
     "js-cookie": "^3.0.5",
     "lucide-react": "^0.555.0",
-    "pdfequips-footer": "^0.1.14",
+    "pdfequips-footer": "^0.1.15",
     "pdfequips-navbar": "^3.6.22",
     "pdfjs-dist": "^4.9.155",
     "react-beautiful-dnd": "^13.1.1",
