@@ -75,7 +75,7 @@ export const PremiumToast: React.FC<PremiumToastProps> = ({
 
         {/* Action Link */}
         <a
-          href={`/${lang === "en" ? "" : lang + "/"}recharge/premium-conversions/`}
+          href={`${lang && lang !== "en" ? `/${lang}` : ""}/pricing/`}
           target="_blank"
           onClick={(e) => e.stopPropagation()}
           className="shrink-0 px-4 py-2 text-white text-sm font-semibold rounded-md 
